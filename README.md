@@ -3,4 +3,6 @@ Github for the ETSI MEC ISG: http://www.etsi.org/technologies-clusters/technolog
 
 Copyright: Viavi Solutions, pending acceptance by the ETSI MEC ISG. Should that be the case then it would be expected that this repository would be moved to an official location.
 
-License: Apache License (Version 2.0), but this is conditial to the decision of the ETSI MEC ISG.
+License: Apache License (Version 2.0), but this is condition to the decision of the ETSI MEC ISG.
+
+Repository Overview: This repository currently includes API descriptions for the Radio Network Information (RNI) API and Location API. For each API a JSON swagger description is provided (https://www.openapis.org/ and for the specification https://github.com/OAI/OpenAPI-Specification). The RNI directory also includes a protocol buffer interface file, based on version 3.0 (https://developers.google.com/protocol-buffers/docs/reference/proto3-spec).
