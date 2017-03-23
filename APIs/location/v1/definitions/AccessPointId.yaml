@@ -1,3 +1,7 @@
-description: Identifier of access point
-type: string
-example: "ap01"
+required:
+  - ecgi
+properties:
+  ecgi:
+    $ref: '#/definitions/Ecgi'
+  cellPortionId:
+    $ref: '#/definitions/CellPortionId'

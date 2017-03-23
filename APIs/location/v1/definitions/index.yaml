@@ -19,6 +19,12 @@ CallbackData:
 CallbackReference:
   $ref: ./CallbackReference.yaml
 
+CellIdentity:
+  $ref: ./CellIdentity.yaml
+
+CellPortionId:
+  $ref: ./CellPortionId.yaml
+
 ClientCorrelator:
   $ref: ./ClientCorrelator.yaml
 	
@@ -34,6 +40,9 @@ CurrentAccessPointId:
 Duration:
   $ref: ./Duration.yaml
 	
+Ecgi:
+  $ref: ./Ecgi.yaml
+
 InterestRealm:
   $ref: ./InterestRealm.yaml
 
@@ -70,6 +79,9 @@ NumberOfUsersZoneThreshold:
 OperationStatus:
   $ref: ./OperationStatus.yaml
 
+Plmn:
+  $ref: ./Plmn.yaml
+
 PreviousAccessPointId:
   $ref: ./PreviousAccessPointId.yaml
 
@@ -81,6 +93,9 @@ Timestamp:
 	 
 Timezone:
   $ref: ./Timezone.yaml
+
+UserEventCriteria:
+  $ref: ./UserEventCriteria.yaml
 
 UserEventType:
   $ref: ./UserEventType.yaml

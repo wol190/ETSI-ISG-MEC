@@ -1,0 +1,5 @@
+description: >-
+  The current Cell Portion location of the target UE, where the Cell Portion ID is the unique identifier for a cell portion within a cell, as defined in ETSI TS 129.171
+type: integer
+format: uint32
+example: "0"

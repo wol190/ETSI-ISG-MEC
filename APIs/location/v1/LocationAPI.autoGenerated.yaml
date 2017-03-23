@@ -2,9 +2,9 @@ swagger: '2.0'
 info:
   description: >-
     An initial attempt to describe the MEC Location API using OpenAPI, which is
-    based on the Open Mobile Alliance???s specifications ???RESTful Network API for
+    based on the Open Mobile Alliance's specification RESTful Network API for
     Zonal Presence
-  version: 0.3.3
+  version: 1.0.0
   title: MEC Location API
   termsOfService: TBD
   contact:
@@ -35,7 +35,9 @@ parameters:
   AccessPointId:
     name: accessPointId
     in: query
-    description: One or more access point attributes
+    description: >-
+      One or more access point attributes, reference "definitions" for string
+      format
     required: false
     type: string
   InterestRealm:
@@ -228,9 +230,51 @@ paths:
                         - resourceURL
                       properties:
                         accessPointId:
-                          description: Identifier of access point
-                          type: string
-                          example: ap01
+                          required:
+                            - ecgi
+                          properties:
+                            ecgi:
+                              Ecgi:
+                                description: >-
+                                  E-UTRAN Cell Identifier (E-CGI), as defined in
+                                  ETSI TS 129.171
+                                required:
+                                  - plmn
+                                  - cellIdentity
+                                properties:
+                                  plmn:
+                                    description: >-
+                                      public land mobile network (PLMN), as
+                                      defined in ETSI TS 129.171
+                                    type: object
+                                    required:
+                                      - mcc
+                                      - mnc
+                                    properties:
+                                      mcc:
+                                        description: Mobile Country Code
+                                        type: string
+                                        example: '001'
+                                      mnc:
+                                        description: Mobile Country Code
+                                        type: string
+                                        example: '01'
+                                  cellIdentity:
+                                    description: >-
+                                      Cell Identity as a bit string (size (28)),
+                                      as defined in ETSI TS 129.171
+                                    type: string
+                                    format: binary
+                                    example: '0'
+                            cellPortionId:
+                              description: >-
+                                The current Cell Portion location of the target
+                                UE, where the Cell Portion ID is the unique
+                                identifier for a cell portion within a cell, as
+                                defined in ETSI TS 129.171
+                              type: integer
+                              format: uint32
+                              example: '0'
                         locationInfo:
                           description: >-
                             A type containing location information with
@@ -371,9 +415,51 @@ paths:
                   - resourceURL
                 properties:
                   accessPointId:
-                    description: Identifier of access point
-                    type: string
-                    example: ap01
+                    required:
+                      - ecgi
+                    properties:
+                      ecgi:
+                        Ecgi:
+                          description: >-
+                            E-UTRAN Cell Identifier (E-CGI), as defined in ETSI
+                            TS 129.171
+                          required:
+                            - plmn
+                            - cellIdentity
+                          properties:
+                            plmn:
+                              description: >-
+                                public land mobile network (PLMN), as defined in
+                                ETSI TS 129.171
+                              type: object
+                              required:
+                                - mcc
+                                - mnc
+                              properties:
+                                mcc:
+                                  description: Mobile Country Code
+                                  type: string
+                                  example: '001'
+                                mnc:
+                                  description: Mobile Country Code
+                                  type: string
+                                  example: '01'
+                            cellIdentity:
+                              description: >-
+                                Cell Identity as a bit string (size (28)), as
+                                defined in ETSI TS 129.171
+                              type: string
+                              format: binary
+                              example: '0'
+                      cellPortionId:
+                        description: >-
+                          The current Cell Portion location of the target UE,
+                          where the Cell Portion ID is the unique identifier for
+                          a cell portion within a cell, as defined in ETSI TS
+                          129.171
+                        type: integer
+                        format: uint32
+                        example: '0'
                   locationInfo:
                     description: >-
                       A type containing location information with latitude,
@@ -461,7 +547,9 @@ paths:
           type: string
         - name: accessPointId
           in: query
-          description: One or more access point attributes
+          description: >-
+            One or more access point attributes, reference "definitions" for
+            string format
           required: false
           type: string
       responses:
@@ -486,15 +574,57 @@ paths:
                       properties:
                         address:
                           description: >-
-                            Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr???
+                            Address of user (e.g. "sip" URI, "tel" URI, "acr"
                             URI).
                           type: string
                           format: uri
                           example: 'acr:192.0.2.1'
                         accessPointId:
-                          description: Identifier of access point
-                          type: string
-                          example: ap01
+                          required:
+                            - ecgi
+                          properties:
+                            ecgi:
+                              Ecgi:
+                                description: >-
+                                  E-UTRAN Cell Identifier (E-CGI), as defined in
+                                  ETSI TS 129.171
+                                required:
+                                  - plmn
+                                  - cellIdentity
+                                properties:
+                                  plmn:
+                                    description: >-
+                                      public land mobile network (PLMN), as
+                                      defined in ETSI TS 129.171
+                                    type: object
+                                    required:
+                                      - mcc
+                                      - mnc
+                                    properties:
+                                      mcc:
+                                        description: Mobile Country Code
+                                        type: string
+                                        example: '001'
+                                      mnc:
+                                        description: Mobile Country Code
+                                        type: string
+                                        example: '01'
+                                  cellIdentity:
+                                    description: >-
+                                      Cell Identity as a bit string (size (28)),
+                                      as defined in ETSI TS 129.171
+                                    type: string
+                                    format: binary
+                                    example: '0'
+                            cellPortionId:
+                              description: >-
+                                The current Cell Portion location of the target
+                                UE, where the Cell Portion ID is the unique
+                                identifier for a cell portion within a cell, as
+                                defined in ETSI TS 129.171
+                              type: integer
+                              format: uint32
+                              example: '0'
                         zoneId:
                           description: Identifier of zone
                           type: string
@@ -544,8 +674,8 @@ paths:
                           properties:
                             address:
                               description: >-
-                                Address of user (e.g. ???sip??? URI, ???tel??? URI,
-                                ???acr??? URI).
+                                Address of user (e.g. "sip" URI, "tel" URI,
+                                "acr" URI).
                               type: string
                               format: uri
                               example: 'acr:192.0.2.1'
@@ -611,14 +741,56 @@ paths:
                   - resourceURL
                 properties:
                   address:
-                    description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+                    description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
                     type: string
                     format: uri
                     example: 'acr:192.0.2.1'
                   accessPointId:
-                    description: Identifier of access point
-                    type: string
-                    example: ap01
+                    required:
+                      - ecgi
+                    properties:
+                      ecgi:
+                        Ecgi:
+                          description: >-
+                            E-UTRAN Cell Identifier (E-CGI), as defined in ETSI
+                            TS 129.171
+                          required:
+                            - plmn
+                            - cellIdentity
+                          properties:
+                            plmn:
+                              description: >-
+                                public land mobile network (PLMN), as defined in
+                                ETSI TS 129.171
+                              type: object
+                              required:
+                                - mcc
+                                - mnc
+                              properties:
+                                mcc:
+                                  description: Mobile Country Code
+                                  type: string
+                                  example: '001'
+                                mnc:
+                                  description: Mobile Country Code
+                                  type: string
+                                  example: '01'
+                            cellIdentity:
+                              description: >-
+                                Cell Identity as a bit string (size (28)), as
+                                defined in ETSI TS 129.171
+                              type: string
+                              format: binary
+                              example: '0'
+                      cellPortionId:
+                        description: >-
+                          The current Cell Portion location of the target UE,
+                          where the Cell Portion ID is the unique identifier for
+                          a cell portion within a cell, as defined in ETSI TS
+                          129.171
+                        type: integer
+                        format: uint32
+                        example: '0'
                   zoneId:
                     description: Identifier of zone
                     type: string
@@ -668,7 +840,7 @@ paths:
                     properties:
                       address:
                         description: >-
-                          Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr???
+                          Address of user (e.g. "sip" URI, "tel" URI, "acr"
                           URI).
                         type: string
                         format: uri
@@ -761,7 +933,7 @@ paths:
                         duration:
                           description: >-
                             Period (in seconds) of time notifications are
-                            provided for. If set to ???0??? (zero), a default
+                            provided for. If set to "0" (zero), a default
                             duration time, which is specified by the service
                             policy, will be used. If the parameter is omitted,
                             the notifications will continue until the maximum
@@ -875,7 +1047,7 @@ paths:
               duration:
                 description: >-
                   Period (in seconds) of time notifications are provided for. If
-                  set to ???0??? (zero), a default duration time, which is specified
+                  set to "0" (zero), a default duration time, which is specified
                   by the service policy, will be used. If the parameter is
                   omitted, the notifications will continue until the maximum
                   duration time, which is specified by the service policy,
@@ -953,7 +1125,7 @@ paths:
                   duration:
                     description: >-
                       Period (in seconds) of time notifications are provided
-                      for. If set to ???0??? (zero), a default duration time, which
+                      for. If set to "0" (zero), a default duration time, which
                       is specified by the service policy, will be used. If the
                       parameter is omitted, the notifications will continue
                       until the maximum duration time, which is specified by the
@@ -1055,7 +1227,7 @@ paths:
                   duration:
                     description: >-
                       Period (in seconds) of time notifications are provided
-                      for. If set to ???0??? (zero), a default duration time, which
+                      for. If set to "0" (zero), a default duration time, which
                       is specified by the service policy, will be used. If the
                       parameter is omitted, the notifications will continue
                       until the maximum duration time, which is specified by the
@@ -1154,7 +1326,7 @@ paths:
               duration:
                 description: >-
                   Period (in seconds) of time notifications are provided for. If
-                  set to ???0??? (zero), a default duration time, which is specified
+                  set to "0" (zero), a default duration time, which is specified
                   by the service policy, will be used. If the parameter is
                   omitted, the notifications will continue until the maximum
                   duration time, which is specified by the service policy,
@@ -1232,7 +1404,7 @@ paths:
                   duration:
                     description: >-
                       Period (in seconds) of time notifications are provided
-                      for. If set to ???0??? (zero), a default duration time, which
+                      for. If set to "0" (zero), a default duration time, which
                       is specified by the service policy, will be used. If the
                       parameter is omitted, the notifications will continue
                       until the maximum duration time, which is specified by the
@@ -1320,7 +1492,7 @@ paths:
                                 http://clientApp.example.com/location_notifications/123456
                         address:
                           description: >-
-                            Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr???
+                            Address of user (e.g. "sip" URI, "tel" URI, "acr"
                             URI).
                           type: string
                           format: uri
@@ -1404,7 +1576,7 @@ paths:
                     format: url
                     example: 'http://clientApp.example.com/location_notifications/123456'
               address:
-                description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+                description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
                 type: string
                 format: uri
                 example: 'acr:192.0.2.1'
@@ -1454,7 +1626,7 @@ paths:
                         example: >-
                           http://clientApp.example.com/location_notifications/123456
                   address:
-                    description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+                    description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
                     type: string
                     format: uri
                     example: 'acr:192.0.2.1'
@@ -1527,7 +1699,7 @@ paths:
                         example: >-
                           http://clientApp.example.com/location_notifications/123456
                   address:
-                    description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+                    description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
                     type: string
                     format: uri
                     example: 'acr:192.0.2.1'
@@ -1597,7 +1769,7 @@ paths:
                     format: url
                     example: 'http://clientApp.example.com/location_notifications/123456'
               address:
-                description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+                description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
                 type: string
                 format: uri
                 example: 'acr:192.0.2.1'
@@ -1647,7 +1819,7 @@ paths:
                         example: >-
                           http://clientApp.example.com/location_notifications/123456
                   address:
-                    description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+                    description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
                     type: string
                     format: uri
                     example: 'acr:192.0.2.1'
@@ -2167,9 +2339,46 @@ paths:
                 operationStatus: Serviceable
 definitions:
   AccessPointId:
-    description: Identifier of access point
-    type: string
-    example: ap01
+    required:
+      - ecgi
+    properties:
+      ecgi:
+        Ecgi:
+          description: 'E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS 129.171'
+          required:
+            - plmn
+            - cellIdentity
+          properties:
+            plmn:
+              description: 'public land mobile network (PLMN), as defined in ETSI TS 129.171'
+              type: object
+              required:
+                - mcc
+                - mnc
+              properties:
+                mcc:
+                  description: Mobile Country Code
+                  type: string
+                  example: '001'
+                mnc:
+                  description: Mobile Country Code
+                  type: string
+                  example: '01'
+            cellIdentity:
+              description: >-
+                Cell Identity as a bit string (size (28)), as defined in ETSI TS
+                129.171
+              type: string
+              format: binary
+              example: '0'
+      cellPortionId:
+        description: >-
+          The current Cell Portion location of the target UE, where the Cell
+          Portion ID is the unique identifier for a cell portion within a cell,
+          as defined in ETSI TS 129.171
+        type: integer
+        format: uint32
+        example: '0'
   AccessPointInfo:
     required:
       - accessPointId
@@ -2179,9 +2388,48 @@ definitions:
       - resourceURL
     properties:
       accessPointId:
-        description: Identifier of access point
-        type: string
-        example: ap01
+        required:
+          - ecgi
+        properties:
+          ecgi:
+            Ecgi:
+              description: 'E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS 129.171'
+              required:
+                - plmn
+                - cellIdentity
+              properties:
+                plmn:
+                  description: >-
+                    public land mobile network (PLMN), as defined in ETSI TS
+                    129.171
+                  type: object
+                  required:
+                    - mcc
+                    - mnc
+                  properties:
+                    mcc:
+                      description: Mobile Country Code
+                      type: string
+                      example: '001'
+                    mnc:
+                      description: Mobile Country Code
+                      type: string
+                      example: '01'
+                cellIdentity:
+                  description: >-
+                    Cell Identity as a bit string (size (28)), as defined in
+                    ETSI TS 129.171
+                  type: string
+                  format: binary
+                  example: '0'
+          cellPortionId:
+            description: >-
+              The current Cell Portion location of the target UE, where the Cell
+              Portion ID is the unique identifier for a cell portion within a
+              cell, as defined in ETSI TS 129.171
+            type: integer
+            format: uint32
+            example: '0'
       locationInfo:
         description: >-
           A type containing location information with latitude, longitude and
@@ -2259,9 +2507,50 @@ definitions:
             - resourceURL
           properties:
             accessPointId:
-              description: Identifier of access point
-              type: string
-              example: ap01
+              required:
+                - ecgi
+              properties:
+                ecgi:
+                  Ecgi:
+                    description: >-
+                      E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS
+                      129.171
+                    required:
+                      - plmn
+                      - cellIdentity
+                    properties:
+                      plmn:
+                        description: >-
+                          public land mobile network (PLMN), as defined in ETSI
+                          TS 129.171
+                        type: object
+                        required:
+                          - mcc
+                          - mnc
+                        properties:
+                          mcc:
+                            description: Mobile Country Code
+                            type: string
+                            example: '001'
+                          mnc:
+                            description: Mobile Country Code
+                            type: string
+                            example: '01'
+                      cellIdentity:
+                        description: >-
+                          Cell Identity as a bit string (size (28)), as defined
+                          in ETSI TS 129.171
+                        type: string
+                        format: binary
+                        example: '0'
+                cellPortionId:
+                  description: >-
+                    The current Cell Portion location of the target UE, where
+                    the Cell Portion ID is the unique identifier for a cell
+                    portion within a cell, as defined in ETSI TS 129.171
+                  type: integer
+                  format: uint32
+                  example: '0'
             locationInfo:
               description: >-
                 A type containing location information with latitude, longitude
@@ -2326,7 +2615,7 @@ definitions:
         example: >-
           http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123
   Address:
-    description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+    description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
     type: string
     format: uri
     example: 'acr:192.0.2.1'
@@ -2335,7 +2624,7 @@ definitions:
       - address
     properties:
       address:
-        description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+        description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
         type: string
         format: uri
         example: 'acr:192.0.2.1'
@@ -2355,6 +2644,19 @@ definitions:
         type: string
         format: url
         example: 'http://clientApp.example.com/location_notifications/123456'
+  CellIdentity:
+    description: 'Cell Identity as a bit string (size (28)), as defined in ETSI TS 129.171'
+    type: string
+    format: binary
+    example: '0'
+  CellPortionId:
+    description: >-
+      The current Cell Portion location of the target UE, where the Cell Portion
+      ID is the unique identifier for a cell portion within a cell, as defined
+      in ETSI TS 129.171
+    type: integer
+    format: uint32
+    example: '0'
   ClientCorrelator:
     description: >-
       Uniquely identifies this create subscription request. If there is a
@@ -2379,7 +2681,7 @@ definitions:
     example: zone01
   Duration:
     description: >-
-      Period (in seconds) of time notifications are provided for. If set to ???0???
+      Period (in seconds) of time notifications are provided for. If set to "0"
       (zero), a default duration time, which is specified by the service policy,
       will be used. If the parameter is omitted, the notifications will continue
       until the maximum duration time, which is specified by the service policy,
@@ -2390,6 +2692,35 @@ definitions:
       subscription will still be valid.
     type: string
     example: '0'
+  Ecgi:
+    Ecgi:
+      description: 'E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS 129.171'
+      required:
+        - plmn
+        - cellIdentity
+      properties:
+        plmn:
+          description: 'public land mobile network (PLMN), as defined in ETSI TS 129.171'
+          type: object
+          required:
+            - mcc
+            - mnc
+          properties:
+            mcc:
+              description: Mobile Country Code
+              type: string
+              example: '001'
+            mnc:
+              description: Mobile Country Code
+              type: string
+              example: '01'
+        cellIdentity:
+          description: >-
+            Cell Identity as a bit string (size (28)), as defined in ETSI TS
+            129.171
+          type: string
+          format: binary
+          example: '0'
   InterestRealm:
     description: >-
       Interest realm of access point (e.g. geographical area, a type of industry
@@ -2489,6 +2820,21 @@ definitions:
     description: The operation status of the access point
     type: string
     example: Serviceable
+  Plmn:
+    description: 'public land mobile network (PLMN), as defined in ETSI TS 129.171'
+    type: object
+    required:
+      - mcc
+      - mnc
+    properties:
+      mcc:
+        description: Mobile Country Code
+        type: string
+        example: '001'
+      mnc:
+        description: Mobile Country Code
+        type: string
+        example: '01'
   PreviousAccessPointId:
     description: Zone ID
     type: string
@@ -2509,6 +2855,16 @@ definitions:
     type: string
     format: date-time
     example: '2017-01-01T02:51:43Z'
+  UserEventCriteria:
+    description: >-
+      List of user event values to generate notifications for (these apply to
+      address specified). If this element is missing, a notification is
+      requested to be generated for any change in user event.
+    type: array
+    items:
+      description: User event
+      type: string
+      example: Entering
   UserEventType:
     description: User event
     type: string
@@ -2521,14 +2877,53 @@ definitions:
       - resourceURL
     properties:
       address:
-        description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+        description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
         type: string
         format: uri
         example: 'acr:192.0.2.1'
       accessPointId:
-        description: Identifier of access point
-        type: string
-        example: ap01
+        required:
+          - ecgi
+        properties:
+          ecgi:
+            Ecgi:
+              description: 'E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS 129.171'
+              required:
+                - plmn
+                - cellIdentity
+              properties:
+                plmn:
+                  description: >-
+                    public land mobile network (PLMN), as defined in ETSI TS
+                    129.171
+                  type: object
+                  required:
+                    - mcc
+                    - mnc
+                  properties:
+                    mcc:
+                      description: Mobile Country Code
+                      type: string
+                      example: '001'
+                    mnc:
+                      description: Mobile Country Code
+                      type: string
+                      example: '01'
+                cellIdentity:
+                  description: >-
+                    Cell Identity as a bit string (size (28)), as defined in
+                    ETSI TS 129.171
+                  type: string
+                  format: binary
+                  example: '0'
+          cellPortionId:
+            description: >-
+              The current Cell Portion location of the target UE, where the Cell
+              Portion ID is the unique identifier for a cell portion within a
+              cell, as defined in ETSI TS 129.171
+            type: integer
+            format: uint32
+            example: '0'
       zoneId:
         description: Identifier of zone
         type: string
@@ -2576,7 +2971,7 @@ definitions:
           - address
         properties:
           address:
-            description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+            description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
             type: string
             format: uri
             example: 'acr:192.0.2.1'
@@ -2596,14 +2991,55 @@ definitions:
             - resourceURL
           properties:
             address:
-              description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+              description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
               type: string
               format: uri
               example: 'acr:192.0.2.1'
             accessPointId:
-              description: Identifier of access point
-              type: string
-              example: ap01
+              required:
+                - ecgi
+              properties:
+                ecgi:
+                  Ecgi:
+                    description: >-
+                      E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS
+                      129.171
+                    required:
+                      - plmn
+                      - cellIdentity
+                    properties:
+                      plmn:
+                        description: >-
+                          public land mobile network (PLMN), as defined in ETSI
+                          TS 129.171
+                        type: object
+                        required:
+                          - mcc
+                          - mnc
+                        properties:
+                          mcc:
+                            description: Mobile Country Code
+                            type: string
+                            example: '001'
+                          mnc:
+                            description: Mobile Country Code
+                            type: string
+                            example: '01'
+                      cellIdentity:
+                        description: >-
+                          Cell Identity as a bit string (size (28)), as defined
+                          in ETSI TS 129.171
+                        type: string
+                        format: binary
+                        example: '0'
+                cellPortionId:
+                  description: >-
+                    The current Cell Portion location of the target UE, where
+                    the Cell Portion ID is the unique identifier for a cell
+                    portion within a cell, as defined in ETSI TS 129.171
+                  type: integer
+                  format: uint32
+                  example: '0'
             zoneId:
               description: Identifier of zone
               type: string
@@ -2652,7 +3088,7 @@ definitions:
                 - address
               properties:
                 address:
-                  description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+                  description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
                   type: string
                   format: uri
                   example: 'acr:192.0.2.1'
@@ -2685,7 +3121,7 @@ definitions:
             format: url
             example: 'http://clientApp.example.com/location_notifications/123456'
       address:
-        description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+        description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
         type: string
         format: uri
         example: 'acr:192.0.2.1'
@@ -2725,7 +3161,7 @@ definitions:
         type: string
         example: zone01
       address:
-        description: 'Address of user (e.g. ???sip??? URI, ???tel??? URI, ???acr??? URI).'
+        description: 'Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).'
         type: string
         format: uri
         example: 'acr:192.0.2.1'
@@ -2828,7 +3264,7 @@ definitions:
       duration:
         description: >-
           Period (in seconds) of time notifications are provided for. If set to
-          ???0??? (zero), a default duration time, which is specified by the service
+          "0" (zero), a default duration time, which is specified by the service
           policy, will be used. If the parameter is omitted, the notifications
           will continue until the maximum duration time, which is specified by
           the service policy, unless the notifications are stopped by deletion
@@ -2947,9 +3383,48 @@ definitions:
         type: string
         example: zone01
       accessPointId:
-        description: Identifier of access point
-        type: string
-        example: ap01
+        required:
+          - ecgi
+        properties:
+          ecgi:
+            Ecgi:
+              description: 'E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS 129.171'
+              required:
+                - plmn
+                - cellIdentity
+              properties:
+                plmn:
+                  description: >-
+                    public land mobile network (PLMN), as defined in ETSI TS
+                    129.171
+                  type: object
+                  required:
+                    - mcc
+                    - mnc
+                  properties:
+                    mcc:
+                      description: Mobile Country Code
+                      type: string
+                      example: '001'
+                    mnc:
+                      description: Mobile Country Code
+                      type: string
+                      example: '01'
+                cellIdentity:
+                  description: >-
+                    Cell Identity as a bit string (size (28)), as defined in
+                    ETSI TS 129.171
+                  type: string
+                  format: binary
+                  example: '0'
+          cellPortionId:
+            description: >-
+              The current Cell Portion location of the target UE, where the Cell
+              Portion ID is the unique identifier for a cell portion within a
+              cell, as defined in ETSI TS 129.171
+            type: integer
+            format: uint32
+            example: '0'
       numberOfUsersInZone:
         description: >-
           This element shall be present when ZoneStatusSubscription includes

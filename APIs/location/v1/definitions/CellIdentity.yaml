@@ -1,0 +1,5 @@
+description: >-
+  Cell Identity as a bit string (size (28)), as defined in ETSI TS 129.171
+type: string
+format: binary
+example: "0"

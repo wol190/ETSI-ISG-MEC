@@ -1,0 +1,11 @@
+Ecgi:
+  description: >- 
+    E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS 129.171
+  required:
+  - plmn
+  - cellIdentity
+  properties:
+    plmn:
+      $ref: '#/definitions/Plmn'
+    cellIdentity:
+      $ref: '#/definitions/CellIdentity'

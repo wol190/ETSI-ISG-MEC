@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "An initial attempt to describe the MEC Location API using OpenAPI, which is based on the Open Mobile Alliance's specification \"RESTful Network API for Zonal Presence\"",
-        "version": "0.3.3",
+        "version": "1.0.0",
         "title": "MEC Location API",
         "termsOfService": "TBD",
         "contact": {
@@ -15,7 +15,7 @@
         }
     },
     "externalDocs": {
-        "description": "ETSI MEC013 V0.3.3 Location Service API",
+        "description": "ETSI MEC013 V1.0.0 Location Service API",
         "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0013LocationApi"
     },
     "host": "127.0.0.1:8081",
@@ -41,7 +41,7 @@
         "AccessPointId": {
             "name": "accessPointId",
             "in": "query",
-            "description": "One or more access point attributes",
+            "description": "One or more access point attributes, reference \"definitions\" for string format",
             "required": false,
             "type": "string"
         },
@@ -1017,9 +1017,17 @@
     },
     "definitions": {
         "AccessPointId": {
-            "description": "Identifier of access point",
-            "type": "string",
-            "example": "ap01"
+            "required": [
+                "ecgi"
+            ],
+            "properties": {
+                "ecgi": {
+                    "$ref": "#/definitions/Ecgi"
+                },
+                "cellPortionId": {
+                    "$ref": "#/definitions/CellPortionId"
+                }
+            }
         },
         "AccessPointInfo": {
             "required": [
@@ -1104,6 +1112,18 @@
                 }
             }
         },
+        "CellIdentity": {
+            "description": "Cell Identity as a bit string (size (28)), as defined in ETSI TS 129.171",
+            "type": "string",
+            "format": "binary",
+            "example": "0"
+        },
+        "CellPortionId": {
+            "description": "The current Cell Portion location of the target UE, where the Cell Portion ID is the unique identifier for a cell portion within a cell, as defined in ETSI TS 129.171",
+            "type": "integer",
+            "format": "uint32",
+            "example": "0"
+        },
         "ClientCorrelator": {
             "description": "Uniquely identifies this create subscription request. If there is a communication failure during the request, using the same clientCorrelator when retrying the request allows the operator to avoid creating a duplicate subscription.",
             "type": "string",
@@ -1123,6 +1143,21 @@
             "description": "Zone ID",
             "type": "string",
             "example": "zone01"
+        },
+        "Ecgi": {
+            "description": "E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS 129.171",
+            "required": [
+                "plmn",
+                "cellIdentity"
+            ],
+            "properties": {
+                "plmn": {
+                    "$ref": "#/definitions/Plmn"
+                },
+                "cellIdentity": {
+                    "$ref": "#/definitions/CellIdentity"
+                }
+            }
         },
         "Duration": {
             "description": "Period (in seconds) of time notifications are provided for. If set to \"0\" (zero), a default duration time, which is specified by the service policy, will be used. If the parameter is omitted, the notifications will continue until the maximum duration time, which is specified by the service policy, unless the notifications are stopped by deletion of subscription for notifications. This element MAY be given by the client during resource creation in order to signal the desired lifetime of the subscription. The server MUST return in this element the period of time for which the subscription will still be valid.",
@@ -1235,6 +1270,26 @@
             "description": "The operation status of the access point",
             "type": "string",
             "example": "Serviceable"
+        },
+        "Plmn": {
+            "description": "public land mobile network (PLMN), as defined in ETSI TS 129.171",
+            "type": "object",
+            "required": [
+                "mcc",
+                "mnc"
+            ],
+            "properties": {
+                "mcc": {
+                    "description": "Mobile Country Code",
+                    "type": "string",
+                    "example": "001"
+                },
+                "mnc": {
+                    "description": "Mobile Country Code",
+                    "type": "string",
+                    "example": "01"
+                }
+            }
         },
         "PreviousAccessPointId": {
             "description": "Zone ID",
