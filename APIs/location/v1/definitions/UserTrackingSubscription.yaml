@@ -1,0 +1,14 @@
+required:
+- callbackReference
+- address
+properties:
+  clientCorrelator:
+    $ref: '#/definitions/ClientCorrelator'
+  callbackReference:
+    $ref: '#/definitions/CallbackReference'
+  address:
+    $ref: '#/definitions/Address'
+  userEventCriteria:
+    $ref: '#/definitions/UserEventCriteria'
+  resourceURL:
+    $ref: '#/definitions/ResourceURL'

@@ -1,0 +1,32 @@
+{
+  "userList": {
+    "user": [{
+        "address": "acr:192.0.2.1",
+        "accessPointId": "ap001",
+        "zoneId": "zone01",
+        "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.1"
+      }, {
+        "address": "acr:192.0.2.2",
+        "accessPointId": "ap001",
+        "zoneId": "zone01",
+        "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.2"
+      }, {
+        "address": "acr:192.0.2.3",
+        "accessPointId": "ap002",
+        "zoneId": "zone01",
+        "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.3"
+      }, {
+        "address": "acr:192.0.2.4",
+        "accessPointId": "ap001",
+        "zoneId": "zone02",
+        "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.4"
+      }, {
+        "address": "acr:192.0.2.5",
+        "accessPointId": "ap002",
+        "zoneId": "zone02",
+        "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.5"
+      }
+    ],
+    "resourceURL": "http://example.com/exampleAPI/location/v1/users"
+  }
+}

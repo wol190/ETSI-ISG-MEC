@@ -1,0 +1,8 @@
+get:
+  $ref: ./SubsUserTrackId_Get.yaml
+
+put:
+  $ref: ./SubsUserTrackId_Put.yaml
+
+delete:
+  $ref: ./SubsUserTrackId_Del.yaml

@@ -1,0 +1,4 @@
+description: The number of access points within the zone
+type: integer
+format: uint32
+example: "10"

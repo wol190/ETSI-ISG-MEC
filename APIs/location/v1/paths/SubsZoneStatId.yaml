@@ -1,0 +1,5 @@
+get:
+  $ref: ./SubsZoneStatId_Get.yaml
+
+put:
+  $ref: ./SubsZoneStatId_Put.yaml

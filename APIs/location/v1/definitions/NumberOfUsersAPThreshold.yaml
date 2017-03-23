@@ -1,0 +1,4 @@
+description: Threshold number of users in an access point which if crossed shall cause a notification.
+type: integer
+format: uint32
+example: "20"

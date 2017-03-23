@@ -1,0 +1,4 @@
+description: Indicates the time of day for zonal presence notification.
+type: string
+format: date-time  
+example: "2017-01-01T02:51:43Z"

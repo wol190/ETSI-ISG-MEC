@@ -1,0 +1,29 @@
+required:
+- zoneId
+- address
+- userEventType
+- currentAccessPointId
+- timestamp
+properties:
+  callbackData:
+    $ref: '#/definitions/CallbackData'
+  zoneId:
+    $ref: '#/definitions/ZoneId'
+  address:
+    $ref: '#/definitions/Address'
+  interestRealm:
+    $ref: '#/definitions/InterestRealm'
+  userEventType:
+    $ref: '#/definitions/UserEventType'
+  currentAccessPointId:
+    $ref: '#/definitions/CurrentAccessPointId'
+  previousAccessPointId:
+    $ref: '#/definitions/PreviousAccessPointId'
+  timestamp:
+    $ref: '#/definitions/Timestamp'
+  link:
+    description: Link to other resources that are in relationship with this notification. The server SHOULD include a link to the related subscription. No other links are required or suggested by this specification.
+    type: array
+    items:
+      $ref: '#/definitions/Link'
+    example: rel="ZonalTrafficSubscription" href="http://example.com/exampleAPI/location/v1/subscriptions/zonalTraffic/sub123"/

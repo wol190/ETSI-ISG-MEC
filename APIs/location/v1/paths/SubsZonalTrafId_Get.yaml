@@ -1,0 +1,22 @@
+description:
+  This operation is used for updating an individual subscription to zonal traffic change notification.
+produces:
+- application/json
+parameters:
+- name: subscriptionId
+  in: path
+  description: Subscription ID
+  required: true
+  type: string
+
+responses:
+  200:
+    description: Response to retrieve individual zonal traffic subscription
+    schema:
+      properties:
+        zonalTrafficSubscription:
+          $ref: '#/definitions/ZonalTrafficSubscription'
+
+    examples:
+      application/json:
+        $ref: '../examples/ZonalTrafficSubscription.json'

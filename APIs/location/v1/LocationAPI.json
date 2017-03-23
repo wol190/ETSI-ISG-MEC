@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "An initial attempt to describe the MEC Location API using OpenAPI, which is based on the Open Mobile Alliance’s specifications “RESTful Network API for Zonal Presence",
+        "description": "An initial attempt to describe the MEC Location API using OpenAPI, which is based on the Open Mobile Alliance's specification \"RESTful Network API for Zonal Presence\"",
         "version": "0.3.3",
         "title": "MEC Location API",
         "termsOfService": "TBD",
@@ -362,7 +362,7 @@
                         "description": "Successful response to a query users within a zone request",
                         "schema": {
                             "properties": {
-                                "userList": {
+                                "userInfo": {
                                     "$ref": "#/definitions/UserList"
                                 }
                             }
@@ -521,7 +521,7 @@
                             "application/json": {
                                 "zonalTrafficSubscription": {
                                     "clientCorrelator": "0123",
-                                    "resourceURL": "http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123",
+                                    "resourceURL": "http://example.com/exampleAPI/location/v1/subscriptions/zonalTraffic/subscription123",
                                     "callbackReference": {
                                         "notifyURL": "http://clientApp.example.com/location_notifications/123456"
                                     },
@@ -571,12 +571,12 @@
                             "application/json": {
                                 "zonalTrafficSubscription": {
                                     "clientCorrelator": "0123",
-                                    "resourceURL": "http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123",
+                                    "resourceURL": "http://example.com/exampleAPI/location/v1/subscriptions/zonalTraffic/subscription123",
                                     "callbackReference": {
                                         "notifyURL": "http://clientApp.example.com/location_notifications/123456"
                                     },
-                                    "zoneId": "zone001",
-                                    "interestRealm": "NY",
+                                    "zoneId": "zone01",
+                                    "interestRealm": "LA",
                                     "userEventCriteria": "Transferring"
                                 }
                             }
@@ -620,7 +620,7 @@
                                 "notificationSubscriptionList": {
                                     "type": "object",
                                     "properties": {
-                                        "zonalTrafficSubscription": {
+                                        "userTrackingSubscription": {
                                             "type": "array",
                                             "items": {
                                                 "$ref": "#/definitions/UserTrackingSubscription"
@@ -817,7 +817,7 @@
                 }
             }
         },
-        "/subscriptions/zoneStatus": {
+        "/subscriptions/zonalStatus": {
             "get": {
                 "description": "This operation is used for creating a new subscription to zone status change notification.",
                 "produces": [
@@ -866,7 +866,8 @@
                                                 "notifyURL": "http://clientApp.example.com/location_notifications/123457"
                                             },
                                             "zoneId": "zone02",
-                                            "numberOfUsersAPThreshold": "50"
+                                            "numberOfUsersAPThreshold": "50",
+                                            "operationStatus": "Serviceable"
                                         }
                                     ],
                                     "resourceURL": "http://example.com/exampleAPI/location/v1/subscriptions/zoneStatus"
@@ -1004,31 +1005,11 @@
                                         "notifyURL": "http://clientApp.example.com/location_notifications/123456"
                                     },
                                     "zoneId": "zone01",
-                                    "numberOfUsersZoneThreshold": "250",
+                                    "numberOfUsersZoneThreshold": "500",
                                     "operationStatus": "Serviceable"
                                 }
                             }
                         }
-                    }
-                }
-            },
-            "delete": {
-                "description": "This operation is used for cancelling a subscription and stopping corresponding notifications.",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "No content"
                     }
                 }
             }
@@ -1036,59 +1017,46 @@
     },
     "definitions": {
         "AccessPointId": {
+            "description": "Identifier of access point",
+            "type": "string",
+            "example": "ap01"
+        },
+        "AccessPointInfo": {
             "required": [
-                "accessPointId"
+                "accessPointId",
+                "connectionType",
+                "operationStatus",
+                "numberOfUsers",
+                "resourceURL"
             ],
             "properties": {
                 "accessPointId": {
-                    "description": "Identifier of access point",
-                    "type": "string",
-                    "example": "ap01"
-                }
-            }
-        },
-        "AccessPointInfo": {
-            "description": "User status items",
-            "type": "array",
-            "items": {
-                "required": [
-                    "accessPointId",
-                    "connectionType",
-                    "operationStatus",
-                    "numberOfUsers",
-                    "resourceURL"
-                ],
-                "properties": {
-                    "accessPointId": {
-                        "$ref": "#/definitions/AccessPointId"
-                    },
-                    "locationInfo": {
-                        "$ref": "#/definitions/LocationInfo"
-                    },
-                    "connectionType": {
-                        "$ref": "#/definitions/ConnectionType"
-                    },
-                    "operationStatus": {
-                        "$ref": "#/definitions/OperationStatus"
-                    },
-                    "numberOfUsers": {
-                        "$ref": "#/definitions/NumberOfUsers"
-                    },
-                    "timezone": {
-                        "$ref": "#/definitions/Timezone"
-                    },
-                    "interestRealm": {
-                        "$ref": "#/definitions/InterestRealm"
-                    },
-                    "resourceURL": {
-                        "$ref": "#/definitions/ResourceURL"
-                    }
+                    "$ref": "#/definitions/AccessPointId"
+                },
+                "locationInfo": {
+                    "$ref": "#/definitions/LocationInfo"
+                },
+                "connectionType": {
+                    "$ref": "#/definitions/ConnectionType"
+                },
+                "operationStatus": {
+                    "$ref": "#/definitions/OperationStatus"
+                },
+                "numberOfUsers": {
+                    "$ref": "#/definitions/NumberOfUsers"
+                },
+                "timezone": {
+                    "$ref": "#/definitions/Timezone"
+                },
+                "interestRealm": {
+                    "$ref": "#/definitions/InterestRealm"
+                },
+                "resourceURL": {
+                    "$ref": "#/definitions/ResourceURL"
                 }
             }
         },
         "AccessPointList": {
-            "description": "List of accesss points",
-            "type": "object",
             "required": [
                 "zoneId",
                 "resourceURL"
@@ -1106,38 +1074,27 @@
             }
         },
         "Address": {
+            "description": "Address of user (e.g. \"sip\" URI, \"tel\" URI, \"acr\" URI).",
+            "type": "string",
+            "format": "uri",
+            "example": "acr:192.0.2.1"
+        },
+        "AncillaryInfo": {
             "required": [
                 "address"
             ],
             "properties": {
                 "address": {
-                    "description": "Address of user (e.g. ‘sip’ URI, ‘tel’ URI, ‘acr’ URI).",
-                    "type": "string",
-                    "format": "uri",
-                    "example": "acr:192.0.2.1"
-                }
-            }
-        },
-        "AncillaryInfo": {
-            "properties": {
-                "ancillaryInfo": {
-                    "description": "Reserved for future use",
-                    "type": "string",
-                    "example": "Reserved for future use"
+                    "$ref": "#/definitions/Address"
                 }
             }
         },
         "CallbackData": {
-            "properties": {
-                "callbackData": {
-                    "description": "CallbackData if passed by the application during the associated ZonalTrafficSubscription and UserTrackingSubscription operation. See [REST_NetAPI_Common].",
-                    "type": "string"
-                }
-            }
+            "description": "CallBackData if passed by the application during the associated ZonalTrafficSubscription and UserTrackingSubscription operation. See [REST_NetAPI_Common].",
+            "type": "string",
+            "example": "1234"
         },
         "CallbackReference": {
-            "description": "blah",
-            "type": "object",
             "required": [
                 "notifyURL"
             ],
@@ -1148,94 +1105,56 @@
             }
         },
         "ClientCorrelator": {
-            "properties": {
-                "clientCorrelator": {
-                    "description": "Uniquely identifies this create subscription request. If there is a communication failure during the request, using the same clientCorrelator when retrying the request allows the operator to avoid creating a duplicate subscription.",
-                    "type": "string",
-                    "example": "0123"
-                }
-            }
+            "description": "Uniquely identifies this create subscription request. If there is a communication failure during the request, using the same clientCorrelator when retrying the request allows the operator to avoid creating a duplicate subscription.",
+            "type": "string",
+            "example": "0123"
         },
         "ConnectionType": {
-            "required": [
-                "connectionType"
-            ],
-            "properties": {
-                "connectionType": {
-                    "description": "The connection type for the access point",
-                    "type": "string",
-                    "enum": [
-                        "Femto",
-                        "LTE-femto",
-                        "Smallcell",
-                        "LTE-smallcell",
-                        "Wifi",
-                        "Pico",
-                        "Micro",
-                        "Macro",
-                        "Wimax",
-                        "Unknown"
-                    ],
-                    "example": "Macro"
-                }
-            }
+            "description": "The connection type for the access point",
+            "type": "string",
+            "example": "Macro"
         },
         "ContextLocationInfo": {
-            "properties": {
-                "contextLocationInfo": {
-                    "description": "Contextual information of a user location (e.g., aisle, floor, room number, etc.)",
-                    "type": "string",
-                    "example": "GroundFoor"
-                }
-            }
+            "description": "Contextual information of a user location (e.g., aisle, floor, room number, etc.)",
+            "type": "string",
+            "example": "GroundFoor"
         },
         "CurrentAccessPointId": {
-            "required": [
-                "currentAccessPointId"
-            ],
-            "properties": {
-                "currentAccessPointId": {
-                    "description": "Zone ID",
-                    "type": "string",
-                    "example": "zone01"
-                }
-            }
+            "description": "Zone ID",
+            "type": "string",
+            "example": "zone01"
         },
         "Duration": {
-            "properties": {
-                "duration": {
-                    "description": "Period (in seconds) of time notifications are provided for. If set to “0” (zero), a default duration time, which is specified by the service policy, will be used. If the parameter is omitted, the notifications will continue until the maximum duration time, which is specified by the service policy, unless the notifications are stopped by deletion of subscription for notifications. This element MAY be given by the client during resource creation in order to signal the desired lifetime of the subscription. The server MUST return in this element the period of time for which the subscription will still be valid.",
-                    "type": "string",
-                    "example": "0"
-                }
-            }
+            "description": "Period (in seconds) of time notifications are provided for. If set to \"0\" (zero), a default duration time, which is specified by the service policy, will be used. If the parameter is omitted, the notifications will continue until the maximum duration time, which is specified by the service policy, unless the notifications are stopped by deletion of subscription for notifications. This element MAY be given by the client during resource creation in order to signal the desired lifetime of the subscription. The server MUST return in this element the period of time for which the subscription will still be valid.",
+            "type": "string",
+            "example": "0"
         },
         "InterestRealm": {
-            "type": "array",
-            "items": {
-                "properties": {
-                    "interestRealm": {
-                        "description": "Interest realm of access point (e.g. geographical area, a type of industry etc.).",
-                        "type": "string",
-                        "example": "LA"
-                    }
-                }
-            }
+            "description": "Interest realm of access point (e.g. geographical area, a type of industry etc.).",
+            "type": "string",
+            "example": "LA"
         },
         "Link": {
-            "type": "array",
-            "items": {
-                "properties": {
-                    "link": {
-                        "description": "Link to other resources that are in relationship with this notification. The server SHOULD include a link to the related subscription. No other links are required or suggested by this specification.",
-                        "type": "string",
-                        "format": "uri"
-                    }
+            "required": [
+                "rel",
+                "href"
+            ],
+            "properties": {
+                "rel": {
+                    "description": "Describes the relationship between the URI and the resource.",
+                    "type": "object",
+                    "format": "string"
+                },
+                "href": {
+                    "description": "URI",
+                    "type": "object",
+                    "format": "anyURI"
                 }
             }
         },
         "LocationInfo": {
-            "description": "The coordinates of the access point (which may serve as a rough location proxy to users camped onto the access point.",
+            "description": "A type containing location information with latitude, longitude and altitude, in addition the accuracy of the information are provided.",
+            "type": "object",
             "required": [
                 "latitude",
                 "longitude",
@@ -1265,232 +1184,126 @@
             }
         },
         "NotifyURL": {
-            "properties": {
-                "notifyURL": {
-                    "description": "The URL of your own listener application.",
-                    "type": "string",
-                    "format": "url",
-                    "example": "http://clientApp.example.com/location_notifications/123456"
-                }
-            }
-        },
-        "NumberOfUsers": {
-            "required": [
-                "numberOfUsers"
-            ],
-            "properties": {
-                "numberOfUsers": {
-                    "description": "The number of users currently on the access point",
-                    "type": "integer",
-                    "format": "uint32",
-                    "example": "7"
-                }
-            }
+            "description": "The URL of your own listener application.",
+            "type": "string",
+            "format": "url",
+            "example": "http://clientApp.example.com/location_notifications/123456"
         },
         "NumberOfAccessPoints": {
-            "required": [
-                "numberOfAccessPoints"
-            ],
-            "properties": {
-                "numberOfAccessPoints": {
-                    "description": "The number of access points within the zone",
-                    "type": "integer",
-                    "format": "uint32",
-                    "example": "10"
-                }
-            }
+            "description": "The number of access points within the zone",
+            "type": "integer",
+            "format": "uint32",
+            "example": "10"
         },
         "NumberOfUnserviceableAccessPoints": {
-            "required": [
-                "numberOfUnserviceableAccessPoints"
-            ],
-            "properties": {
-                "numberOfUnserviceableAccessPoints": {
-                    "description": "Number of inoperable access points within the zone.",
-                    "type": "integer",
-                    "format": "uint32",
-                    "example": "9"
-                }
-            }
+            "description": "Number of inoperable access points within the zone.",
+            "type": "integer",
+            "format": "uint32",
+            "example": "9"
+        },
+        "NumberOfUsers": {
+            "description": "The number of users currently on the access point.",
+            "type": "integer",
+            "format": "uint32",
+            "example": "7"
         },
         "NumberOfUsersAPThreshold": {
-            "required": [
-                "numberOfUsersAPThreshold"
-            ],
-            "properties": {
-                "numberOfUsersAPThreshold": {
-                    "description": "Threshold number of users in an access point which if crossed shall cause a notification.",
-                    "type": "integer",
-                    "format": "uint32",
-                    "example": "20"
-                }
-            }
+            "description": "Threshold number of users in an access point which if crossed shall cause a notification.",
+            "type": "integer",
+            "format": "uint32",
+            "example": "20"
         },
         "NumberOfUsersInAP": {
-            "required": [
-                "numberOfUsersInAP"
-            ],
-            "properties": {
-                "numberOfUsersInAP": {
-                    "description": "This element shall be present when ZoneStatusSubscription includes numberOfUsersAPThreshold element and the number of users in an access point exceeds the threshold defined in the subscription.",
-                    "type": "integer",
-                    "format": "uint32",
-                    "example": "12"
-                }
-            }
+            "description": "This element shall be present when ZoneStatusSubscription includes numberOfUsersAPThreshold element and the number of users in an access point exceeds the threshold defined in the subscription.",
+            "type": "integer",
+            "format": "uint32",
+            "example": "12"
         },
         "NumberOfUsersInZone": {
-            "required": [
-                "numberOfUsersInZone"
-            ],
-            "properties": {
-                "numberOfUsersInZone": {
-                    "description": "This element shall be present when ZoneStatusSubscription includes numberOfUsersZoneThreshold element and the number of users in a zone exceeds the threshold defined in this subscription.",
-                    "type": "integer",
-                    "format": "uint32",
-                    "example": "20"
-                }
-            }
+            "description": "This element shall be present when ZoneStatusSubscription includes numberOfUsersZoneThreshold element and the number of users in a zone exceeds the threshold defined in this subscription.",
+            "type": "integer",
+            "format": "uint32",
+            "example": "20"
         },
         "NumberOfUsersZoneThreshold": {
-            "required": [
-                "numberOfUsersZoneThreshold"
-            ],
-            "properties": {
-                "numberOfUsersZoneThreshold": {
-                    "description": "Threshold number of users in a zone which if crossed shall cause a notification.",
-                    "type": "integer",
-                    "format": "uint32",
-                    "example": "40"
-                }
-            }
+            "description": "Threshold number of users in a zone which if crossed shall cause a notification.",
+            "type": "integer",
+            "format": "uint32",
+            "example": "40"
         },
         "OperationStatus": {
-            "required": [
-                "operationStatus"
-            ],
-            "properties": {
-                "operationStatus": {
-                    "description": "The operation status of the access point",
-                    "type": "string",
-                    "enum": [
-                        "Serviceable",
-                        "Unserviceable",
-                        "Unknown"
-                    ],
-                    "example": "Serviceable"
-                }
-            }
+            "description": "The operation status of the access point",
+            "type": "string",
+            "example": "Serviceable"
         },
         "PreviousAccessPointId": {
-            "description": "Note: This element MUST only be present if event type is Zone Transfer.",
-            "required": [
-                "previousAccessPointId"
-            ],
-            "properties": {
-                "previousAccessPointId": {
-                    "description": "Zone ID",
-                    "type": "string",
-                    "example": "zone02"
-                }
-            }
+            "description": "Zone ID",
+            "type": "string",
+            "example": "zone02"
         },
         "ResourceURL": {
-            "properties": {
-                "resourceURL": {
-                    "description": "Self referring URL.",
-                    "type": "string",
-                    "format": "uri",
-                    "example": "http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123"
-                }
-            }
+            "description": "Self referring URL.",
+            "type": "string",
+            "format": "uri",
+            "example": "http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123"
         },
         "Timestamp": {
-            "required": [
-                "timestamp"
-            ],
-            "properties": {
-                "timestamp": {
-                    "description": "Indicates the time of day for zonal presence notification.",
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2017-01-01T02:51:43Z"
-                }
-            }
+            "description": "Indicates the time of day for zonal presence notification.",
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-01-01T02:51:43Z"
         },
         "Timezone": {
-            "required": [
-                "timezone"
-            ],
-            "properties": {
-                "timezone": {
-                    "description": "Time zone of access point",
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2017-01-01T02:51:43Z"
-                }
-            }
+            "description": "Time zone of access point",
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-01-01T02:51:43Z"
         },
         "UserEventType": {
+            "description": "User event",
+            "type": "string",
+            "example": "Entering"
+        },
+        "UserEventCriteria": {
+            "description": "List of user event values to generate notifications for (these apply to zone identifier or all interest realms within zone identifier specified). If this element is missing, a notification is requested to be generated for any change in user event.",
             "type": "array",
             "items": {
-                "required": [
-                    "userEventType"
-                ],
-                "properties": {
-                    "userEventType": {
-                        "description": "The operation status of the access point",
-                        "type": "string",
-                        "enum": [
-                            "Entering",
-                            "Leaving",
-                            "Transferring"
-                        ],
-                        "example": [
-                            "Entering"
-                        ]
-                    }
-                }
+                "$ref": "#/definitions/UserEventType"
             }
         },
         "UserInfo": {
-            "description": "User status items",
-            "type": "array",
-            "items": {
-                "required": [
-                    "address",
-                    "accessPointId",
-                    "zoneId",
-                    "resourceURL"
-                ],
-                "properties": {
-                    "address": {
-                        "$ref": "#/definitions/Address"
-                    },
-                    "accessPointId": {
-                        "$ref": "#/definitions/AccessPointId"
-                    },
-                    "zoneId": {
-                        "$ref": "#/definitions/ZoneId"
-                    },
-                    "resourceURL": {
-                        "$ref": "#/definitions/ResourceURL"
-                    },
-                    "locationInfo": {
-                        "$ref": "#/definitions/LocationInfo"
-                    },
-                    "contextLocationInfo": {
-                        "$ref": "#/definitions/ContextLocationInfo"
-                    },
-                    "ancillaryInfo": {
-                        "$ref": "#/definitions/AncillaryInfo"
-                    }
+            "required": [
+                "address",
+                "accessPointId",
+                "zoneId",
+                "resourceURL"
+            ],
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/Address"
+                },
+                "accessPointId": {
+                    "$ref": "#/definitions/AccessPointId"
+                },
+                "zoneId": {
+                    "$ref": "#/definitions/ZoneId"
+                },
+                "resourceURL": {
+                    "$ref": "#/definitions/ResourceURL"
+                },
+                "locationInfo": {
+                    "$ref": "#/definitions/LocationInfo"
+                },
+                "contextLocationInfo": {
+                    "$ref": "#/definitions/ContextLocationInfo"
+                },
+                "ancillaryInfo": {
+                    "$ref": "#/definitions/AncillaryInfo"
                 }
             }
         },
         "UserList": {
-            "description": "List of user status items",
-            "type": "object",
+            "description": "A type containing list of users.",
             "required": [
                 "resourceURL"
             ],
@@ -1504,8 +1317,6 @@
             }
         },
         "UserTrackingSubscription": {
-            "description": "type containing user tracking subscription",
-            "type": "object",
             "required": [
                 "callbackReference",
                 "address"
@@ -1514,9 +1325,6 @@
                 "clientCorrelator": {
                     "$ref": "#/definitions/ClientCorrelator"
                 },
-                "resourceURL": {
-                    "$ref": "#/definitions/ResourceURL"
-                },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
                 },
@@ -1524,133 +1332,14 @@
                     "$ref": "#/definitions/Address"
                 },
                 "userEventCriteria": {
-                    "$ref": "#/definitions/UserEventType"
-                }
-            }
-        },
-        "ZoneId": {
-            "description": "Identifier of zone",
-            "required": [
-                "zoneId"
-            ],
-            "properties": {
-                "zoneId": {
-                    "description": "Zone ID",
-                    "type": "string",
-                    "example": "zone01"
-                }
-            }
-        },
-        "ZoneInfo": {
-            "description": "Zone information.",
-            "type": "array",
-            "items": {
-                "required": [
-                    "zoneId",
-                    "numberOfAccessPoints",
-                    "numberOfUnservicableAccessPoints",
-                    "numberOfUsers",
-                    "resourceURL"
-                ],
-                "properties": {
-                    "zoneId": {
-                        "$ref": "#/definitions/ZoneId"
-                    },
-                    "numberOfAccessPoints": {
-                        "$ref": "#/definitions/NumberOfAccessPoints"
-                    },
-                    "numberOfUnservicableAccessPoints": {
-                        "$ref": "#/definitions/NumberOfUnserviceableAccessPoints"
-                    },
-                    "numberOfUsers": {
-                        "$ref": "#/definitions/NumberOfUsers"
-                    },
-                    "resourceURL": {
-                        "$ref": "#/definitions/ResourceURL"
-                    }
-                }
-            }
-        },
-        "ZoneList": {
-            "description": "List of zones",
-            "type": "object",
-            "required": [
-                "resourceURL"
-            ],
-            "properties": {
-                "zone": {
-                    "$ref": "#/definitions/ZoneInfo"
+                    "$ref": "#/definitions/UserEventCriteria"
                 },
                 "resourceURL": {
                     "$ref": "#/definitions/ResourceURL"
-                }
-            }
-        },
-        "ZoneStatusSubscription": {
-            "description": "A type containing zone status subscription.",
-            "type": "object",
-            "required": [
-                "callbackReference",
-                "zoneId"
-            ],
-            "properties": {
-                "clientCorrelator": {
-                    "$ref": "#/definitions/ClientCorrelator"
-                },
-                "resourceURL": {
-                    "$ref": "#/definitions/ResourceURL"
-                },
-                "callbackReference": {
-                    "$ref": "#/definitions/CallbackReference"
-                },
-                "zoneId": {
-                    "$ref": "#/definitions/ZoneId"
-                },
-                "numberOfUsersZoneThreshold": {
-                    "$ref": "#/definitions/NumberOfUsersZoneThreshold"
-                },
-                "numberOfUsersAPThreshold": {
-                    "$ref": "#/definitions/NumberOfUsersAPThreshold"
-                },
-                "operationStatus": {
-                    "$ref": "#/definitions/OperationStatus"
-                }
-            }
-        },
-        "ZonalTrafficSubscription": {
-            "description": "A type containing zonal traffic subscription",
-            "type": "object",
-            "required": [
-                "callbackReference",
-                "zoneId"
-            ],
-            "properties": {
-                "clientCorrelator": {
-                    "$ref": "#/definitions/ClientCorrelator"
-                },
-                "resourceURL": {
-                    "$ref": "#/definitions/ResourceURL"
-                },
-                "callbackReference": {
-                    "$ref": "#/definitions/CallbackReference"
-                },
-                "zoneId": {
-                    "$ref": "#/definitions/ZoneId"
-                },
-                "interestRealm": {
-                    "$ref": "#/definitions/InterestRealm"
-                },
-                "userEventCriteria": {
-                    "$ref": "#/definitions/UserEventType"
-                },
-                "duration": {
-                    "$ref": "#/definitions/Duration"
                 }
             }
         },
         "ZonalPresenceNotification": {
-            "description": "Server -> Client - A type containing zonal presence notification.",
-            "type": "object",
             "required": [
                 "zoneId",
                 "address",
@@ -1688,9 +1377,84 @@
                 }
             }
         },
-        "ZoneStatusNotification": {
-            "description": "Server -> Client - A type containing zonal status notification.",
+        "ZonalTrafficSubscription": {
+            "description": "A type containing zonal traffic subscription",
             "type": "object",
+            "required": [
+                "callbackReference",
+                "zoneId"
+            ],
+            "properties": {
+                "clientCorrelator": {
+                    "$ref": "#/definitions/ClientCorrelator"
+                },
+                "callbackReference": {
+                    "$ref": "#/definitions/CallbackReference"
+                },
+                "zoneId": {
+                    "$ref": "#/definitions/ZoneId"
+                },
+                "interestRealm": {
+                    "$ref": "#/definitions/InterestRealm"
+                },
+                "userEventCriteria": {
+                    "$ref": "#/definitions/UserEventCriteria"
+                },
+                "duration": {
+                    "$ref": "#/definitions/Duration"
+                },
+                "resourceURL": {
+                    "$ref": "#/definitions/ResourceURL"
+                }
+            }
+        },
+        "ZoneId": {
+            "description": "Identifier of zone",
+            "type": "string",
+            "example": "zone01"
+        },
+        "ZoneInfo": {
+            "description": "A type containing zone information.",
+            "required": [
+                "zoneId",
+                "numberOfAccessPoints",
+                "numberOfUnservicableAccessPoints",
+                "numberOfUsers",
+                "resourceURL"
+            ],
+            "properties": {
+                "zoneId": {
+                    "$ref": "#/definitions/ZoneId"
+                },
+                "numberOfAccessPoints": {
+                    "$ref": "#/definitions/NumberOfAccessPoints"
+                },
+                "numberOfUnservicableAccessPoints": {
+                    "$ref": "#/definitions/NumberOfUnserviceableAccessPoints"
+                },
+                "numberOfUsers": {
+                    "$ref": "#/definitions/NumberOfUsers"
+                },
+                "resourceURL": {
+                    "$ref": "#/definitions/ResourceURL"
+                }
+            }
+        },
+        "ZoneList": {
+            "description": "Collection of the zone information list.",
+            "required": [
+                "resourceURL"
+            ],
+            "properties": {
+                "zone": {
+                    "$ref": "#/definitions/ZoneInfo"
+                },
+                "resourceURL": {
+                    "$ref": "#/definitions/ResourceURL"
+                }
+            }
+        },
+        "ZoneStatusNotification": {
             "required": [
                 "zoneId",
                 "timestamp"
@@ -1719,6 +1483,35 @@
                 },
                 "link": {
                     "$ref": "#/definitions/Link"
+                }
+            }
+        },
+        "ZoneStatusSubscription": {
+            "required": [
+                "callbackReference",
+                "zoneId"
+            ],
+            "properties": {
+                "clientCorrelator": {
+                    "$ref": "#/definitions/ClientCorrelator"
+                },
+                "resourceURL": {
+                    "$ref": "#/definitions/ResourceURL"
+                },
+                "callbackReference": {
+                    "$ref": "#/definitions/CallbackReference"
+                },
+                "zoneId": {
+                    "$ref": "#/definitions/ZoneId"
+                },
+                "numberOfUsersZoneThreshold": {
+                    "$ref": "#/definitions/NumberOfUsersZoneThreshold"
+                },
+                "numberOfUsersAPThreshold": {
+                    "$ref": "#/definitions/NumberOfUsersAPThreshold"
+                },
+                "operationStatus": {
+                    "$ref": "#/definitions/OperationStatus"
                 }
             }
         }

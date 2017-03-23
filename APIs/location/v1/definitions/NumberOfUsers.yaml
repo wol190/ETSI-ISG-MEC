@@ -1,0 +1,4 @@
+description: The number of users currently on the access point.
+type: integer
+format: uint32
+example: "7"

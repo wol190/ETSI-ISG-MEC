@@ -1,0 +1,4 @@
+description: The URL of your own listener application.
+type: string
+format: url
+example: "http://clientApp.example.com/location_notifications/123456"

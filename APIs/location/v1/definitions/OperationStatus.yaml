@@ -1,0 +1,3 @@
+description: The operation status of the access point
+type: string
+example: "Serviceable"

@@ -1,0 +1,12 @@
+required:
+- rel
+- href
+properties:
+  rel:
+    description: Describes the relationship between the URI and the resource. 
+    type: object
+    format: string
+  href: 
+    description: URI 
+    type: object
+    format: anyURI

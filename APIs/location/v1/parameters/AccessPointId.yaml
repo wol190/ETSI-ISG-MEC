@@ -1,0 +1,5 @@
+name: accessPointId
+in: query
+description: One or more access point attributes
+required: false
+type: string

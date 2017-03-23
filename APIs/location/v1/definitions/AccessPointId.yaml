@@ -1,0 +1,3 @@
+description: Identifier of access point
+type: string
+example: "ap01"

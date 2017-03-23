@@ -1,0 +1,23 @@
+description:
+  This operation is used for creating a new subscription to zonal traffic change notification.
+produces:
+- application/json
+parameters:
+- name: zonalTrafficSubscription
+  in: body
+  description: Zonal Traffic Subscription
+  required: true
+  schema: 
+    $ref: '#/definitions/ZonalTrafficSubscription'
+      
+responses:
+  201:
+    description: Response to create new zonal traffic subscription
+    schema:
+      properties:
+        zonalTrafficSubscription:
+          $ref: '#/definitions/ZonalTrafficSubscription'
+
+    examples:
+      application/json:
+        $ref: '../examples/ZonalTrafficSubscription.json'

@@ -1,0 +1,5 @@
+name: interestRealm
+in: query
+description: Interest realm of access point (e.g. geographical area, a type of industry etc.).
+required: false
+type: string

@@ -1,0 +1,22 @@
+description:
+  This operation is used for retrieving an individual subscription to zone status change notification.
+produces:
+- application/json
+parameters:
+- name: subscriptionId
+  in: path
+  description: Subscription ID
+  required: true
+  type: string
+
+responses:
+  200:
+    description: Response to retrieve individual zone status subscription
+    schema:
+      properties:
+        zoneStatusSubscription:
+          $ref: '#/definitions/ZoneStatusSubscription'
+
+    examples:
+      application/json:
+        $ref: '../examples/ZoneStatusSubscription.json'

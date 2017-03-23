@@ -1,0 +1,4 @@
+description: This element shall be present when ZoneStatusSubscription includes numberOfUsersAPThreshold element and the number of users in an access point exceeds the threshold defined in the subscription.
+type: integer
+format: uint32
+example: "12"

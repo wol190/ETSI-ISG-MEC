@@ -1,0 +1,21 @@
+required:
+- callbackReference
+- zoneId
+properties:
+  clientCorrelator:
+    $ref: '#/definitions/ClientCorrelator'
+  resourceURL:
+    $ref: '#/definitions/ResourceURL'
+  callbackReference:
+    $ref: '#/definitions/CallbackReference'
+  zoneId:
+    $ref: '#/definitions/ZoneId'
+  numberOfUsersZoneThreshold:
+    $ref: '#/definitions/NumberOfUsersZoneThreshold'
+  numberOfUsersAPThreshold:
+    $ref: '#/definitions/NumberOfUsersAPThreshold'
+  operationStatus:
+    description: List of operation status values to generate notifications for (these apply to all access points within a zone).
+    type: array
+    items:
+      $ref: '#/definitions/OperationStatus'

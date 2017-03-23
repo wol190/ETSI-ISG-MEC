@@ -1,0 +1,9 @@
+{
+  "zoneInfo": {
+    "zoneId": "zone01",
+    "numberOfAccessPoints": "3",
+    "numberOfUnserviceableAccessPoints": "1",
+    "numberOfUsers": "10",
+    "resourceURL": "http://example.com/exampleAPI/location/v1/zones/zone01"
+  }
+}

@@ -1,0 +1,24 @@
+description:
+  This operation is used for creating a new subscription to zone status change notification.
+produces:
+- application/json
+parameters:
+- name: zoneStatusSubscription
+  in: body
+  description: Zone Status Subscription
+  required: true
+  schema: 
+    $ref: '#/definitions/ZoneStatusSubscription'
+
+
+responses:
+  201:
+    description: Response to create new zone status subscription
+    schema:
+      properties: 
+        zonalTrafficSubscription:
+          $ref: '#/definitions/ZoneStatusSubscription'
+
+    examples:
+      application/json:
+        $ref: '../examples/ZoneStatusSubscription.json'

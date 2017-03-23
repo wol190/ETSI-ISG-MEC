@@ -1,0 +1,22 @@
+description:
+  Users currently using a zone may be retrieved for sets of access points matching attribute in the request
+produces:
+- application/json
+parameters:
+- name: userId
+  in: path
+  description: User ID
+  required: true
+  type: string
+  
+responses:
+  200:
+    description: Successful response to a query users within a zone request
+    schema:
+      properties:
+        userInfo:
+          $ref: '#/definitions/UserInfo'
+
+    examples:
+      application/json:
+        $ref: '../examples/UserInfo.json'

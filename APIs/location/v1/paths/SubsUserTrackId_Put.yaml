@@ -1,0 +1,28 @@
+description:
+  This operation is used for updating an individual subscription to user tracking change notification.
+produces:
+- application/json
+parameters:
+- name: subscriptionId
+  in: path
+  description: Subscription ID
+  required: true
+  type: string
+- name: userTrackingSubscription
+  in: body
+  description: User Tracking Subscription
+  required: true
+  schema: 
+    $ref: '#/definitions/UserTrackingSubscription'
+
+responses:
+  200:
+    description: Response to update individual user tracking subscription
+    schema:
+      properties:
+        userTrackingSubscription:
+          $ref: '#/definitions/UserTrackingSubscription'
+
+    examples:
+      application/json:
+        $ref: '../examples/UserTrackingSubscription.json'

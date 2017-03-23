@@ -1,0 +1,23 @@
+required:
+- accessPointId
+- connectionType
+- operationStatus
+- numberOfUsers
+- resourceURL
+properties:
+  accessPointId:
+    $ref: '#/definitions/AccessPointId'
+  locationInfo:
+    $ref: '#/definitions/LocationInfo'
+  connectionType:
+    $ref: '#/definitions/ConnectionType'
+  operationStatus:
+    $ref: '#/definitions/OperationStatus'
+  numberOfUsers:
+    $ref: '#/definitions/NumberOfUsers'
+  timezone:
+    $ref: '#/definitions/Timezone'
+  interestRealm:
+    $ref: '#/definitions/InterestRealm'
+  resourceURL:
+    $ref: '#/definitions/ResourceURL'

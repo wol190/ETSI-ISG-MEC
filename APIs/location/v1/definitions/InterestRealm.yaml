@@ -1,0 +1,3 @@
+description: Interest realm of access point (e.g. geographical area, a type of industry etc.).
+type: string
+example: "LA"

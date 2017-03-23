@@ -1,0 +1,10 @@
+  description: 'An initial attempt to describe the MEC Location API using OpenAPI, which is based on the Open Mobile Alliance's specification "RESTful Network API for Zonal Presence""'
+  version: '0.3.3'
+  title: 'MEC Location API'
+  termsOfService: "TBD"
+  contact:
+    name: "TBD"
+    url: "TBD"
+  license:
+    name: "ETSI MEC"
+    url: "TBD"

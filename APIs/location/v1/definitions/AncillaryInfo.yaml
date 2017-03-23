@@ -1,0 +1,5 @@
+required:
+- address
+properties:
+  address:
+    $ref: '#/definitions/Address'

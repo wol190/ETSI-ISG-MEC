@@ -1,0 +1,14 @@
+description:
+  This operation is used for cancelling a subscription and stopping corresponding notifications.
+produces:
+- application/json
+parameters:
+- name: subscriptionId
+  in: path
+  description: Subscription ID
+  required: true
+  type: string
+
+responses:
+  204:
+    description: No content

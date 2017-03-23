@@ -1,0 +1,11 @@
+description: Collection of the zone information list.
+required:
+- resourceURL
+properties:
+  zone:
+    description: Collection of the zone information list.
+    type: array
+    items:
+      $ref: '#/definitions/ZoneInfo'
+  resourceURL:
+    $ref: '#/definitions/ResourceURL'

@@ -1,0 +1,5 @@
+name: zoneId
+in: query
+description: Zone ID
+required: true
+type: string

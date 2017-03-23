@@ -1,0 +1,24 @@
+{
+  "notificationSubscriptionList": {
+    "userTrackingSubscription":
+    [{
+        "clientCorrelator": "0123",
+        "resourceURL": "http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123",
+        "callbackReference": {
+          "notifyURL": "http://clientApp.example.com/location_notifications/123456"
+        },
+        "address": "acr:192.0.2.1",
+        "userEventCriteria": "Transferring"
+      }, {
+        "clientCorrelator": "0124",
+        "resourceURL": "http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription124",
+        "callbackReference": {
+          "notifyURL": "http://clientApp.example.com/location_notifications/123456"
+        },
+        "address": "acr:192.0.2.2",
+        "userEventCriteria": "Transferring"
+      }
+    ],
+    "resourceURL": "http://example.com/exampleAPI/location/v1/subscriptions/userTracking"
+  }
+}

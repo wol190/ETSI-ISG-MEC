@@ -1,0 +1,14 @@
+description:
+  This operation is used for retrieving an individual subscription to user tracking change notification.
+produces:
+- application/json
+parameters:
+- name: subscriptionId
+  in: path
+  description: Subscription ID
+  required: true
+  type: string
+
+responses:
+  204:
+    description: No Content

@@ -1,0 +1,13 @@
+required:
+- zoneId
+- resourceURL
+properties:
+  zoneId:
+    $ref: '#/definitions/ZoneId'
+  accessPoint:
+    description: Collection of the access point information list.
+    type: array
+    items:
+      $ref: '#/definitions/AccessPointInfo'
+  resourceURL:
+    $ref: '#/definitions/ResourceURL'

@@ -1,0 +1,4 @@
+description: This element shall be present when ZoneStatusSubscription includes numberOfUsersZoneThreshold element and the number of users in a zone exceeds the threshold defined in this subscription.
+type: integer
+format: uint32
+example: "20"

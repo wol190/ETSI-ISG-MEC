@@ -1,0 +1,16 @@
+{
+  "accessPointInfo": {
+    "accessPointId": "ap001",
+    "locationInfo": {
+      "latitude": "90.123",
+      "longitude": "80.123",
+      "altitude": "10.0",
+      "accuracy": "0"
+    },
+    "connectionType": "Macro",
+    "operationStatus": "Serviceable",
+    "numberOfUsers": "5",
+    "interestRealm": "LA",
+    "resourceURL": "http://example.com/exampleAPI/location/v1/zones/zone001/accessPoints/ap001"
+  }
+}

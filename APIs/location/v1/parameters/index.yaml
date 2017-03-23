@@ -1,0 +1,6 @@
+ZoneId:
+  $ref: ./ZoneId.yaml
+AccessPointId:
+  $ref: ./AccessPointId.yaml
+InterestRealm:
+  $ref: ./InterestRealm.yaml

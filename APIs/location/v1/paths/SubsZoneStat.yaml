@@ -1,0 +1,5 @@
+get:
+  $ref: ./SubsZoneStat_Get.yaml
+
+post:
+  $ref: ./SubsZoneStat_Post.yaml

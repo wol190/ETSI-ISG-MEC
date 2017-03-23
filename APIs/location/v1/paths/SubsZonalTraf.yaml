@@ -1,0 +1,5 @@
+get:
+  $ref: ./SubsZonalTraf_Get.yaml
+
+post:
+  $ref: ./SubsZonalTraf_Post.yaml

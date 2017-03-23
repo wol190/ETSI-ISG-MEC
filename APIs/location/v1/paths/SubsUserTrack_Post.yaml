@@ -1,0 +1,24 @@
+description:
+  This operation is used for creating a new subscription to user tracking change notification
+produces:
+- application/json
+parameters:
+
+- name: userTrackingSubscription
+  in: body
+  description: User Tracking Subscription
+  required: true
+  schema: 
+    $ref: '#/definitions/UserTrackingSubscription'
+
+responses:
+  201:
+    description: Response to create new user tracking subscription
+    schema:
+      properties:
+        userTrackingSubscription:
+          $ref: '#/definitions/UserTrackingSubscription'
+
+    examples:
+      application/json:
+        $ref: '../examples/UserTrackingSubscription.json'

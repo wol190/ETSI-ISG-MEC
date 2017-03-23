@@ -1,0 +1,2 @@
+get:
+  $ref: ./ZonesIdApsId_Get.yaml

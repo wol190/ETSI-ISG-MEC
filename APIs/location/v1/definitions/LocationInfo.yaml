@@ -1,0 +1,23 @@
+description: A type containing location information with latitude, longitude and altitude, in addition the accuracy of the information are provided.
+type: object
+required:
+- latitude
+- longitude
+- accuracy
+properties:
+  latitude:
+    type: number
+    format: float
+    example: "80.123"
+  longitude:
+    type: number
+    format: float
+    example: "70.123"
+  altitude:
+    type: number
+    format: float
+    example: "10.0"
+  accuracy:
+    type: integer
+    format: int32
+    example: "10"

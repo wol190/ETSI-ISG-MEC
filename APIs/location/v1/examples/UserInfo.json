@@ -1,0 +1,15 @@
+{
+  "userInfo": {
+    "address": "acr:192.0.2.1",
+    "accessPointId": "ap001",
+    "zoneId": "zone01",
+    "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.1",
+    "locationInfo": {
+      "latitude": "90.123",
+      "longitude": "80.123",
+      "altitude": "10.0",
+      "accuracy": "0"
+    },
+    "contextLocationInfo": "GroundFloor"
+  }
+}

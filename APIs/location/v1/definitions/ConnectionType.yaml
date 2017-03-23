@@ -1,0 +1,3 @@
+description: The connection type for the access point
+type: string
+example: "Macro"

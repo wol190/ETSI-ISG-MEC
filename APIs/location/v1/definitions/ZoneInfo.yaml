@@ -1,0 +1,18 @@
+description: A type containing zone information.
+required:
+- zoneId
+- numberOfAccessPoints
+- numberOfUnservicableAccessPoints
+- numberOfUsers
+- resourceURL
+properties:
+  zoneId:
+    $ref: '#/definitions/ZoneId'
+  numberOfAccessPoints:
+    $ref: '#/definitions/NumberOfAccessPoints'
+  numberOfUnservicableAccessPoints:
+    $ref: '#/definitions/NumberOfUnserviceableAccessPoints'
+  numberOfUsers:
+    $ref: '#/definitions/NumberOfUsers'
+  resourceURL:
+    $ref: '#/definitions/ResourceURL'

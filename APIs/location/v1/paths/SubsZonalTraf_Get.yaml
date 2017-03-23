@@ -1,0 +1,24 @@
+description:
+  This operation is used for retrieving all active subscriptions to zonal traffic change notifications.
+produces:
+- application/json
+
+responses:
+  200:
+    description: Response to retrieve zonal traffic subscriptions
+    schema:
+      type: object
+      properties:
+        notificationSubscriptionList:
+          type: object
+          properties:
+              zonalTrafficSubscription:
+                type: array
+                items:
+                    $ref: '#/definitions/ZonalTrafficSubscription'
+              resourceURL:
+                $ref: '#/definitions/ResourceURL'
+
+    examples:
+      application/json:
+        $ref: '../examples/NotiSubsListZonaTraf.json'

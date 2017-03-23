@@ -1,0 +1,4 @@
+description: Address of user (e.g. "sip" URI, "tel" URI, "acr" URI).
+type: string
+format: uri
+example: "acr:192.0.2.1"

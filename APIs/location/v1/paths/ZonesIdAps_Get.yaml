@@ -1,0 +1,23 @@
+description:
+  Access point status can be retrieved for sets of access points matching attribute in the request.
+produces:
+- application/json
+parameters:
+- name: zoneId
+  in: path
+  description: Zone ID
+  required: true
+  type: string
+- $ref: '#/parameters/InterestRealm'
+
+responses:
+  200:
+    description: Successful response to a query a named set of access point status request
+    schema:
+      properties:
+        accessPointList:
+          $ref: '#/definitions/AccessPointList'
+
+    examples:
+      application/json:
+        $ref: '../examples/AccessPointList.json'

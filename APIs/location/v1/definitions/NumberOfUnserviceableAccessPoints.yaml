@@ -1,0 +1,4 @@
+description: Number of inoperable access points within the zone.
+type: integer
+format: uint32
+example: "9"

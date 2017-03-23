@@ -1,0 +1,11 @@
+description: A type containing list of users.
+required:
+- resourceURL
+properties:
+  user:
+    description: Collection of the zone information list.
+    type: array
+    items:
+      $ref: '#/definitions/UserInfo'
+  resourceURL:
+    $ref: '#/definitions/ResourceURL'

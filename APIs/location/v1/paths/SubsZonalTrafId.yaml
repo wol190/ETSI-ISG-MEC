@@ -1,0 +1,8 @@
+get:
+  $ref: ./SubsZonalTrafId_Get.yaml
+
+put:
+  $ref: ./SubsZonalTrafId_Put.yaml
+
+delete:
+  $ref: ./SubsZonalTrafId_Del.yaml

@@ -1,0 +1,20 @@
+required:
+- address
+- accessPointId
+- zoneId
+- resourceURL
+properties:
+  address:
+    $ref: '#/definitions/Address'
+  accessPointId:
+    $ref: '#/definitions/AccessPointId'
+  zoneId:
+    $ref: '#/definitions/ZoneId'
+  resourceURL:
+    $ref: '#/definitions/ResourceURL'
+  locationInfo:
+    $ref: '#/definitions/LocationInfo'
+  contextLocationInfo:
+    $ref: '#/definitions/ContextLocationInfo'
+  ancillaryInfo:
+    $ref: '#/definitions/AncillaryInfo'

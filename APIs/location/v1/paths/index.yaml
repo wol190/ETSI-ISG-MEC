@@ -1,0 +1,35 @@
+/zones:
+  $ref: ./Zones.yaml
+
+/zones/{zoneId}:
+  $ref: ./ZonesId.yaml
+
+/zones/{zoneId}/accessPoints:
+  $ref: ./ZonesIdAps.yaml
+
+/zones/{zoneId}/accessPoints/{accessPointId}:
+  $ref: ./ZonesIdApsId.yaml
+
+/users:
+  $ref: ./Users.yaml
+
+/users/{userId}:
+  $ref: ./UsersId.yaml
+
+/subscriptions/zonalTraffic:
+  $ref: ./SubsZonalTraf.yaml
+
+/subscriptions/zonalTraffic/{subscriptionId}:
+  $ref: ./SubsZonalTrafId.yaml
+
+/subscriptions/userTracking:
+  $ref: ./SubsUserTrack.yaml
+
+/subscriptions/userTracking/{subscriptionId}:
+  $ref: ./SubsUserTrackId.yaml
+
+/subscriptions/zonalStatus:
+  $ref: ./SubsZoneStat.yaml
+
+/subscriptions/zoneStatus/{subscriptionId}:
+  $ref: ./SubsZoneStatId.yaml

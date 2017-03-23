@@ -1,0 +1,24 @@
+description:
+  This operation is used for creating a new subscription to zone status change notification.
+produces:
+- application/json
+
+responses:
+  200:
+    description: Response to retrieve zone status subscriptions
+    schema:
+      type: object
+      properties:
+        notificationSubscriptionList:
+          type: object
+          properties:
+              zonalTrafficSubscription:
+                type: array
+                items:
+                    $ref: '#/definitions/ZoneStatusSubscription'
+              resourceURL:
+                $ref: '#/definitions/ResourceURL'
+                
+    examples:
+      application/json:
+        $ref: '../examples/NotiSubsListZoneStat.json'

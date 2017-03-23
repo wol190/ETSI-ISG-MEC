@@ -1,0 +1,4 @@
+description: List of user event values to generate notifications for (these apply to address specified). If this element is missing, a notification is requested to be generated for any change in user event.
+type: array
+items:
+  $ref: '#/definitions/UserEventType'

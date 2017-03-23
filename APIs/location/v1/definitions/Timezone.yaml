@@ -1,0 +1,4 @@
+description: Time zone of access point
+type: string
+format: date-time
+example: "2017-01-01T02:51:43Z"
