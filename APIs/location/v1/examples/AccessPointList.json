@@ -2,7 +2,7 @@
   "accessPointList": {
     "zoneId": "zone01",
     "accessPoint": [{
-        "accessPointId": "ap001",
+        "accessPointId": "001010000000000000000000000000001",
         "locationInfo": {
           "latitude": "90.123",
           "longitude": "80.123",
@@ -15,7 +15,7 @@
         "interestRealm": "LA",
         "resourceURL": "http://example.com/exampleAPI/location/v1/zones/zone01/accessPoints/ap001"
       }, {
-        "accessPointId": "ap002",
+        "accessPointId": "001010000000000000000000000000010",
         "locationInfo": {
           "latitude": "91.123",
           "longitude": "81.123",
@@ -28,7 +28,7 @@
         "interestRealm": "DC",
         "resourceURL": "http://example.com/exampleAPI/location/v1/zones/zone01/accessPoints/ap002"
       }, {
-        "accessPointId": "ap003",
+        "accessPointId": "001010000000000000000000000000011",
         "locationInfo": {
           "latitude": "93.123",
           "longitude": "83.123",

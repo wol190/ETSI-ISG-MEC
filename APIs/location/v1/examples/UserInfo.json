@@ -1,7 +1,7 @@
 {
   "userInfo": {
     "address": "acr:192.0.2.1",
-    "accessPointId": "ap001",
+    "accessPointId": "001010000000000000000000000000001",
     "zoneId": "zone01",
     "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.1",
     "locationInfo": {

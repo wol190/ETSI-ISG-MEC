@@ -19,7 +19,7 @@
         "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0013LocationApi"
     },
     "host": "127.0.0.1:8081",
-    "basePath": "/exampleAPI/location/v1/",
+    "basePath": "/exampleAPI/location/v1",
     "schemes": [
         "http",
         "https"
@@ -171,7 +171,7 @@
                                     "zoneId": "zone01",
                                     "accessPoint": [
                                         {
-                                            "accessPointId": "ap001",
+                                            "accessPointId": "001010000000000000000000000000001",
                                             "locationInfo": {
                                                 "latitude": "90.123",
                                                 "longitude": "80.123",
@@ -185,7 +185,7 @@
                                             "resourceURL": "http://example.com/exampleAPI/location/v1/zones/zone01/accessPoints/ap001"
                                         },
                                         {
-                                            "accessPointId": "ap002",
+                                            "accessPointId": "001010000000000000000000000000010",
                                             "locationInfo": {
                                                 "latitude": "91.123",
                                                 "longitude": "81.123",
@@ -199,7 +199,7 @@
                                             "resourceURL": "http://example.com/exampleAPI/location/v1/zones/zone01/accessPoints/ap002"
                                         },
                                         {
-                                            "accessPointId": "ap003",
+                                            "accessPointId": "001010000000000000000000000000011",
                                             "locationInfo": {
                                                 "latitude": "93.123",
                                                 "longitude": "83.123",
@@ -256,7 +256,7 @@
                         "examples": {
                             "application/json": {
                                 "accessPointInfo": {
-                                    "accessPointId": "ap001",
+                                    "accessPointId": "001010000000000000000000000000001",
                                     "locationInfo": {
                                         "latitude": "90.123",
                                         "longitude": "80.123",
@@ -305,31 +305,31 @@
                                     "user": [
                                         {
                                             "address": "acr:192.0.2.1",
-                                            "accessPointId": "ap001",
+                                            "accessPointId": "001010000000000000000000000000001",
                                             "zoneId": "zone01",
                                             "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.1"
                                         },
                                         {
                                             "address": "acr:192.0.2.2",
-                                            "accessPointId": "ap001",
+                                            "accessPointId": "001010000000000000000000000000001",
                                             "zoneId": "zone01",
                                             "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.2"
                                         },
                                         {
                                             "address": "acr:192.0.2.3",
-                                            "accessPointId": "ap002",
+                                            "accessPointId": "001010000000000000000000000000010",
                                             "zoneId": "zone01",
                                             "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.3"
                                         },
                                         {
                                             "address": "acr:192.0.2.4",
-                                            "accessPointId": "ap001",
+                                            "accessPointId": "001010000000000000000000000000001",
                                             "zoneId": "zone02",
                                             "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.4"
                                         },
                                         {
                                             "address": "acr:192.0.2.5",
-                                            "accessPointId": "ap002",
+                                            "accessPointId": "001010000000000000000000000000010",
                                             "zoneId": "zone02",
                                             "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.5"
                                         }
@@ -371,7 +371,7 @@
                             "application/json": {
                                 "userInfo": {
                                     "address": "acr:192.0.2.1",
-                                    "accessPointId": "ap001",
+                                    "accessPointId": "001010000000000000000000000000001",
                                     "zoneId": "zone01",
                                     "resourceURL": "http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.1",
                                     "locationInfo": {
@@ -1017,17 +1017,9 @@
     },
     "definitions": {
         "AccessPointId": {
-            "required": [
-                "ecgi"
-            ],
-            "properties": {
-                "ecgi": {
-                    "$ref": "#/definitions/Ecgi"
-                },
-                "cellPortionId": {
-                    "$ref": "#/definitions/CellPortionId"
-                }
-            }
+            "description": "Identifier of access point, <E-CGI><Cell Portion ID> (reference ETSI TS 129 171). Where the E-CGI is made up of the PLMN and Cell Identity (28 bit string). Then the PLMN is made up of the 3 digit MCC & 2 or 3 digit MNC. The Cell Portion is an optional element",
+            "type": "string",
+            "example": "001010000000000000000000000000001"
         },
         "AccessPointInfo": {
             "required": [
@@ -1112,18 +1104,6 @@
                 }
             }
         },
-        "CellIdentity": {
-            "description": "Cell Identity as a bit string (size (28)), as defined in ETSI TS 129.171",
-            "type": "string",
-            "format": "binary",
-            "example": "0"
-        },
-        "CellPortionId": {
-            "description": "The current Cell Portion location of the target UE, where the Cell Portion ID is the unique identifier for a cell portion within a cell, as defined in ETSI TS 129.171",
-            "type": "integer",
-            "format": "uint32",
-            "example": "0"
-        },
         "ClientCorrelator": {
             "description": "Uniquely identifies this create subscription request. If there is a communication failure during the request, using the same clientCorrelator when retrying the request allows the operator to avoid creating a duplicate subscription.",
             "type": "string",
@@ -1143,21 +1123,6 @@
             "description": "Zone ID",
             "type": "string",
             "example": "zone01"
-        },
-        "Ecgi": {
-            "description": "E-UTRAN Cell Identifier (E-CGI), as defined in ETSI TS 129.171",
-            "required": [
-                "plmn",
-                "cellIdentity"
-            ],
-            "properties": {
-                "plmn": {
-                    "$ref": "#/definitions/Plmn"
-                },
-                "cellIdentity": {
-                    "$ref": "#/definitions/CellIdentity"
-                }
-            }
         },
         "Duration": {
             "description": "Period (in seconds) of time notifications are provided for. If set to \"0\" (zero), a default duration time, which is specified by the service policy, will be used. If the parameter is omitted, the notifications will continue until the maximum duration time, which is specified by the service policy, unless the notifications are stopped by deletion of subscription for notifications. This element MAY be given by the client during resource creation in order to signal the desired lifetime of the subscription. The server MUST return in this element the period of time for which the subscription will still be valid.",
@@ -1270,26 +1235,6 @@
             "description": "The operation status of the access point",
             "type": "string",
             "example": "Serviceable"
-        },
-        "Plmn": {
-            "description": "public land mobile network (PLMN), as defined in ETSI TS 129.171",
-            "type": "object",
-            "required": [
-                "mcc",
-                "mnc"
-            ],
-            "properties": {
-                "mcc": {
-                    "description": "Mobile Country Code",
-                    "type": "string",
-                    "example": "001"
-                },
-                "mnc": {
-                    "description": "Mobile Country Code",
-                    "type": "string",
-                    "example": "01"
-                }
-            }
         },
         "PreviousAccessPointId": {
             "description": "Zone ID",

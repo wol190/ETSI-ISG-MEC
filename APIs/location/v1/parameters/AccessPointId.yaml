@@ -1,6 +1,6 @@
 name: accessPointId
 in: query
 description: >-
-  One or more access point attributes, reference "definitions" for string format
+  Identifier of access point, reference "definitions" for string format
 required: false
 type: string
