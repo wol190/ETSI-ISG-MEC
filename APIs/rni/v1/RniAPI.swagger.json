@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "An initial attempt to describe the RNIS API using OpenAPI",
-        "version": "0.3.0.1",
+        "description": "Description the RNIS API using OpenAPI",
+        "version": "0.3.3",
         "title": "RNIS API",
         "termsOfService": "TBD",
         "contact": {
@@ -67,7 +67,7 @@
         "ErabGbrDl": {
             "name": "erabGbrDl",
             "in": "query",
-            "description": "Guaranteeddownlink E-RAB Bit Rate as defined in ETSI TS 123 401",
+            "description": "Guaranteed downlink E-RAB Bit Rate as defined in ETSI TS 123 401",
             "required": false,
             "type": "integer",
             "format": "uint32"
@@ -437,7 +437,7 @@
         "/subscriptions/": {
             "get": {
                 "description": "The GET method can be used to request information about the subscriptions for this requestor",
-                "operationId": "rnisSusbcriptionLinkList_subscriptionsGET",
+                "operationId": "SusbcriptionLinkList_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -446,21 +446,21 @@
                     "200": {
                         "description": "Response body contains the list of links to requestors subscriptions.",
                         "schema": {
-                            "$ref": "#/definitions/RnisSusbcriptionLinkList"
+                            "$ref": "#/definitions/SusbcriptionLinkList"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisCellChange": {
+                                "CellChange": {
                                     "_links": {
                                         "self": "http://meAppServer.example.com/rni/v1/subscriptions/",
                                         "susbcription": [
                                             {
-                                                "href": "http://meAppClient.example.com/rni/v1/notifications/RnisCellChange/77777",
-                                                "subscriptionType": "RnisCellChangeSubscription"
+                                                "href": "http://meAppClient.example.com/rni/v1/notifications/CellChange/77777",
+                                                "subscriptionType": "cell_change"
                                             },
                                             {
-                                                "href": "http://meAppClient.example.com/rni/v1/notifications/RnisMeasTimingAdvance/77777",
-                                                "subscriptionType": "RnisMeasTimingAdvanceSubscription"
+                                                "href": "http://meAppClient.example.com/rni/v1/notifications/MeasTa/77777",
+                                                "subscriptionType": "ta"
                                             }
                                         ]
                                     }
@@ -493,21 +493,21 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisCellChangeSubscription": {
+        "/subscriptions/CellChangeSubscription": {
             "post": {
                 "description": "Creates a subscription to cell change notifications from Radio Network Information Service",
-                "operationId": "rnisCellChange_subscriptionsPOST",
+                "operationId": "CellChange_subscriptionsPOST",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisCellChangeSubscriptionPost",
+                        "name": "CellChangeSubscriptionPost",
                         "description": "Use to creates a subscription to cell change notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisCellChangeSubscriptionPost"
+                            "$ref": "#/definitions/CellChangeSubscriptionPost"
                         }
                     }
                 ],
@@ -515,15 +515,15 @@
                     "201": {
                         "description": "Successful subscription to response to UE cell change notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisCellChangeSubscription"
+                            "$ref": "#/definitions/CellChangeSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisCellChange": {
-                                    "subscriptionType": "RnisCellChangeSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisCellChange/77777",
+                                "CellChange": {
+                                    "subscriptionType": "cell_change",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/CellChange/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisCellChange/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/CellChange/sub123"
                                     },
                                     "filterCriteria": {
                                         "associateId": {
@@ -574,10 +574,10 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisCellChangeSubscription/{subscrId}": {
+        "/subscriptions/CellChangeSubscription/{subscrId}": {
             "get": {
                 "description": "Get cell change subscription information",
-                "operationId": "rnisCellChange_subscriptionsGET",
+                "operationId": "CellChange_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -595,15 +595,15 @@
                     "200": {
                         "description": "Subscription information regarding cell change notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisCellChangeSubscription"
+                            "$ref": "#/definitions/CellChangeSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisCellChange": {
-                                    "subscriptionType": "RnisCellChangeSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisCellChange/77777",
+                                "CellChange": {
+                                    "subscriptionType": "cell_change",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/CellChange/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisCellChange/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/CellChange/sub123"
                                     },
                                     "filterCriteria": {
                                         "appInsId": "01",
@@ -651,18 +651,18 @@
             },
             "put": {
                 "description": "Updates a subscription to cell change notifications from Radio Network Information Service",
-                "operationId": "rnisCellChangeS_subscriptionsPUT",
+                "operationId": "CellChange_subscriptionsPUT",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisCellChangeSubscription",
+                        "name": "CellChangeSubscription",
                         "description": "Use to update a subscription to cell change notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisCellChangeSubscription"
+                            "$ref": "#/definitions/CellChangeSubscription"
                         }
                     },
                     {
@@ -678,15 +678,15 @@
                     "201": {
                         "description": "Successful subscription to response to cell change notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisCellChangeSubscription"
+                            "$ref": "#/definitions/CellChangeSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisCellChange": {
-                                    "subscriptionType": "RnisCellChangeSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisCellChange/77777",
+                                "CellChange": {
+                                    "subscriptionType": "cell_change",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/CellChange/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisCellChange/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/CellChange/sub123"
                                     },
                                     "filterCriteria": {
                                         "appInsId": "01",
@@ -737,7 +737,7 @@
             },
             "delete": {
                 "description": "Method to delete a subscription",
-                "operationId": "rnisCellChange_subscriptionsSubscrIdDELETE",
+                "operationId": "CellChange_subscriptionsSubscrIdDELETE",
                 "produces": [
                     "application/json"
                 ],
@@ -774,18 +774,18 @@
         "/subscriptions/S1BearerSubscription": {
             "post": {
                 "description": "Creates a subscription to S1 bearer notifications from Radio Network Information Service",
-                "operationId": "rnisS1BearerSubscription_subscriptionsPOST",
+                "operationId": "S1BearerSubscription_subscriptionsPOST",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisS1BearerSubscriptionPost",
+                        "name": "S1BearerSubscriptionPost",
                         "description": "Use to creates a subscription to S1 Bearer notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisS1BearerSubscriptionPost"
+                            "$ref": "#/definitions/S1BearerSubscriptionPost"
                         }
                     }
                 ],
@@ -793,15 +793,15 @@
                     "201": {
                         "description": "Successful subscription to response to S1 Bearer notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisS1BearerSubscription"
+                            "$ref": "#/definitions/S1BearerSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisS1BearerSubscription": {
-                                    "subscriptionType": "RnisS1BearerSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisS1Bearer/77777",
+                                "S1BearerSubscription": {
+                                    "subscriptionType": "s1Bearer",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/S1Bearer/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisS1Bearer/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/S1Bearer/sub123"
                                     },
                                     "eventType": 1,
                                     "s1BearerSubscriptionCriteria": {
@@ -855,7 +855,7 @@
         "/subscriptions/S1BearerSubscription/{subscrId}": {
             "get": {
                 "description": "Gets a subscription to S1 bearer notifications from Radio Network Information Service",
-                "operationId": "rnisS1BearerSubscription_subscriptionsGET",
+                "operationId": "S1BearerSubscription_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -873,15 +873,15 @@
                     "200": {
                         "description": "Successful subscription to response to S1 Bearer notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisS1BearerSubscription"
+                            "$ref": "#/definitions/S1BearerSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisS1BearerSubscription": {
-                                    "subscriptionType": "RnisS1BearerSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisS1Bearer/77777",
+                                "S1BearerSubscription": {
+                                    "subscriptionType": "s1Bearer",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/S1Bearer/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisS1Bearer/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/S1Bearer/sub123"
                                     },
                                     "eventType": 1,
                                     "s1BearerSubscriptionCriteria": {
@@ -929,7 +929,7 @@
             },
             "put": {
                 "description": "Update a subscription to S1 bearer notifications from Radio Network Information Service",
-                "operationId": "rnisS1BearerSubscription_subscriptionsPUT",
+                "operationId": "S1BearerSubscription_subscriptionsPUT",
                 "produces": [
                     "application/json"
                 ],
@@ -944,11 +944,11 @@
                     },
                     {
                         "in": "body",
-                        "name": "RnisS1BearerSubscription",
+                        "name": "S1BearerSubscription",
                         "description": "Use to update a subscriptio to S1 Bearer notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisS1BearerSubscription"
+                            "$ref": "#/definitions/S1BearerSubscription"
                         }
                     }
                 ],
@@ -956,15 +956,15 @@
                     "201": {
                         "description": "Successful subscription update to response to S1 Bearer notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisS1BearerSubscription"
+                            "$ref": "#/definitions/S1BearerSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisS1BearerSubscription": {
-                                    "subscriptionType": "RnisS1BearerSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisS1Bearer/77777",
+                                "S1BearerSubscription": {
+                                    "subscriptionType": "s1Bearer",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/S1Bearer/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisS1Bearer/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/S1Bearer/sub123"
                                     },
                                     "eventType": 1,
                                     "s1BearerSubscriptionCriteria": {
@@ -1015,7 +1015,7 @@
             },
             "delete": {
                 "description": "Method to delete a subscription",
-                "operationId": "rnisS1Bearer_subscriptionsSubscrIdDELETE",
+                "operationId": "S1Bearer_subscriptionsSubscrIdDELETE",
                 "produces": [
                     "application/json"
                 ],
@@ -1049,21 +1049,21 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisMeasTimingAdvanceSubscription": {
+        "/subscriptions/MeasTaSubscription": {
             "post": {
                 "description": "Creates a subscription to UE Timing Advance notifications from Radio Network Information Service",
-                "operationId": "rnisMeasTimingAdvance_subscriptionsPOST",
+                "operationId": "MeasTa_subscriptionsPOST",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisMeasTimingAdvanceSubscriptionPost",
+                        "name": "MeasTaSubscriptionPost",
                         "description": "Use to creates a subscription to UE Timing Advance notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasTimingAdvanceSubscriptionPost"
+                            "$ref": "#/definitions/MeasTaSubscriptionPost"
                         }
                     }
                 ],
@@ -1071,15 +1071,15 @@
                     "201": {
                         "description": "Successful subscription to response to UE Timing Advance notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasTimingAdvanceSubscription"
+                            "$ref": "#/definitions/MeasTaSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisMeasTimingAdvance": {
-                                    "subscriptionType": "RnisMeasTimingAdvanceSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisMeasTimingAdvance/77777",
+                                "MeasTa": {
+                                    "subscriptionType": "ta",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/MeasTa/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisMeasTimingAdvance/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/MeasTa/sub123"
                                     },
                                     "filterCriteria": {
                                         "associateId": {
@@ -1130,10 +1130,10 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisMeasTimingAdvance/{subscrId}": {
+        "/subscriptions/MeasTa/{subscrId}": {
             "get": {
                 "description": "Gets UE Timing Advance subscription information from Radio Network Information Service",
-                "operationId": "rnisMeasTimingAdvance_subscriptionsGET",
+                "operationId": "MeasTa_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -1151,15 +1151,15 @@
                     "200": {
                         "description": "Subscription information regarding UE Timing Advance notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasTimingAdvanceSubscription"
+                            "$ref": "#/definitions/MeasTaSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisMeasTimingAdvance": {
-                                    "subscriptionType": "RnisMeasTimingAdvanceSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisMeasTimingAdvance/77777",
+                                "MeasTa": {
+                                    "subscriptionType": "ta",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/MeasTa/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisMeasTimingAdvance/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/MeasTa/sub123"
                                     },
                                     "filterCriteria": {
                                         "associateId": {
@@ -1207,7 +1207,7 @@
             },
             "put": {
                 "description": "Updates a subscription to UE Timing Advance notifications from Radio Network Information Service",
-                "operationId": "rnisMeasTimingAdvance_subscriptionsPUT",
+                "operationId": "MeasTa_subscriptionsPUT",
                 "produces": [
                     "application/json"
                 ],
@@ -1222,11 +1222,11 @@
                     },
                     {
                         "in": "body",
-                        "name": "RnisMeasTimingAdvanceSubscription",
+                        "name": "MeasTaSubscription",
                         "description": "Use to update a subscription to UE Timing Advance notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasTimingAdvanceSubscription"
+                            "$ref": "#/definitions/MeasTaSubscription"
                         }
                     }
                 ],
@@ -1234,15 +1234,15 @@
                     "200": {
                         "description": "Successful subscription to response to UE Timing Advance notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasTimingAdvanceSubscription"
+                            "$ref": "#/definitions/MeasTaSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisMeasTimingAdvance": {
-                                    "subscriptionType": "RnisMeasTimingAdvanceSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisMeasTimingAdvance/77777",
+                                "MeasTa": {
+                                    "subscriptionType": "ta",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/MeasTa/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisMeasTimingAdvance/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/MeasTa/sub123"
                                     },
                                     "filterCriteria": {
                                         "associateId": {
@@ -1293,7 +1293,7 @@
             },
             "delete": {
                 "description": "Method to delete a subscription",
-                "operationId": "rnisMeasTimingAdvance_subscriptionsSubscrIdDELETE",
+                "operationId": "MeasTa_subscriptionsSubscrIdDELETE",
                 "produces": [
                     "application/json"
                 ],
@@ -1327,21 +1327,21 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisMeasUeReport": {
+        "/subscriptions/MeasRepUe": {
             "post": {
                 "description": "Creates a subscription to UE measurement report notifications from Radio Network Information Service",
-                "operationId": "rnisMeasUeReport_subscriptionsPOST",
+                "operationId": "MeasRepUe_subscriptionsPOST",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisMeasUeReportSubscriptionPost",
+                        "name": "MeasRepUeSubscriptionPost",
                         "description": "Use to creates a subscription to UE measurement report notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasUeReportSubscriptionPost"
+                            "$ref": "#/definitions/MeasRepUeSubscriptionPost"
                         }
                     }
                 ],
@@ -1349,15 +1349,15 @@
                     "201": {
                         "description": "Successful subscription to response to UE measurement report notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasUeReportSubscription"
+                            "$ref": "#/definitions/MeasRepUeSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisMeasUeReport": {
-                                    "subscriptionType": "RnisMeasUeReportSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisMeasUeReport/77777",
+                                "MeasRepUe": {
+                                    "subscriptionType": "MeasRepUeSubscription",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/MeasRepUe/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisMeasUeReport/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/MeasRepUe/sub123"
                                     },
                                     "filterCriteria": {
                                         "associateId": {
@@ -1408,10 +1408,10 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisMeasUeReport/{subscrId}": {
+        "/subscriptions/MeasRepUe/{subscrId}": {
             "get": {
                 "description": "Creates a subscription to UE measurement report notifications from Radio Network Information Service",
-                "operationId": "rnisMeasUeReport_subscriptionsGET",
+                "operationId": "MeasRepUe_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -1429,15 +1429,15 @@
                     "200": {
                         "description": "Successful subscription to response to UE measurement report notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasUeReportSubscription"
+                            "$ref": "#/definitions/MeasRepUeSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisMeasUeReport": {
-                                    "subscriptionType": "RnisMeasUeReportSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisMeasUeReport/77777",
+                                "MeasRepUe": {
+                                    "subscriptionType": "meas_rep_ue",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/MeasRepUe/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisMeasUeReport/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/MeasRepUe/sub123"
                                     },
                                     "filterCriteria": {
                                         "associateId": {
@@ -1485,7 +1485,7 @@
             },
             "put": {
                 "description": "Updates a subscription to UE measurement report notifications from Radio Network Information Service",
-                "operationId": "rnisMeasUeReport_subscriptionsPUT",
+                "operationId": "MeasRepUeReport_subscriptionsPUT",
                 "produces": [
                     "application/json"
                 ],
@@ -1500,11 +1500,11 @@
                     },
                     {
                         "in": "body",
-                        "name": "RnisMeasUeReportSubscription",
+                        "name": "MeasRepUeSubscription",
                         "description": "Use to update a subscription to UE measurement report notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasUeReportSubscription"
+                            "$ref": "#/definitions/MeasRepUeSubscription"
                         }
                     }
                 ],
@@ -1512,15 +1512,15 @@
                     "201": {
                         "description": "Successful update subscription to response to UE measurement report notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisMeasUeReportSubscription"
+                            "$ref": "#/definitions/MeasRepUeSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisMeasUeReport": {
-                                    "subscriptionType": "RnisMeasUeReportSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisMeasUeReport/77777",
+                                "MeasRepUe": {
+                                    "subscriptionType": "meas_rep_ue",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/MeasRepUe/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisMeasUeReport/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/MeasRepUe/sub123"
                                     },
                                     "filterCriteria": {
                                         "associateId": {
@@ -1571,7 +1571,7 @@
             },
             "delete": {
                 "description": "Method to delete a subscription",
-                "operationId": "rnisMeasUeReport_subscriptionsSubscrIdDELETE",
+                "operationId": "MeasRepUe_subscriptionsSubscrIdDELETE",
                 "produces": [
                     "application/json"
                 ],
@@ -1605,21 +1605,21 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisRabEstablishmentSubscription": {
+        "/subscriptions/RabEstSubscription": {
             "post": {
                 "description": "Creates a subscription to RAB establishment notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabEstablishmentSubscription_subscriptionsPOST",
+                "operationId": "RabEstSubscription_subscriptionsPOST",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisRabEstablishmentSubscriptionPost",
+                        "name": "RabEstSubscriptionPost",
                         "description": "Use to creates a subscription to RAB establishment notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisRabEstablishmentSubscriptionPost"
+                            "$ref": "#/definitions/RabEstSubscriptionPost"
                         }
                     }
                 ],
@@ -1627,15 +1627,15 @@
                     "201": {
                         "description": "Successful subscription to RAB establishment notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabEstablishmentSubscription"
+                            "$ref": "#/definitions/RabEstSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabEstablishmentSubscription": {
-                                    "subscriptionType": "RnisRabEstablishmentSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabEstablishment/77777",
+                                "RabEstSubscription": {
+                                    "subscriptionType": "rab_est",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabEst/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabEstablishment/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabEst/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -1686,10 +1686,10 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisRabEstablishmentSubscription/{subscrId}": {
+        "/subscriptions/RabEstSubscription/{subscrId}": {
             "get": {
                 "description": "Creates a subscription to RAB establishment notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabEstablishmentSubscription_subscriptionsGET",
+                "operationId": "RabEstSubscription_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -1707,15 +1707,15 @@
                     "201": {
                         "description": "Subscription information regarding RAB establishment notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabEstablishmentSubscription"
+                            "$ref": "#/definitions/RabEstSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabEstablishmentSubscription": {
-                                    "subscriptionType": "RnisRabEstablishmentSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabEstablishment/77777",
+                                "RabEstSubscription": {
+                                    "subscriptionType": "rab_est",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabEst/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabEstablishment/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabEst/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -1763,7 +1763,7 @@
             },
             "put": {
                 "description": "Updates a subscription to RAB establishment notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabEstablishmentSubscription_subscriptionsPUT",
+                "operationId": "RabEstSubscription_subscriptionsPUT",
                 "produces": [
                     "application/json"
                 ],
@@ -1778,11 +1778,11 @@
                     },
                     {
                         "in": "body",
-                        "name": "RnisRabEstablishmentSubscription",
+                        "name": "RabEstSubscription",
                         "description": "Use to update a subscription to RAB establishment notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisRabEstablishmentSubscription"
+                            "$ref": "#/definitions/RabEstSubscription"
                         }
                     }
                 ],
@@ -1790,15 +1790,15 @@
                     "201": {
                         "description": "Successful subscription update to RAB establishment notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabEstablishmentSubscription"
+                            "$ref": "#/definitions/RabEstSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabEstablishmentSubscription": {
-                                    "subscriptionType": "RnisRabEstablishmentSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabEstablishment/77777",
+                                "RabEstSubscription": {
+                                    "subscriptionType": "rab_est",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabEst/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabEstablishment/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabEst/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -1849,7 +1849,7 @@
             },
             "delete": {
                 "description": "Method to delete a subscription",
-                "operationId": "rnisRabEstablishment_subscriptionsSubscrIdDELETE",
+                "operationId": "RabEst_subscriptionsSubscrIdDELETE",
                 "produces": [
                     "application/json"
                 ],
@@ -1883,21 +1883,21 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisRabModificationSubscription": {
+        "/subscriptions/RabModSubscription": {
             "post": {
                 "description": "Creates a subscription to RAB Modification notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabModificationSubscription_subscriptionsPOST",
+                "operationId": "RabModSubscription_subscriptionsPOST",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisRabModificationSubscriptionPost",
+                        "name": "RabModSubscriptionPost",
                         "description": "Use to creates a subscription to RAB Modification notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisRabModificationSubscriptionPost"
+                            "$ref": "#/definitions/RabModSubscriptionPost"
                         }
                     }
                 ],
@@ -1905,15 +1905,15 @@
                     "201": {
                         "description": "Successful subscription to RAB Modification notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabModificationSubscription"
+                            "$ref": "#/definitions/RabModSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabModificationSubscription": {
-                                    "subscriptionType": "RnisRabModificationSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabModification/77777",
+                                "RabModSubscription": {
+                                    "subscriptionType": "rab_mod",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabMod/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabModification/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabMod/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -1964,10 +1964,10 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisRabModificationSubscription/{subscrId}": {
+        "/subscriptions/RabModSubscription/{subscrId}": {
             "get": {
                 "description": "Creates a subscription to RAB Modification notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabModificationSubscription_subscriptionsGET",
+                "operationId": "RabModSubscription_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -1985,15 +1985,15 @@
                     "201": {
                         "description": "Subscription information regarding RAB Modification notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabModificationSubscription"
+                            "$ref": "#/definitions/RabModSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabModificationSubscription": {
-                                    "subscriptionType": "RnisRabModificationSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabModification/77777",
+                                "RabModSubscription": {
+                                    "subscriptionType": "rab_mod",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabMod/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabModification/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabMod/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -2041,7 +2041,7 @@
             },
             "put": {
                 "description": "Updates a subscription to RAB Modification notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabModificationSubscription_subscriptionsPUT",
+                "operationId": "RabModSubscription_subscriptionsPUT",
                 "produces": [
                     "application/json"
                 ],
@@ -2056,11 +2056,11 @@
                     },
                     {
                         "in": "body",
-                        "name": "RnisRabModificationSubscription",
+                        "name": "RabModSubscription",
                         "description": "Use to update a subscription to RAB Modification notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisRabModificationSubscription"
+                            "$ref": "#/definitions/RabModSubscription"
                         }
                     }
                 ],
@@ -2068,15 +2068,15 @@
                     "201": {
                         "description": "Successful subscription update to RAB Modification notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabModificationSubscription"
+                            "$ref": "#/definitions/RabModSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabModificationSubscription": {
-                                    "subscriptionType": "RnisRabModificationSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabModification/77777",
+                                "RabModSubscription": {
+                                    "subscriptionType": "rab_mod",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabMod/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabModification/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabMod/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -2127,7 +2127,7 @@
             },
             "delete": {
                 "description": "Method to delete a subscription",
-                "operationId": "rnisRabModification_subscriptionsSubscrIdDELETE",
+                "operationId": "RabMod_subscriptionsSubscrIdDELETE",
                 "produces": [
                     "application/json"
                 ],
@@ -2161,21 +2161,21 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisRabReleaseSubscription": {
+        "/subscriptions/RabRelSubscription": {
             "post": {
                 "description": "Creates a subscription to RAB Release notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabReleaseSubscription_subscriptionsPOST",
+                "operationId": "RabRelSubscription_subscriptionsPOST",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisRabReleaseSubscriptionPost",
+                        "name": "RabRelSubscriptionPost",
                         "description": "Use to creates a subscription to RAB Release notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisRabReleaseSubscriptionPost"
+                            "$ref": "#/definitions/RabRelSubscriptionPost"
                         }
                     }
                 ],
@@ -2183,15 +2183,15 @@
                     "201": {
                         "description": "Successful subscription to RAB Release notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabReleaseSubscription"
+                            "$ref": "#/definitions/RabRelSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabReleaseSubscription": {
-                                    "subscriptionType": "RnisRabReleaseSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabRelease/77777",
+                                "RabRelSubscription": {
+                                    "subscriptionType": "rab_rel",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabRel/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabRelease/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabRel/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -2242,10 +2242,10 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisRabReleaseSubscription/{subscrId}": {
+        "/subscriptions/RabRelSubscription/{subscrId}": {
             "get": {
                 "description": "Creates a subscription to RAB Release notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabReleaseSubscription_subscriptionsGET",
+                "operationId": "RabRelSubscription_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -2263,15 +2263,15 @@
                     "201": {
                         "description": "Subscription information regarding RAB Release notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabReleaseSubscription"
+                            "$ref": "#/definitions/RabRelSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabReleaseSubscription": {
-                                    "subscriptionType": "RnisRabReleaseSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabRelease/77777",
+                                "RabRelSubscription": {
+                                    "subscriptionType": "rab_rel",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabRel/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabRelease/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabRel/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -2319,7 +2319,7 @@
             },
             "put": {
                 "description": "Updates a subscription to RAB Release notifications from Radio Network Information Service",
-                "operationId": "rnisRnisRabReleaseSubscription_subscriptionsPUT",
+                "operationId": "RabRelSubscription_subscriptionsPUT",
                 "produces": [
                     "application/json"
                 ],
@@ -2334,11 +2334,11 @@
                     },
                     {
                         "in": "body",
-                        "name": "RnisRabReleaseSubscription",
+                        "name": "RabRelSubscription",
                         "description": "Use to update a subscription to RAB Release notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisRabReleaseSubscription"
+                            "$ref": "#/definitions/RabRelSubscription"
                         }
                     }
                 ],
@@ -2346,15 +2346,15 @@
                     "201": {
                         "description": "Successful subscription update to RAB Release notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisRabReleaseSubscription"
+                            "$ref": "#/definitions/RabRelSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisRabReleaseSubscription": {
-                                    "subscriptionType": "RnisRabReleaseSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisRabRelease/77777",
+                                "RabRelSubscription": {
+                                    "subscriptionType": "rab_rel",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RabRel/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisRabRelease/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RabRel/sub123"
                                     },
                                     "filterCriteriaAssocQci": {
                                         "appInsId": "app01",
@@ -2405,7 +2405,7 @@
             },
             "delete": {
                 "description": "Method to delete a subscription",
-                "operationId": "rnisRabRelease_subscriptionsSubscrIdDELETE",
+                "operationId": "RabRel_subscriptionsSubscrIdDELETE",
                 "produces": [
                     "application/json"
                 ],
@@ -2439,21 +2439,21 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisReconfCarrierAggrSubscription": {
+        "/subscriptions/CaReconfSubscription": {
             "post": {
                 "description": "Creates a subscription to Carrier Aggregation Reconfiguration notifications from Radio Network Information Service",
-                "operationId": "rnisReconfCarrierAggrSubscription_subscriptionsPOST",
+                "operationId": "CaReconfSubscription_subscriptionsPOST",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "RnisReconfCarrierAggrSubscriptionPost",
+                        "name": "CaReconfSubscriptionPost",
                         "description": "Use to creates a subscription to Carrier Aggregation Reconfiguration notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisReconfCarrierAggrSubscriptionPost"
+                            "$ref": "#/definitions/CaReconfSubscriptionPost"
                         }
                     }
                 ],
@@ -2461,15 +2461,15 @@
                     "201": {
                         "description": "Successful subscription to Carrier Aggregation Reconfiguration notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisReconfCarrierAggrSubscription"
+                            "$ref": "#/definitions/CaReconfSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisReconfCarrierAggrSubscription": {
-                                    "subscriptionType": "RnisReconfCarrierAggrSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisReconfCarrierAggr/77777",
+                                "CaReconfSubscription": {
+                                    "subscriptionType": "caReconf",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/CaReconf/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisReconfCarrierAggr/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/CaReconf/sub123"
                                     },
                                     "filterCriteriaAssoc": {
                                         "appInsId": "app01",
@@ -2519,10 +2519,10 @@
                 "x-swagger-router-controller": "Default"
             }
         },
-        "/subscriptions/RnisReconfCarrierAggrSubscription/{subscrId}": {
+        "/subscriptions/CaReconfSubscription/{subscrId}": {
             "get": {
                 "description": "Creates a subscription to Carrier Aggregation Reconfiguration notifications from Radio Network Information Service",
-                "operationId": "rnisReconfCarrierAggrSubscription_subscriptionsGET",
+                "operationId": "CaReconfSubscription_subscriptionsGET",
                 "produces": [
                     "application/json"
                 ],
@@ -2540,15 +2540,15 @@
                     "201": {
                         "description": "Subscription information regarding Carrier Aggregation Reconfiguration notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisReconfCarrierAggrSubscription"
+                            "$ref": "#/definitions/CaReconfSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisReconfCarrierAggrSubscription": {
-                                    "subscriptionType": "RnisReconfCarrierAggrSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisReconfCarrierAggr/77777",
+                                "CaReconfSubscription": {
+                                    "subscriptionType": "caReconf",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/CaReconf/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisReconfCarrierAggr/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/CaReconf/sub123"
                                     },
                                     "filterCriteriaAssoc": {
                                         "appInsId": "app01",
@@ -2595,7 +2595,7 @@
             },
             "put": {
                 "description": "Updates a subscription to Carrier Aggregation Reconfiguration notifications from Radio Network Information Service",
-                "operationId": "rnisReconfCarrierAggrSubscription_subscriptionsPUT",
+                "operationId": "CaReconfSubscription_subscriptionsPUT",
                 "produces": [
                     "application/json"
                 ],
@@ -2610,11 +2610,11 @@
                     },
                     {
                         "in": "body",
-                        "name": "RnisReconfCarrierAggrSubscription",
+                        "name": "CaReconfSubscription",
                         "description": "Use to update a subscription to Carrier Aggregation Reconfiguration notifications based on the filter criteria",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RnisReconfCarrierAggrSubscription"
+                            "$ref": "#/definitions/CaReconfSubscription"
                         }
                     }
                 ],
@@ -2622,15 +2622,15 @@
                     "201": {
                         "description": "Successful subscription to Carrier Aggregation Reconfiguration notifications",
                         "schema": {
-                            "$ref": "#/definitions/RnisReconfCarrierAggrSubscription"
+                            "$ref": "#/definitions/CaReconfSubscription"
                         },
                         "examples": {
                             "application/json": {
-                                "RnisReconfCarrierAggrSubscription": {
-                                    "subscriptionType": "RnisReconfCarrierAggrSubscription",
-                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/RnisReconfCarrierAggr/77777",
+                                "CaReconfSubscription": {
+                                    "subscriptionType": "caReconf",
+                                    "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/CaReconf/77777",
                                     "_links": {
-                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/RnisReconfCarrierAggr/sub123"
+                                        "self": "http://meAppServer.example.com/rni/v1/subscriptions/CaReconf/sub123"
                                     },
                                     "filterCriteriaAssoc": {
                                         "appInsId": "app01",
@@ -2680,7 +2680,7 @@
             },
             "delete": {
                 "description": "Method to delete a subscription",
-                "operationId": "rnisReconfCarrierAggr_subscriptionsSubscrIdDELETE",
+                "operationId": "CaReconf_subscriptionsSubscrIdDELETE",
                 "produces": [
                     "application/json"
                 ],
@@ -2962,13 +2962,13 @@
             ],
             "properties": {
                 "mcc": {
-                    "type": "integer",
-                    "format": "int32",
+                    "type": "string",
+                    "format": "string",
                     "description": "The Mobile Country Code part of PLMN Identity as defined in 3GPP TS 36.413"
                 },
                 "mnc": {
-                    "type": "integer",
-                    "format": "int32",
+                    "type": "string",
+                    "format": "string",
                     "description": "The Mobile Network Code part of PLMN Identity as defined in 3GPP TS 36.413"
                 }
             }
@@ -3067,7 +3067,7 @@
                 }
             }
         },
-        "RnisSusbcriptionLinkList": {
+        "SusbcriptionLinkList": {
             "required": [
                 "_links"
             ],
@@ -3077,7 +3077,7 @@
                 }
             }
         },
-        "RnisMeasUeReportSubscriptionPost": {
+        "MeasRepUeSubscriptionPost": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3086,7 +3086,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisMeasUeReportSubscription'."
+                    "description": "Shall be set to 'meas_rep_ue'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3099,7 +3099,7 @@
                 }
             }
         },
-        "RnisMeasUeReportSubscription": {
+        "MeasRepUeSubscription": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3109,7 +3109,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisMeasUeReportSubscription'."
+                    "description": "Shall be set to 'meas_rep_ue'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3125,7 +3125,7 @@
                 }
             }
         },
-        "RnisS1BearerSubscriptionPost": {
+        "S1BearerSubscriptionPost": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3134,7 +3134,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisS1BearerSubscription'."
+                    "description": "Shall be set to 's1bearer'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3150,7 +3150,7 @@
                 }
             }
         },
-        "RnisS1BearerSubscription": {
+        "S1BearerSubscription": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3160,7 +3160,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisS1BearerSubscription'."
+                    "description": "Shall be set to 's1bearer'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3179,7 +3179,7 @@
                 }
             }
         },
-        "RnisRabEstablishmentSubscription": {
+        "RabEstSubscription": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3189,7 +3189,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisRabEstablishmentSubscription'."
+                    "description": "Shall be set to 'rab_est'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3205,7 +3205,7 @@
                 }
             }
         },
-        "RnisRabEstablishmentSubscriptionPost": {
+        "RabEstSubscriptionPost": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3214,7 +3214,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisRabEstablishmentSubscription'."
+                    "description": "Shall be set to 'rab_est'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3227,7 +3227,7 @@
                 }
             }
         },
-        "RnisRabModificationSubscription": {
+        "RabModSubscription": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3237,7 +3237,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisRabModificationSubscription'."
+                    "description": "Shall be set to 'rab_mod'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3253,7 +3253,7 @@
                 }
             }
         },
-        "RnisRabModificationSubscriptionPost": {
+        "RabModSubscriptionPost": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3262,7 +3262,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisRabModification'."
+                    "description": "Shall be set to 'rab_mod'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3275,7 +3275,7 @@
                 }
             }
         },
-        "RnisRabReleaseSubscription": {
+        "RabRelSubscription": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3285,7 +3285,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisRabReleaseSubscription'."
+                    "description": "Shall be set to 'rab_rel'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3301,7 +3301,7 @@
                 }
             }
         },
-        "RnisRabReleaseSubscriptionPost": {
+        "RabRelSubscriptionPost": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3310,7 +3310,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisRabReleaseSubscription'."
+                    "description": "Shall be set to 'rab_rel'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3323,7 +3323,7 @@
                 }
             }
         },
-        "RnisReconfCarrierAggrSubscription": {
+        "CaReconfSubscription": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3333,7 +3333,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisReconfCarrierAggrSubscription'."
+                    "description": "Shall be set to 'caReconf'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3349,7 +3349,7 @@
                 }
             }
         },
-        "RnisReconfCarrierAggrSubscriptionPost": {
+        "CaReconfSubscriptionPost": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3358,7 +3358,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisReconfCarrierAggrSubscription'."
+                    "description": "Shall be set to 'caReconf'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3371,7 +3371,7 @@
                 }
             }
         },
-        "RnisCellChangeSubscriptionPost": {
+        "CellChangeSubscriptionPost": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3380,7 +3380,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisCellChangeSubscription'."
+                    "description": "Shall be set to 'cell_change'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3393,7 +3393,7 @@
                 }
             }
         },
-        "RnisCellChangeSubscription": {
+        "CellChangeSubscription": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3403,7 +3403,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisCellChangeSubscription'."
+                    "description": "Shall be set to 'cell_change'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3419,7 +3419,7 @@
                 }
             }
         },
-        "RnisMeasTimingAdvanceSubscriptionPost": {
+        "MeasTaSubscriptionPost": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3428,7 +3428,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisMeasTimingAdvanceSubscription'."
+                    "description": "Shall be set to 'ta'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3441,7 +3441,7 @@
                 }
             }
         },
-        "RnisMeasTimingAdvanceSubscription": {
+        "MeasTaSubscription": {
             "required": [
                 "subscriptionType",
                 "callbackReference",
@@ -3451,7 +3451,7 @@
             "properties": {
                 "subscriptionType": {
                     "type": "string",
-                    "description": "Shall be set to 'RnisMeasTimingAdvanceSubscription'."
+                    "description": "Shall be set to 'ta'."
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -3667,7 +3667,7 @@
         }
     },
     "externalDocs": {
-        "description": "ETSI MEC012 V0.3.0 Radio Network Information API",
+        "description": "ETSI MEC012 V0.9.0 Radio Network Information API",
         "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0012RnisApi"
     }
 }
