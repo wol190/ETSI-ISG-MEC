@@ -1,0 +1,16 @@
+# The file constitutes OpenAPI "Schema Object"
+# The filename should be MEC Attribute name, with "yaml" extension e.g. s1BearerInfoDetailed.yaml
+# The JSON Schema specification defines all available properties 
+# Below are the minimum set for a MEC structured Attribute, i.e. description, required & properties
+
+description: S1 bearer information # Mandatory. Description of the MEC structured Attribute
+required: # Mandatory MEC attributes of the MEC structured Attribute
+- erabId
+- s1EnbInfo
+properties: # Property definitions of the MEC attributes within the MEC structured Attribute
+  erabId:  # MEC Attribute name
+    $ref: '#/definitions/ErabId'  # Reference to the MEC Attribute definition
+  s1EnbInfo:
+    $ref: '#/definitions/S1EnbInfo'
+  sGwInfo:
+    $ref: '#/definitions/SGwInfo'

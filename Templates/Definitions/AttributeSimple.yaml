@@ -1,0 +1,11 @@
+# The file constitutes OpenAPI "Schema Object"
+# The filename should be MEC Attribute name, with "yaml" extension e.g. ErabId.yaml
+# The JSON Schema specification defines all available properties, e.g. minimum, exclusiveMaximum
+# Below are the minimum set for a MEC simple Attribute, i.e. description, type, format & example
+
+description: Uniquely identifies a S1 bearer for a specific UE, as defined in ETSI TS 136 413 # Mandatory. Description of the attribute
+type: integer # Mandatory. MEC Attribute "Data Type"
+# Options: boolean, integer, number & string
+format: int32 # Optional
+# Linked to "type". Example options: for integer: uint32, int32, etc.; for string: binary, date-time, enum
+example: 10 # Should be present

@@ -1,0 +1,14 @@
+# The file constitutes OpenAPI "Schema Object"
+# The filename should be Type name, with "yaml" extension e.g. S1BearerInfo.yaml
+# The JSON Schema specification defines all available properties 
+# Below are the minimum set for a MEC Type, i.e. description, required & properties
+description: This type represents the information on S1-U bearer # Mandatory
+required:
+- s1ueInfo
+properties:  # Property definitions of the MEC attributes within the MEC Type
+  timeStamp:  # MEC Attribute name
+    $ref: '#/definitions/TimeStamp'  # Reference to the MEC Attribute definition
+  s1ueInfo:
+    type: array  # Example for the case an MEC Attribute has cardinality of greater than 1
+    items:  # Items/Elements of the MEC Attribute
+      $ref: '#/definitions/S1UeInfo'
