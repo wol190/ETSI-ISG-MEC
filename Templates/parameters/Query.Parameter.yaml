@@ -1,0 +1,15 @@
+# The file constitutes OpenAPI "Parameter Object"
+# The filename should be MEC parameter name, with "yaml" extension e.g. Query.ErabId.yaml for query,
+# or Path.SubscriptionId.yaml for URI Variables
+# The JSON Schema specification defines all available properties, e.g. minimum, exclusiveMaximum
+# Below are the minimum set for a MEC parameter, i.e. description, name, in, required, type & format
+# "example" is not supported in the current OpenAPI specification release
+
+name: erabId  # Name of the parameter
+description: E-RAB identifier # Description of the parameter
+in: query  # Parameter types, options: query, header, path, formData or body
+required: false  # Mandatory only if true (cardinality 1 or greater)
+type: integer # MEC Attribute "Data Type"
+# Options: boolean, integer, number & string
+format: uint32 # Optional, as embellishes the "type" information. 
+# Example options: for integer: uint32, int32, etc.; for string: binary, date-time, enum

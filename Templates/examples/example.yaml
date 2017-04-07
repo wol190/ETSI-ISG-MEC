@@ -1,0 +1,45 @@
+s1_bearer_info:
+  timeStamp:
+    seconds: 1485330600
+    nanoSeconds: 1485330600000000000
+  s1ueInfo:
+  - tempUeId:
+      mmec: '0'
+      mtmsi: '1234'
+    associateId:
+    - type: 1
+      value: 192.0.2.0
+    - type: 3
+      value: 198.51.100.0
+    ecgi:
+      plmn:
+        mcc: '001'
+        mnc: '01'
+      cellid: '0x800000A'
+    s1BearerInfoDetailed:
+    - erabId: 1
+      s1EnbInfo:
+        ipAddress: 192.0.2.0
+        tunnelId: '1111'
+      sGwInfo:
+        ipAddress: 192.0.2.1
+        tunnelId: '2222'
+  - tempUeId:
+      mmec: '0'
+      mtmsi: '1234'
+    associateId:
+      type: 1
+      value: 192.0.2.0
+    ecgi:
+      plmn:
+        mcc: '001'
+        mnc: '01'
+      cellid: '0x800000B'
+    s1BearerInfoDetailed:
+    - erabId: 2
+      s1EnbInfo:
+        ipAddress: 192.0.2.0
+        tunnelId: '3333'
+      sGwInfo:
+        ipAddress: 192.0.2.1
+        tunnelId: '4444'

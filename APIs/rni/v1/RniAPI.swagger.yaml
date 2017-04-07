@@ -117,24 +117,15 @@ paths:
             produces:
                 - application/json
             parameters:
-                - 
-                    $ref: '#/parameters/AppInsId'
-                - 
-                    $ref: '#/parameters/CellId'
-                - 
-                    $ref: '#/parameters/AssociateId'
-                - 
-                    $ref: '#/parameters/ErabId'
-                - 
-                    $ref: '#/parameters/Qci'
-                - 
-                    $ref: '#/parameters/ErabMbrDl'
-                - 
-                    $ref: '#/parameters/ErabMbrUl'
-                - 
-                    $ref: '#/parameters/ErabGbrDl'
-                - 
-                    $ref: '#/parameters/ErabGbrUl'
+                - $ref: '#/parameters/AppInsId'
+                - $ref: '#/parameters/CellId'
+                - $ref: '#/parameters/AssociateId'
+                - $ref: '#/parameters/ErabId'
+                - $ref: '#/parameters/Qci'
+                - $ref: '#/parameters/ErabMbrDl'
+                - $ref: '#/parameters/ErabMbrUl'
+                - $ref: '#/parameters/ErabGbrDl'
+                - $ref: '#/parameters/ErabGbrUl'
             responses:
                 '200':
                     description: Successful response to rab_info request
@@ -174,8 +165,7 @@ paths:
             produces:
                 - application/json
             parameters:
-                - 
-                    $ref: '#/parameters/AppInsIdArr'
+                - $ref: '#/parameters/AppInsIdArr'
             responses:
                 '200':
                     description: Successful response to rab_info request
@@ -230,17 +220,13 @@ paths:
             produces:
                 - application/json
             parameters:
-                - 
-                    $ref: '#/parameters/TempUeId'
-                - 
-                    $ref: '#/parameters/AssociateId'
-                - 
-                    $ref: '#/parameters/CellId'
-                - 
-                    $ref: '#/parameters/ErabIdArr'
+                - $ref: '#/parameters/TempUeId'
+                - $ref: '#/parameters/AssociateId'
+                - $ref: '#/parameters/CellId'
+                - $ref: '#/parameters/ErabIdArr'
             responses:
                 '200':
-                    description: Successful response to rab_info request
+                    description: Successful response to s1_bearer_info request
                     schema:
                         $ref: '#/definitions/S1BearerInfo'
                     examples:

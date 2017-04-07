@@ -1,0 +1,22 @@
+# The file constitutes OpenAPI "Operation Object"
+# The filename should be MEC resource name, plus HTTP method, with "yaml" extension e.g. s1_bearer_info.GET.yaml
+# Below are the minimum set for a MEC resouce method, i.e. description, operationId, produces, parameters, responses & examples
+
+description: Gets information on existing E-RABs  # A verbose explanation of the operation behavior
+operationId: s1_bearer_info.GET  # Unique string within the API, used to identify the operation
+produces:  # A list of MIME types the operation can produce
+- application/json
+parameters:  # Parameters associated with the request that may appear in the query, URI path, or body
+- $ref: '#/parameters/Query.TempUeId'
+- $ref: '#/parameters/Query.AssociateId'
+- $ref: '#/parameters/Query.CellId'
+- $ref: '#/parameters/Query.ErabIdArr'
+responses: # The list of possible responses as they are returned from executing this operation.
+  200:  # HTTP status code
+    description: Successful response to s1_bearer_info request  # Required
+    schema:  # A definition of the response structure
+      $ref: '#/definitions/S1BearerInfo'
+
+    examples:  # An example of the response message
+      application/json:
+        $ref: '../examples/S1BearerInfo.json' 

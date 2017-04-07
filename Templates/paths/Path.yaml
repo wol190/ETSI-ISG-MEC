@@ -1,0 +1,4 @@
+# List the operations available on a single path, i.e. get, put, post, patch & delete as applicable
+
+get:  # GET operation object
+  $ref: ./s1_bearer_info.GET.yaml

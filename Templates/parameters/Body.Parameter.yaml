@@ -1,0 +1,11 @@
+# The file constitutes OpenAPI "Parameter Object"
+# The filename should be MEC parameter name, with "yaml" extension e.g. Body.ErabId.yaml for body
+# The JSON Schema specification defines all available properties, e.g. minimum, exclusiveMaximum
+# Below are the minimum set for a MEC parameter, i.e. description, name, in, required & schema
+
+name: CellChangeSubscription.Post  # Name of the parameter
+description: Use to creates a subscription to cell change notifications based on the filter criteria # Description of the parameter
+in: body  # Parameter types, options: query, header, path, formData or body
+required: true  # Mandatory only if true (cardinality 1 or greater)
+schema:  # reference to the schema for the MEC Type
+  $ref: '#/definitions/CellChangeSubscription.Post'
