@@ -25,6 +25,21 @@ consumes:
   - application/json
 produces:
   - application/json
+security:
+  - OauthSecurity:
+    - all
+
+################################################################################
+#                                    Security                                  #
+################################################################################
+securityDefinitions:
+  OauthSecurity:
+    type: oauth2
+    flow: application
+    tokenUrl: 'https://oauth.exampleAPI/token'
+    scopes:
+      all: Single oauth2 scope for API
+
 ################################################################################
 #                                   Parameters                                 #
 ################################################################################
