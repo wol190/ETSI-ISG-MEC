@@ -3,7 +3,6 @@ description:
 produces:
 - application/json
 parameters:
-
 - name: userTrackingSubscription
   in: body
   description: User Tracking Subscription

@@ -1,5 +1,5 @@
 # The file constitutes OpenAPI "Schema Object"
-# The filename should be MEC Attribute name, with "yaml" extension e.g. ErabId.yaml
+# The filename should be MEC Attribute name, with "yaml" extension e.g. erabId.yaml
 # The JSON Schema specification defines all available properties, e.g. minimum, exclusiveMaximum
 # Below are the minimum set for a MEC simple Attribute, i.e. description, type, format & example
 
