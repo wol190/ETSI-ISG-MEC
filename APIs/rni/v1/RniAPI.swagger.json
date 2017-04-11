@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "Description the RNIS API using OpenAPI",
-        "version": "0.3.3",
+        "version": "1.0.0",
         "title": "RNIS API",
         "termsOfService": "TBD",
         "contact": {
