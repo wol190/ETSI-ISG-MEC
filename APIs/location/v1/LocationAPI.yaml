@@ -44,20 +44,28 @@ securityDefinitions:
 #                                   Parameters                                 #
 ################################################################################
 parameters:
-  ZoneId:
-    name: zoneId
-    in: query
-    description: Zone ID
+  Body.UserTrackingSubscription:
+    name: userTrackingSubscription
+    in: body
+    description: User Tracking Subscription
     required: true
-    type: string
-  AccessPointId:
+    schema:
+      $ref: '#/definitions/UserTrackingSubscription'
+  Body.ZoneStatusSubscription:
+    name: zoneStatusSubscription
+    in: body
+    description: Zone Status Subscription
+    required: true
+    schema:
+      $ref: '#/definitions/ZoneStatusSubscription'
+  Query.AccessPointId:
     name: accessPointId
     in: query
     description: >-
       One or more access point attributes, reference "definitions" for string format
     required: false
     type: string
-  InterestRealm:
+  Query.InterestRealm:
     name: interestRealm
     in: query
     description: >-
@@ -65,6 +73,44 @@ parameters:
       etc.).
     required: false
     type: string
+  Query.ZoneId:
+    name: zoneId
+    in: query
+    description: Zone ID
+    required: true
+    type: string
+  Path.AccessPointId:
+    name: accessPointId
+    in: path
+    description: Access Point ID
+    required: true
+    type: string
+  Path.SubscriptionId:
+    name: subscriptionId
+    in: path
+    description: Subscription ID
+    required: true
+    type: string
+  Path.UserId:
+    name: userId
+    in: path
+    description: User ID
+    required: true
+    type: string
+  Path.ZonalTrafficSubscription:
+    name: zonalTrafficSubscription
+    in: body
+    description: Zonal Traffic Subscription
+    required: true
+    schema:
+      $ref: '#/definitions/ZonalTrafficSubscription'
+  Path.ZoneId:
+    name: zoneId
+    in: path
+    description: Zone ID
+    required: true
+    type: string
+
 ################################################################################
 #                                    Paths                                     #
 ################################################################################
@@ -104,11 +150,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zoneId
-          in: path
-          description: Zone ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.ZoneId'
       responses:
         '200':
           description: Successful response to a query regarding the status of a zone
@@ -132,12 +174,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zoneId
-          in: path
-          description: Zone ID
-          required: true
-          type: string
-        - $ref: '#/parameters/InterestRealm'
+        - $ref: '#/parameters/Path.ZoneId'
+        - $ref: '#/parameters/Query.InterestRealm'
       responses:
         '200':
           description: >-
@@ -198,16 +236,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zoneId
-          in: path
-          description: Zone ID
-          required: true
-          type: string
-        - name: accessPointId
-          in: path
-          description: Access Point ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.ZoneId'
+        - $ref: '#/parameters/Path.AccessPointId'
       responses:
         '200':
           description: >-
@@ -240,8 +270,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - $ref: '#/parameters/ZoneId'
-        - $ref: '#/parameters/AccessPointId'
+        - $ref: '#/parameters/Query.ZoneId'
+        - $ref: '#/parameters/Query.AccessPointId'
       responses:
         '200':
           description: Successful response to a query users within a zone request
@@ -287,11 +317,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: userId
-          in: path
-          description: User ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.UserId'
       responses:
         '200':
           description: Successful response to a query users within a zone request
@@ -365,12 +391,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zonalTrafficSubscription
-          in: body
-          description: Zonal Traffic Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/ZonalTrafficSubscription'
+        - $ref: '#/parameters/Path.ZonalTrafficSubscription'
       responses:
         '201':
           description: Response to create new zonal traffic subscription
@@ -397,11 +418,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '200':
           description: Response to retrieve individual zonal traffic subscription
@@ -427,17 +444,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
-        - name: zonalTrafficSubscription
-          in: body
-          description: Zonal Traffic Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/ZonalTrafficSubscription'
+        - $ref: '#/parameters/Path.SubscriptionId'
+        - $ref: '#/parameters/Path.ZonalTrafficSubscription'
       responses:
         '200':
           description: Response to update individual zonal traffic subscription
@@ -463,11 +471,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '204':
           description: No content
@@ -522,12 +526,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: userTrackingSubscription
-          in: body
-          description: User Tracking Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/UserTrackingSubscription'
+        - $ref: '#/parameters/Body.UserTrackingSubscription'
       responses:
         '201':
           description: Response to create new user tracking subscription
@@ -553,11 +552,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '200':
           description: Response to retrieve individual user tracking subscription
@@ -582,17 +577,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
-        - name: userTrackingSubscription
-          in: body
-          description: User Tracking Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/UserTrackingSubscription'
+        - $ref: '#/parameters/Path.SubscriptionId'
+        - $ref: '#/parameters/Body.UserTrackingSubscription'        
       responses:
         '200':
           description: Response to update individual user tracking subscription
@@ -617,11 +603,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '204':
           description: No Content
@@ -678,12 +660,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zoneStatusSubscription
-          in: body
-          description: Zone Status Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/ZoneStatusSubscription'
+        - $ref: '#/parameters/Body.ZoneStatusSubscription'
       responses:
         '201':
           description: Response to create new zone status subscription
@@ -710,11 +687,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '200':
           description: Response to retrieve individual zone status subscription
@@ -740,17 +713,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
-        - name: zoneStatusSubscription
-          in: body
-          description: Zone Status Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/ZoneStatusSubscription'
+        - $ref: '#/parameters/Path.SubscriptionId'
+        - $ref: '#/parameters/Body.ZoneStatusSubscription'
       responses:
         '200':
           description: Response to update individual zone status subscription
@@ -769,6 +733,7 @@ paths:
                 zoneId: zone01
                 numberOfUsersZoneThreshold: '500'
                 operationStatus: Serviceable
+
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################

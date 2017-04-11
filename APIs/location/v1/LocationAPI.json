@@ -30,26 +30,98 @@
     "produces": [
         "application/json"
     ],
+    "security": [
+        {
+            "OauthSecurity": [
+                "all"
+            ]
+        }
+    ],
+    "securityDefinitions": {
+        "OauthSecurity": {
+            "type": "oauth2",
+            "flow": "application",
+            "tokenUrl": "https://oauth.exampleAPI/token",
+            "scopes": {
+                "all": "Single oauth2 scope for API"
+            }
+        }
+    },
     "parameters": {
-        "ZoneId": {
-            "name": "zoneId",
-            "in": "query",
-            "description": "Zone ID",
+        "Body.UserTrackingSubscription": {
+            "name": "userTrackingSubscription",
+            "in": "body",
+            "description": "User Tracking Subscription",
             "required": true,
-            "type": "string"
+            "schema": {
+                "$ref": "#/definitions/UserTrackingSubscription"
+            }
         },
-        "AccessPointId": {
+        "Body.ZoneStatusSubscription": {
+            "name": "zoneStatusSubscription",
+            "in": "body",
+            "description": "Zone Status Subscription",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/ZoneStatusSubscription"
+            }
+        },
+        "Query.AccessPointId": {
             "name": "accessPointId",
             "in": "query",
             "description": "One or more access point attributes, reference \"definitions\" for string format",
             "required": false,
             "type": "string"
         },
-        "InterestRealm": {
+        "Query.InterestRealm": {
             "name": "interestRealm",
             "in": "query",
             "description": "Interest realm of access point (e.g. geographical area, a type of industry etc.).",
             "required": false,
+            "type": "string"
+        },
+        "Query.ZoneId": {
+            "name": "zoneId",
+            "in": "query",
+            "description": "Zone ID",
+            "required": true,
+            "type": "string"
+        },
+        "Path.AccessPointId": {
+            "name": "accessPointId",
+            "in": "path",
+            "description": "Access Point ID",
+            "required": true,
+            "type": "string"
+        },
+        "Path.SubscriptionId": {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Subscription ID",
+            "required": true,
+            "type": "string"
+        },
+        "Path.UserId": {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "string"
+        },
+        "Path.ZonalTrafficSubscription": {
+            "name": "zonalTrafficSubscription",
+            "in": "body",
+            "description": "Zonal Traffic Subscription",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/ZonalTrafficSubscription"
+            }
+        },
+        "Path.ZoneId": {
+            "name": "zoneId",
+            "in": "path",
+            "description": "Zone ID",
+            "required": true,
             "type": "string"
         }
     },
@@ -105,11 +177,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "zoneId",
-                        "in": "path",
-                        "description": "Zone ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.ZoneId"
                     }
                 ],
                 "responses": {
@@ -145,14 +213,10 @@
                 ],
                 "parameters": [
                     {
-                        "name": "zoneId",
-                        "in": "path",
-                        "description": "Zone ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.ZoneId"
                     },
                     {
-                        "$ref": "#/parameters/InterestRealm"
+                        "$ref": "#/parameters/Query.InterestRealm"
                     }
                 ],
                 "responses": {
@@ -229,18 +293,10 @@
                 ],
                 "parameters": [
                     {
-                        "name": "zoneId",
-                        "in": "path",
-                        "description": "Zone ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.ZoneId"
                     },
                     {
-                        "name": "accessPointId",
-                        "in": "path",
-                        "description": "Access Point ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.AccessPointId"
                     }
                 ],
                 "responses": {
@@ -283,10 +339,10 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/ZoneId"
+                        "$ref": "#/parameters/Query.ZoneId"
                     },
                     {
-                        "$ref": "#/parameters/AccessPointId"
+                        "$ref": "#/parameters/Query.AccessPointId"
                     }
                 ],
                 "responses": {
@@ -350,11 +406,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "User ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.UserId"
                     }
                 ],
                 "responses": {
@@ -455,13 +507,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "zonalTrafficSubscription",
-                        "in": "body",
-                        "description": "Zonal Traffic Subscription",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ZonalTrafficSubscription"
-                        }
+                        "$ref": "#/parameters/Path.ZonalTrafficSubscription"
                     }
                 ],
                 "responses": {
@@ -500,11 +546,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.SubscriptionId"
                     }
                 ],
                 "responses": {
@@ -541,20 +583,10 @@
                 ],
                 "parameters": [
                     {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.SubscriptionId"
                     },
                     {
-                        "name": "zonalTrafficSubscription",
-                        "in": "body",
-                        "description": "Zonal Traffic Subscription",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ZonalTrafficSubscription"
-                        }
+                        "$ref": "#/parameters/Path.ZonalTrafficSubscription"
                     }
                 ],
                 "responses": {
@@ -591,11 +623,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.SubscriptionId"
                     }
                 ],
                 "responses": {
@@ -670,13 +698,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "userTrackingSubscription",
-                        "in": "body",
-                        "description": "User Tracking Subscription",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/UserTrackingSubscription"
-                        }
+                        "$ref": "#/parameters/Body.UserTrackingSubscription"
                     }
                 ],
                 "responses": {
@@ -714,11 +736,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.SubscriptionId"
                     }
                 ],
                 "responses": {
@@ -754,20 +772,10 @@
                 ],
                 "parameters": [
                     {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.SubscriptionId"
                     },
                     {
-                        "name": "userTrackingSubscription",
-                        "in": "body",
-                        "description": "User Tracking Subscription",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/UserTrackingSubscription"
-                        }
+                        "$ref": "#/parameters/Body.UserTrackingSubscription"
                     }
                 ],
                 "responses": {
@@ -803,11 +811,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.SubscriptionId"
                     }
                 ],
                 "responses": {
@@ -884,13 +888,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "zoneStatusSubscription",
-                        "in": "body",
-                        "description": "Zone Status Subscription",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ZoneStatusSubscription"
-                        }
+                        "$ref": "#/parameters/Body.ZoneStatusSubscription"
                     }
                 ],
                 "responses": {
@@ -929,11 +927,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.SubscriptionId"
                     }
                 ],
                 "responses": {
@@ -970,20 +964,10 @@
                 ],
                 "parameters": [
                     {
-                        "name": "subscriptionId",
-                        "in": "path",
-                        "description": "Subscription ID",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/Path.SubscriptionId"
                     },
                     {
-                        "name": "zoneStatusSubscription",
-                        "in": "body",
-                        "description": "Zone Status Subscription",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ZoneStatusSubscription"
-                        }
+                        "$ref": "#/parameters/Body.ZoneStatusSubscription"
                     }
                 ],
                 "responses": {
