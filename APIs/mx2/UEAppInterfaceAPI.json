@@ -1,0 +1,599 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "An initial attempt to describe the MEC UE Application Interface API using OpenAPI",
+        "version": "0.2.5",
+        "title": "UE Application Interface API",
+        "termsOfService": "TBD",
+        "contact": {
+            "name": "TBD",
+            "url": "TBD"
+        },
+        "license": {
+            "name": "ETSI MEC",
+            "url": "TBD"
+        }
+    },
+    "externalDocs": {
+        "description": "ETSI MEC016 V0.2.5 UE Application Interface API",
+        "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0016UEAppInterface"
+    },
+    "host": "127.0.0.1:8081",
+    "basePath": "/exampleAPI/mx2/v1",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "security": [
+        {
+            "OauthSecurity": [
+                "all"
+            ]
+        }
+    ],
+    "securityDefinitions": {
+        "OauthSecurity": {
+            "type": "oauth2",
+            "flow": "application",
+            "tokenUrl": "https://oauth.exampleAPI/token",
+            "scopes": {
+                "all": "Single oauth2 scope for API"
+            }
+        }
+    },
+    "parameters": {
+        "Query.AppName": {
+            "name": "appName",
+            "in": "query",
+            "description": "Name to identify the mobile edge application",
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "Query.AppProvider": {
+            "name": "appProvider",
+            "in": "query",
+            "description": "Provider of the mobile edge application",
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "Query.AppSoftVersion": {
+            "name": "appSoftVersion",
+            "in": "query",
+            "description": "Software version of the mobile edge application",
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "Query.ServiceCont": {
+            "name": "serviceCont",
+            "in": "query",
+            "description": "Required service continuity mode for this application",
+            "required": false,
+            "type": "string",
+            "enum": [
+                "Service continuity not required",
+                "Service continuity required"
+            ]
+        },
+        "Body.AppContext": {
+            "name": "appContext",
+            "in": "body",
+            "description": "Uniquely identifies the application context in the mobile edge system. It is assigned by the mobile edge system and included in the response to an AppContext create.",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/AppContext"
+            }
+        },
+        "Query.VendorId": {
+            "name": "vendorId",
+            "in": "query",
+            "description": "Vendor identifier",
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "Path.ContextId": {
+            "name": "contextId",
+            "in": "path",
+            "description": "Uniquely identifies the application context in the mobile edge system. It is assigned by the mobile edge system and included in the response to an AppContext create.",
+            "required": true,
+            "type": "string"
+        }
+    },
+    "paths": {
+        "/app_list": {
+            "get": {
+                "description": "The GET method can be used to query information about the available mobile edge applications.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/Query.AppName"
+                    },
+                    {
+                        "$ref": "#/parameters/Query.AppProvider"
+                    },
+                    {
+                        "$ref": "#/parameters/Query.AppSoftVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/Query.ServiceCont"
+                    },
+                    {
+                        "$ref": "#/parameters/Query.VendorId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response body contains the ApplicationList resource available for the querying UE application",
+                        "schema": {
+                            "required": [
+                                "ApplicationList"
+                            ],
+                            "properties": {
+                                "ApplicationList": {
+                                    "$ref": "#/definitions/ApplicationList"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Incorrect parameters were passed in the request.",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "An erroneous or missing bearer token",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "The operation is not allowed given the current status of the resource",
+                        "schema": {
+                            "required": [
+                                "ProblemDetails"
+                            ],
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The client provided a URI that cannot be mapped to a valid resource URL",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/app_contexts": {
+            "post": {
+                "description": "The POST method can be used to create a new application context. Upon success, the response contains entity body describing the created application context.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/Body.AppContext"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The response body contains the Application Context as it was created by the mobile edge system",
+                        "schema": {
+                            "required": [
+                                "AppContext"
+                            ],
+                            "properties": {
+                                "AppContext": {
+                                    "$ref": "#/definitions/AppContext"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Incorrect parameters were passed in the request.",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "An erroneous or missing bearer token",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "The operation is not allowed given the current status of the resource",
+                        "schema": {
+                            "required": [
+                                "ProblemDetails"
+                            ],
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The client provided a URI that cannot be mapped to a valid resource",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/app_contexts/{contextId}": {
+            "put": {
+                "description": "The PUT method can be used to update the callback reference of the existing application context. PUT method in this case has \"replace\" semantics. Upon successful operation, the target resource is updated with new Data Type received within the message body of the PUT request.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/Path.ContextId"
+                    },
+                    {
+                        "$ref": "#/parameters/Body.AppContext"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Upon success, a response 204 No Content without any response body is returned."
+                    },
+                    "400": {
+                        "description": "Incorrect parameters were passed in the request.",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "An erroneous or missing bearer token",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "The operation is not allowed given the current status of the resource",
+                        "schema": {
+                            "required": [
+                                "ProblemDetails"
+                            ],
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The client provided a URI that cannot be mapped to a valid resource",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "The DELETE method is used to delete the resource that represents the existing application context.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/Path.ContextId"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Upon success, a response 204 No Content without any response body is returned."
+                    },
+                    "400": {
+                        "description": "Incorrect parameters were passed in the request.",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "An erroneous or missing bearer token",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "The operation is not allowed given the current status of the resource",
+                        "schema": {
+                            "required": [
+                                "ProblemDetails"
+                            ],
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The client provided a URI that cannot be mapped to a valid resource",
+                        "schema": {
+                            "properties": {
+                                "ProblemDetails": {
+                                    "$ref": "#/definitions/ProblemDetails"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ProblemDetails": {
+            "description": "describe the problems in detail. The structure is TBD.",
+            "type": "string"
+        },
+        "ApplicationList": {
+            "description": "information on available applications",
+            "type": "object",
+            "properties": {
+                "availableAppInfo": {
+                    "$ref": "#/definitions/AvailableAppInfo"
+                },
+                "vendorSpecificExt": {
+                    "$ref": "#/definitions/VendorSpecificExt"
+                }
+            }
+        },
+        "AppContext": {
+            "description": "Application Context",
+            "type": "object",
+            "required": [
+                "contextId",
+                "associateUeAppId",
+                "appInfo"
+            ],
+            "properties": {
+                "contextId": {
+                    "$ref": "#/definitions/ContextId"
+                },
+                "associateUeAppId": {
+                    "$ref": "#/definitions/AssociateUeAppId"
+                },
+                "callbackReference": {
+                    "$ref": "#/definitions/CallbackReference"
+                },
+                "appInfo": {
+                    "$ref": "#/definitions/RequiredAppInfo"
+                }
+            }
+        },
+        "VendorSpecificExt": {
+            "description": "Extension for vendor-specific information",
+            "type": "array",
+            "items": {
+                "required": [
+                    "vendorId"
+                ],
+                "properties": {
+                    "vendorId": {
+                        "$ref": "#/definitions/VendorId"
+                    }
+                }
+            }
+        },
+        "ContextId": {
+            "description": "Uniquely identifies the application context in the mobile edge system. Assigned by the mobile edge system and included in the response",
+            "type": "string"
+        },
+        "AssociateUeAppId": {
+            "description": "Uniquely identifies the UE application. Included in the request. ",
+            "type": "string"
+        },
+        "VendorId": {
+            "description": "Vendor identifier. The rest of the structure of vendor specific extension is not defined",
+            "type": "string"
+        },
+        "AvailableAppInfo": {
+            "description": "User applications available for the UE application",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "appName",
+                    "appProvider",
+                    "appDescription"
+                ],
+                "properties": {
+                    "appName": {
+                        "$ref": "#/definitions/AppName"
+                    },
+                    "appProvider": {
+                        "$ref": "#/definitions/AppProvider"
+                    },
+                    "appSoftVersion": {
+                        "$ref": "#/definitions/AppSoftVersion"
+                    },
+                    "appDescription": {
+                        "$ref": "#/definitions/AppDescription"
+                    },
+                    "appCharcs": {
+                        "$ref": "#/definitions/AppCharcs"
+                    }
+                }
+            }
+        },
+        "RequiredAppInfo": {
+            "description": "Included in the request",
+            "type": "object",
+            "required": [
+                "appName",
+                "appProvider",
+                "referenceURL"
+            ],
+            "properties": {
+                "appName": {
+                    "$ref": "#/definitions/AppName"
+                },
+                "appProvider": {
+                    "$ref": "#/definitions/AppProvider"
+                },
+                "appSoftVersion": {
+                    "$ref": "#/definitions/AppSoftVersion"
+                },
+                "appDescription": {
+                    "$ref": "#/definitions/AppDescription"
+                },
+                "referenceURL": {
+                    "$ref": "#/definitions/ReferenceURL"
+                },
+                "appPackageSource": {
+                    "$ref": "#/definitions/AppPackageSource"
+                }
+            }
+        },
+        "AppCharcs": {
+            "description": "The application characteristics relate to the system resources consumed by the application. UE application can use this information e.g., for estimating the cost of use of the application or for the expected user experience",
+            "type": "object",
+            "properties": {
+                "memory": {
+                    "$ref": "#/definitions/Memory"
+                },
+                "storage": {
+                    "$ref": "#/definitions/Storage"
+                },
+                "latency": {
+                    "$ref": "#/definitions/Latency"
+                },
+                "bandwidth": {
+                    "$ref": "#/definitions/Bandwidth"
+                },
+                "serviceCont": {
+                    "$ref": "#/definitions/ServiceCont"
+                }
+            }
+        },
+        "Memory": {
+            "description": "The maximum size in Mbytes of the memory resource reserved for the mobile edge application instance in the mobile edge system",
+            "type": "integer"
+        },
+        "Storage": {
+            "description": "The maximum size in Mbytes of the storage resource reserved for the mobile edge application instance in the mobile edge system",
+            "type": "integer"
+        },
+        "Latency": {
+            "description": "The target round trip time in milliseconds supported by the mobile edge system for the mobile edge application instance",
+            "type": "integer"
+        },
+        "Bandwidth": {
+            "description": "The required connection bandwidth in kbit/s for the use of the mobile edge application instance",
+            "type": "integer"
+        },
+        "ServiceCont": {
+            "description": "Required service continuity mode for this application. UE application can use this information e.g. for the assessment of the user experience",
+            "type": "string",
+            "enum": [
+                "Service continuity not required",
+                "Service continuity required"
+            ]
+        },
+        "AppName": {
+            "description": "Name of the mobile edge application",
+            "type": "string"
+        },
+        "AppProvider": {
+            "description": "Provider of the mobile edge application",
+            "type": "string"
+        },
+        "AppSoftVersion": {
+            "description": "Software version of the mobile edge application",
+            "type": "string"
+        },
+        "AppDescription": {
+            "description": "-> Human readable description of the mobile edge application",
+            "type": "string"
+        },
+        "CallbackReference": {
+            "description": "URI assigned by the UE application to receive application lifecycle related notifications. Included in the request. This subscription stays alive for the lifetime of the application context.",
+            "type": "string",
+            "format": "uri"
+        },
+        "ReferenceURL": {
+            "description": "Address of the user application. Used as the reference URL for the application. Assigned by the mobile edge system and included in the response",
+            "type": "string",
+            "format": "uri"
+        },
+        "AppPackageSource": {
+            "description": "URI of the application package. Included in the request if the application is not one in the ApplicationList. The application package shall comply with the definitions in [MEC010-2]",
+            "type": "string",
+            "format": "uri"
+        }
+    }
+}
