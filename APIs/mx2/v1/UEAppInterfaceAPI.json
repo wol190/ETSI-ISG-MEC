@@ -417,11 +417,15 @@
             "type": "object",
             "required": [
                 "contextId",
+                "associateUeAppId",
                 "appInfo"
             ],
             "properties": {
                 "contextId": {
                     "$ref": "#/definitions/ContextId"
+                },
+                "associateUeAppId": {
+                    "$ref": "#/definitions/AssociateUeAppId"
                 },
                 "callbackReference": {
                     "$ref": "#/definitions/CallbackReference"
@@ -447,6 +451,10 @@
         },
         "ContextId": {
             "description": "Uniquely identifies the application context in the mobile edge system. Assigned by the mobile edge system and included in the response",
+            "type": "string"
+        },
+        "AssociateUeAppId": {
+            "description": "Uniquely identifies the UE application. Included in the request. ",
             "type": "string"
         },
         "VendorId": {
