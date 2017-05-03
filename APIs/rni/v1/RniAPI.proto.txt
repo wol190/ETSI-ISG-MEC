@@ -1,7 +1,7 @@
 /*
 info:
-  description: 'An initial attempt to describe the MEC RNIS API using Protocol Buffer'
-  version: '0.5.0'
+  description: 'Description of the MEC RNIS API using Protocol Buffer'
+  version: '1.0.1'
   title: 'MEC RNIS API, Protobuf'
   termsOfService: "TBD"
   contact:
@@ -11,7 +11,7 @@ info:
     name: "ETSI MEC"
     url: "TBD"
 externalDocs: 
-  description: "ETSI MEC012 V0.5.0 Radio Network Information API"
+  description: "ETSI MEC012 V1.0.1 Radio Network Information API"
   url: "https://docbox.etsi.org/ISG/MEC/70-Draft/0012RnisApi"
 */
 
@@ -31,8 +31,8 @@ message PlmnInfo
 {
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId = 3;
 	}
 	TimeStamp timeStamp = 1;
@@ -48,8 +48,8 @@ message RabInfo
 	}
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId = 3;
 	}
 	message UeInfo
@@ -61,11 +61,11 @@ message RabInfo
 	{
 		enum Type
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -103,19 +103,19 @@ message S1BearerInfo
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
 	}	
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId = 3;
 	}
 	message EnbInfo
@@ -144,36 +144,35 @@ message S1BearerInfo
 	TimeStamp timeStamp = 1;
 	repeated S1UeInfo s1UeInfo = 2;
 }
-message RnisCellChangeSubscription
+message CellChangeSubscription
 {
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
 	}	
 	message Plmn
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 	}
 	message FilterCriteriaAssocHo
 	{
 		enum HoStatus
 		{
-			Reserved = 0;
-			InPreparation = 1;
-			InExecution = 2;
-			Completed = 3;
-			Rejected = 4;
-			Cancelled = 5;
+			IN_PREPARATION = 1;
+			IN_EXECUTION = 2;
+			COMPLETED = 3;
+			REJECTED = 4;
+			CANCELLED = 5;
 		}
 		string appInsId = 1;
 		repeated AssociateId associateId = 2;
@@ -192,12 +191,12 @@ message RnisCellChangeSubscription
 	FilterCriteriaAssocHo filterCriteriaAssocHo = 3;
 	TimeStamp expiryDeadline = 4;
 }
-message RnisRabEstablishmentSubscription
+message RabEstSubscription
 {
 	message Plmn
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 	}
 	message FilterCriteriaQci
 	{
@@ -217,12 +216,12 @@ message RnisRabEstablishmentSubscription
 	FilterCriteriaQci filterCriteriaQci = 3;
 	TimeStamp expiryDeadline = 4;
 }
-message RnisRabModificationSubscription
+message RabModSubscription
 {
 	message Plmn
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 	}
 	message FilterCriteriaQci
 	{
@@ -241,12 +240,12 @@ message RnisRabModificationSubscription
 	FilterCriteriaQci filterCriteriaQci = 3;
 	TimeStamp expiryDeadline = 4;
 }
-message RnisRabReleaseSubscription
+message RabRelSubscription
 {
 	message Plmn
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 	}
 	message FilterCriteriaQci
 	{
@@ -266,22 +265,22 @@ message RnisRabReleaseSubscription
 	FilterCriteriaQci filterCriteriaQci = 3;
 	TimeStamp expiryDeadline = 4;
 }
-message RnisMeasUeReportSubscription
+message MeasRepUeSubscription
 {
 	message Plmn
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -290,23 +289,22 @@ message RnisMeasUeReportSubscription
 	{
 		enum Trigger 
 		{
-			Reserved = 0;
-			PeriodicalReportStrongestCells = 1;
-			PeriodicalReportStrongestCellsForSON = 2;
-			PeriodicalReportCGI = 3;
-			EventA1 = 10;
-			EventA2 = 11;
-			EventA3 = 12;
-			EventA4 = 13;
-			EventA5 = 14;
-			EventA6 = 15;
-			EventB1 = 20;
-			EventB2 = 21;
-			EventC1 = 30;
-			EventC2 = 31;
-			EventW1 = 40;
-			EventW2 = 41;
-			EventW3 = 42;
+			PERIODICAL_REPORT_STRONGEST_CELLS = 1;
+			PERIODICAL_REPORT_STRONGEST_CELLS_FOR_SON = 2;
+			PERIODICAL_REPORT_CGI = 3;
+			EVENT_A1 = 10;
+			EVENT_A2 = 11;
+			EVENT_A3 = 12;
+			EVENT_A4 = 13;
+			EVENT_A5 = 14;
+			EVENT_A6 = 15;
+			EVENT_B1 = 20;
+			EVENT_B2 = 21;
+			EVENT_C1 = 30;
+			EVENT_C2 = 31;
+			EVENT_W1 = 40;
+			EVENT_W2 = 41;
+			EVENT_W3 = 42;
 		}
 		string appInsId = 1;
 		repeated AssociateId associateId = 2;
@@ -319,22 +317,22 @@ message RnisMeasUeReportSubscription
 	FilterCriteriaAssocTri filterCriteriaAssocTri = 3;
 	TimeStamp expiryDeadline = 4;
 }
-message RnisMeasTimingAdvanceSubscription
+message MeasTaSubscription
 {
 	message Plmn
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -352,22 +350,22 @@ message RnisMeasTimingAdvanceSubscription
 	FilterCriteriaAssoc filterCriteriaAssoc = 3;
 	TimeStamp expiryDeadline = 4;
 }
-message RnisReconfCarrierAggrSubscription
+message CaReconfSubscription
 {
 	message Plmn
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -389,25 +387,25 @@ message S1BearerSubscription
 {
 	enum EventType 
 	{
-		Reserved = 0;
+		RESERVED = 0;
 		S1_BEARER_ESTABLISH = 1;
 		S1_BEARER_MODIFY = 2;
 		S1_BEARER_RELEASE = 3;
 	}
 	message Plmn
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -425,12 +423,28 @@ message S1BearerSubscription
 	S1BearerSubscriptionCriteria s1BearerSubscriptionCriteria = 4;
 	TimeStamp expiryDeadline = 5;
 }
-message RnisSubscriptionLinkList
+message SubscriptionLinkList
 {
+		
+
 	message Subscription
 	{
+	enum SubscriptionType
+		{
+			RESERVED = 0;
+			CELL_CHANGE = 1;
+			RAB_ESTABLISHMENT = 2;
+			RAB_MODIFICATION = 3;
+			RAB_RELEASE = 4;
+			MEAS_ REPORT_UE = 5;
+			MEAS_TIMING_ADVANCE = 6;
+			CA_RECONF = 7;
+			S1_BEARER = 8;
+		}
+		{
 		string href = 1;
-		string subscriptionType = 2;
+		SubscriptionType subscriptionType = 2;
+		}
 	}
 	message Links
 	{
@@ -439,34 +453,33 @@ message RnisSubscriptionLinkList
 	}
 	Links _links = 1;
 }
-message RnisCellChangeNotification
+message CellChangeNotification
 {
 	enum HoStatus
 	{
-		Reserved = 0;
-		InPreparation = 1;
-		InExecution = 2;
-		Completed = 3;
-		Rejected = 4;
-		Cancelled = 5;
+		IN_PREPARATION = 1;
+		IN_EXECUTION = 2;
+		COMPLETED = 3;
+		REJECTED = 4;
+		CANCELLED = 5;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
 	}
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId = 3;
 	}
 	message TempUeId
@@ -481,23 +494,23 @@ message RnisCellChangeNotification
 	HoStatus hoStatus = 5;
 	TempUeId tempUeId = 6;
 } 
-message RnisRabEstablishmentNotification
+message RabEstNotification
 {
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId =3;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -526,23 +539,23 @@ message RnisRabEstablishmentNotification
 	ErabQosParameters erabQosParameters = 5;
 	TempUeId tempUeId = 6;
 } 
-message RnisRabModificationNotification
+message RabModNotification
 {
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId =3;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -565,23 +578,23 @@ message RnisRabModificationNotification
 	uint32 erabId = 4;
 	ErabQosParameters erabQosParameters = 5;
 } 
-message RnisRabReleaseNotification
+message RabRelNotification
 {
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId =3;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -595,45 +608,45 @@ message RnisRabReleaseNotification
 	repeated AssociateId associateId = 3;
 	ErabReleaseInfo erabReleaseInfo = 4;
 } 
-message RnisMeasUeReportNotification
+message MeasRepUeNotification
 {
 	enum Trigger 
 	{
-		Reserved = 0;
-		PeriodicalRreportStrongestCells = 1;
-		PeriodicalRreportStrongestCellsForSON = 2;
-		PeriodicalRreportCGI = 3;
-		EventA1 = 10;
-		EventA2 = 11;
-		EventA3 = 12;
-		EventA4 = 13;
-		EventA5 = 14;
-		EventA6 = 15;
-		EventB1 = 20;
-		EventB2 = 21;
-		EventC1 = 30;
-		EventC2 = 31;
-		EventW1 = 40;
-		EventW2 = 41;
-		EventW3 = 42;
+		NOT_AVAILABLE = 0;
+		PERIODICAL_REPORT_STRONGEST_CELLS = 1;
+		PERIODICAL_REPORT_STRONGEST_CELLS_FOR_SON = 2;
+		PERIODICAL_REPORT_CGI = 3;
+		EVENT_A1 = 10;
+		EVENT_A2 = 11;
+		EVENT_A3 = 12;
+		EVENT_A4 = 13;
+		EVENT_A5 = 14;
+		EVENT_A6 = 15;
+		EVENT_B1 = 20;
+		EVENT_B2 = 21;
+		EVENT_C1 = 30;
+		EVENT_C2 = 31;
+		EVENT_W1 = 40;
+		EVENT_W2 = 41;
+		EVENT_W3 = 42;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
 	}
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId =3;
 	}
 	message EutranNeighborCellMeasInfo
@@ -660,23 +673,23 @@ message RnisMeasUeReportNotification
 	repeated EutranNeighborCellMeasInfo eutranNeighborCellMeasInfo = 7;
 	repeated CarrierAggregationMeasInfo carrierAggrMeasInfo = 8;
 } 
-message RnisMeasTimingAdvanceNotification
+message MeasTaNotification
 {
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId =3;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -686,23 +699,23 @@ message RnisMeasTimingAdvanceNotification
 	repeated AssociateId associateId = 3;
 	uint32	timingAdvance = 4;
 }
-message RnisReConfCarrierAggrNotification
+message CaReConfNotification
 {
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId =3;
 	}
 	message AssociateId
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
@@ -731,7 +744,7 @@ message RnisReConfCarrierAggrNotification
 	repeated SecondaryCellRemove secCellRem = 5;
 	repeated CarrierAggregationMeasInfo carrAggrMeasInfo = 6;
 } 
-message RnisSubscriptionExpiryNotification
+message ExpiryNotification
 {
 	message Links
 	{
@@ -745,7 +758,7 @@ message S1BearerNotification
 {
 	enum S1EventType 
 	{
-		Reserved = 0;
+		RESERVED = 0;
 		S1_BEARER_ESTABLISH = 1;
 		S1_BEARER_MODIFY = 2;
 		S1_BEARER_RELEASE = 3;
@@ -759,19 +772,19 @@ message S1BearerNotification
 	{
 		enum Type 
 		{
-			Reserved = 0;
-			UeIPv4Address = 1;
-			UeIPv6Address = 2;
-			NATedIpAddress = 3;
-			GtpTeID = 4;
+			reserved = 0;
+			UE_IPV4_ADDRESS = 1;
+			UE_IPV6_ADDRESS = 2;
+			NATED_IP_ADDRESS = 3;
+			GTP_TEID = 4;
 		}
 		Type type = 1;
 		string value = 2;
 	}
 	message Ecgi
 	{
-		uint32 mcc = 1;
-		uint32 mnc = 2;
+		string mcc = 1;
+		string mnc = 2;
 		string cellId = 3;
 	}
 	message EnbInfo
