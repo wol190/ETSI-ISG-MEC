@@ -190,25 +190,25 @@
         }
       ]
     },
-    "Body.CaReconfSubscriptionPost": {
-      "name": "CaReconfSubscriptionPost",
+    "Body.CaReConfSubscriptionPost": {
+      "name": "CaReConfSubscriptionPost",
       "in": "body",
       "description": "Use to creates a subscription to Carrier Aggregation Reconfiguration notifications based on the filter criteria",
       "required": true,
       "schema": [
         {
-          "$ref": "#/definitions/CaReconfSubscriptionPost"
+          "$ref": "#/definitions/CaReConfSubscriptionPost"
         }
       ]
     },
-    "Body.CaReconfSubscription": {
-      "name": "CaReconfSubscription",
+    "Body.CaReConfSubscription": {
+      "name": "CaReConfSubscription",
       "in": "body",
       "description": "Use to creates a subscription to Carrier Aggregation Reconfiguration notifications based on the filter criteria",
       "required": true,
       "schema": [
         {
-          "$ref": "#/definitions/CaReconfSubscription"
+          "$ref": "#/definitions/CaReConfSubscription"
         }
       ]
     },
@@ -646,7 +646,7 @@
               "application/json": {
                 "SubscriptionLinkList": {
                   "_links": {
-                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/",
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions",
                     "susbcription": [
                       {
                         "href": "http://meAppClient.example.com/rni/v1/notifications/cell_change/77777",
@@ -688,6 +688,64 @@
       }
     },
     "/subscriptions/cell_change": {
+      "get": {
+        "description": "The GET method can be used to request information about the cell_change subscriptions for this requestor",
+        "operationId": "SusbcriptionLinkList_subscriptions_cc_GET",
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body contains the list of links to requestors cell_change subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/SusbcriptionLinkList"
+            },
+            "examples": {
+              "application/json": {
+                "SubscriptionLinkList": {
+                  "_links": {
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/cell_change",
+                    "susbcription": [
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/cell_change/77777",
+                        "subscriptionType": "CELL_CHANGE"
+                      },
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/cell_change/77778",
+                        "subscriptionType": "CELL_CHANGE"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "default": {
+            "description": "Error occured"
+          }
+        },
+        "x-swagger-router-controller": "Default"
+      },
       "post": {
         "description": "Creates a subscription to cell change notifications from Radio Network Information Service",
         "operationId": "CellChange_subscriptionsPOST",
@@ -947,7 +1005,65 @@
         "x-swagger-router-controller": "Default"
       }
     },
-    "/subscriptions/s1bearer": {
+    "/subscriptions/s1_bearer": {
+      "get": {
+        "description": "The GET method can be used to request information about the s1_bearer subscriptions for this requestor",
+        "operationId": "SusbcriptionLinkList_subscriptions_s1_GET",
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body contains the list of links to requestors s1_bearer subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/SusbcriptionLinkList"
+            },
+            "examples": {
+              "application/json": {
+                "SubscriptionLinkList": {
+                  "_links": {
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/s1_bearer",
+                    "susbcription": [
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77777",
+                        "subscriptionType": "S1_BEARER"
+                      },
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77778",
+                        "subscriptionType": "S1_BEARER"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "default": {
+            "description": "Error occured"
+          }
+        },
+        "x-swagger-router-controller": "Default"
+      },
       "post": {
         "description": "Creates a subscription to S1 bearer notifications from Radio Network Information Service",
         "operationId": "S1BearerSubscription_subscriptionsPOST",
@@ -969,9 +1085,9 @@
             "examples": {
               "application/json": {
                 "S1BearerSubscription": {
-                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/s1bearer/77777",
+                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77777",
                   "_links": {
-                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/s1bearer/sub123"
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/s1_bearer/sub123"
                   },
                   "eventType": 1,
                   "s1BearerSubscriptionCriteria": {
@@ -1025,7 +1141,7 @@
         "x-swagger-router-controller": "Default"
       }
     },
-    "/subscriptions/s1bearer/{subscrId}": {
+    "/subscriptions/s1_bearer/{subscrId}": {
       "get": {
         "description": "Gets a subscription to S1 bearer notifications from Radio Network Information Service",
         "operationId": "S1BearerSubscription_subscriptionsGET",
@@ -1047,9 +1163,9 @@
             "examples": {
               "application/json": {
                 "S1BearerSubscription": {
-                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/s1bearer/77777",
+                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77777",
                   "_links": {
-                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/s1bearer/sub123"
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/s1_bearer/sub123"
                   },
                   "eventType": 1,
                   "s1BearerSubscriptionCriteria": {
@@ -1119,9 +1235,9 @@
             "examples": {
               "application/json": {
                 "S1BearerSubscription": {
-                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/s1bearer/77777",
+                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77777",
                   "_links": {
-                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/s1bearer/sub123"
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/s1_bearer/sub123"
                   },
                   "eventType": 1,
                   "s1BearerSubscriptionCriteria": {
@@ -1205,6 +1321,64 @@
       }
     },
     "/subscriptions/ta": {
+      "get": {
+        "description": "The GET method can be used to request information about the ta subscriptions for this requestor",
+        "operationId": "SusbcriptionLinkList_subscriptions_ta_GET",
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body contains the list of links to requestors ta subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/SusbcriptionLinkList"
+            },
+            "examples": {
+              "application/json": {
+                "SubscriptionLinkList": {
+                  "_links": {
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/ta",
+                    "susbcription": [
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/ta/77777",
+                        "subscriptionType": "MEAS_ REPORT_UE"
+                      },
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/ta/77778",
+                        "subscriptionType": "MEAS_ REPORT_UE"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "default": {
+            "description": "Error occured"
+          }
+        },
+        "x-swagger-router-controller": "Default"
+      },
       "post": {
         "description": "Creates a subscription to UE Timing Advance notifications from Radio Network Information Service",
         "operationId": "MeasTa_subscriptionsPOST",
@@ -1462,6 +1636,64 @@
       }
     },
     "/subscriptions/meas_rep_ue": {
+      "get": {
+        "description": "The GET method can be used to request information about the meas_rep_ue subscriptions for this requestor",
+        "operationId": "SusbcriptionLinkList_subscriptions_mr_GET",
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body contains the list of links to requestors meas_rep_ue subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/SusbcriptionLinkList"
+            },
+            "examples": {
+              "application/json": {
+                "SubscriptionLinkList": {
+                  "_links": {
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/meas_rep_ue",
+                    "susbcription": [
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/meas_rep_ue/77777",
+                        "subscriptionType": "MEAS_ REPORT_UE"
+                      },
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/meas_rep_ue/77778",
+                        "subscriptionType": "MEAS_ REPORT_UE"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "default": {
+            "description": "Error occured"
+          }
+        },
+        "x-swagger-router-controller": "Default"
+      },
       "post": {
         "description": "Creates a subscription to UE measurement report notifications from Radio Network Information Service",
         "operationId": "MeasRepUe_subscriptionsPOST",
@@ -1633,9 +1865,9 @@
             "examples": {
               "application/json": {
                 "MeasRepUeSubscription": {
-                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/MeasRepUe/77777",
+                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/meas_rep_ue/77777",
                   "_links": {
-                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/MeasRepUe/sub123"
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/meas_rep_ue/sub123"
                   },
                   "filterCriteria": {
                     "associateId": {
@@ -1719,6 +1951,64 @@
       }
     },
     "/subscriptions/rab_est": {
+      "get": {
+        "description": "The GET method can be used to request information about the rab_est subscriptions for this requestor",
+        "operationId": "SusbcriptionLinkList_subscriptions_re_GET",
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body contains the list of links to requestors rab_est subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/SusbcriptionLinkList"
+            },
+            "examples": {
+              "application/json": {
+                "SubscriptionLinkList": {
+                  "_links": {
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/rab_est",
+                    "susbcription": [
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/rab_est/77777",
+                        "subscriptionType": "RAB_ESTABLISHMENT"
+                      },
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/rab_est/77778",
+                        "subscriptionType": "RAB_ESTABLISHMENT"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "default": {
+            "description": "Error occured"
+          }
+        },
+        "x-swagger-router-controller": "Default"
+      },
       "post": {
         "description": "Creates a subscription to RAB establishment notifications from Radio Network Information Service",
         "operationId": "RabEstSubscription_subscriptionsPOST",
@@ -1976,6 +2266,64 @@
       }
     },
     "/subscriptions/rab_mod": {
+      "get": {
+        "description": "The GET method can be used to request information about the rab_mod subscriptions for this requestor",
+        "operationId": "SusbcriptionLinkList_subscriptions_rm_GET",
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body contains the list of links to requestors rab_mod subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/SusbcriptionLinkList"
+            },
+            "examples": {
+              "application/json": {
+                "SubscriptionLinkList": {
+                  "_links": {
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/rab_mod",
+                    "susbcription": [
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/rab_mod/77777",
+                        "subscriptionType": "RAB_MODIFICATION"
+                      },
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/rab_mod/77778",
+                        "subscriptionType": "RAB_MODIFICATION"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "default": {
+            "description": "Error occured"
+          }
+        },
+        "x-swagger-router-controller": "Default"
+      },
       "post": {
         "description": "Creates a subscription to RAB Modification notifications from Radio Network Information Service",
         "operationId": "RabModSubscription_subscriptionsPOST",
@@ -2233,6 +2581,64 @@
       }
     },
     "/subscriptions/rab_rel": {
+      "get": {
+        "description": "The GET method can be used to request information about the rab_rel subscriptions for this requestor",
+        "operationId": "SusbcriptionLinkList_subscriptions_rr_GET",
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body contains the list of links to requestors rab_rel subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/SusbcriptionLinkList"
+            },
+            "examples": {
+              "application/json": {
+                "SubscriptionLinkList": {
+                  "_links": {
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/rab_rel",
+                    "susbcription": [
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/rab_rel/77777",
+                        "subscriptionType": "RAB_RELEASE"
+                      },
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/rab_rel/77778",
+                        "subscriptionType": "RAB_RELEASE"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "default": {
+            "description": "Error occured"
+          }
+        },
+        "x-swagger-router-controller": "Default"
+      },
       "post": {
         "description": "Creates a subscription to RAB Release notifications from Radio Network Information Service",
         "operationId": "RabRelSubscription_subscriptionsPOST",
@@ -2489,31 +2895,89 @@
         "x-swagger-router-controller": "Default"
       }
     },
-    "/subscriptions/caReconf": {
+    "/subscriptions/ca_reconf": {
+      "get": {
+        "description": "The GET method can be used to request information about the ca_reconf subscriptions for this requestor",
+        "operationId": "SusbcriptionLinkList_subscriptions_cr_GET",
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response body contains the list of links to requestors ca_reconf subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/SusbcriptionLinkList"
+            },
+            "examples": {
+              "application/json": {
+                "SubscriptionLinkList": {
+                  "_links": {
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/ca_reconf",
+                    "susbcription": [
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77777",
+                        "subscriptionType": "CA_RECONF"
+                      },
+                      {
+                        "href": "http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77778",
+                        "subscriptionType": "CA_RECONF"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "default": {
+            "description": "Error occured"
+          }
+        },
+        "x-swagger-router-controller": "Default"
+      },
       "post": {
         "description": "Creates a subscription to Carrier Aggregation Reconfiguration notifications from Radio Network Information Service",
-        "operationId": "CaReconfSubscription_subscriptionsPOST",
+        "operationId": "CaReConfSubscription_subscriptionsPOST",
         "produces": [
           "application/json",
           "application/problem+json"
         ],
         "parameters": [
           {
-            "$ref": "#/parameters/Body.CaReconfSubscriptionPost"
+            "$ref": "#/parameters/Body.CaReConfSubscriptionPost"
           }
         ],
         "responses": {
           "201": {
             "description": "Successful subscription to Carrier Aggregation Reconfiguration notifications",
             "schema": {
-              "$ref": "#/definitions/CaReconfSubscription"
+              "$ref": "#/definitions/CaReConfSubscription"
             },
             "examples": {
               "application/json": {
-                "CaReconfSubscription": {
-                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/caReconf/77777",
+                "CaReConfSubscription": {
+                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77777",
                   "_links": {
-                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/caReconf/sub123"
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/ca_reconf/sub123"
                   },
                   "filterCriteriaAssoc": {
                     "appInsId": "app01",
@@ -2566,10 +3030,10 @@
         "x-swagger-router-controller": "Default"
       }
     },
-    "/subscriptions/caReconf/{subscrId}": {
+    "/subscriptions/ca_reconf/{subscrId}": {
       "get": {
         "description": "Creates a subscription to Carrier Aggregation Reconfiguration notifications from Radio Network Information Service",
-        "operationId": "CaReconfSubscription_subscriptionsGET",
+        "operationId": "CaReConfSubscription_subscriptionsGET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -2583,14 +3047,14 @@
           "201": {
             "description": "Subscription information regarding Carrier Aggregation Reconfiguration notifications",
             "schema": {
-              "$ref": "#/definitions/CaReconfSubscription"
+              "$ref": "#/definitions/CaReConfSubscription"
             },
             "examples": {
               "application/json": {
-                "CaReconfSubscription": {
-                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/caReconf/77777",
+                "CaReConfSubscription": {
+                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77777",
                   "_links": {
-                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/caReconf/sub123"
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/ca_reconf/sub123"
                   },
                   "filterCriteriaAssoc": {
                     "appInsId": "app01",
@@ -2637,7 +3101,7 @@
       },
       "put": {
         "description": "Updates a subscription to Carrier Aggregation Reconfiguration notifications from Radio Network Information Service",
-        "operationId": "CaReconfSubscription_subscriptionsPUT",
+        "operationId": "CaReConfSubscription_subscriptionsPUT",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -2647,21 +3111,21 @@
             "$ref": "#/parameters/Path.subscrId"
           },
           {
-            "$ref": "#/parameters/Body.CaReconfSubscription"
+            "$ref": "#/parameters/Body.CaReConfSubscription"
           }
         ],
         "responses": {
           "201": {
             "description": "Successful subscription to Carrier Aggregation Reconfiguration notifications",
             "schema": {
-              "$ref": "#/definitions/CaReconfSubscription"
+              "$ref": "#/definitions/CaReConfSubscription"
             },
             "examples": {
               "application/json": {
-                "CaReconfSubscription": {
-                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/caReconf/77777",
+                "CaReConfSubscription": {
+                  "callbackReference": "http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77777",
                   "_links": {
-                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/caReconf/sub123"
+                    "self": "http://meAppServer.example.com/rni/v1/subscriptions/ca_reconf/sub123"
                   },
                   "filterCriteriaAssoc": {
                     "appInsId": "app01",
@@ -2714,7 +3178,7 @@
       },
       "delete": {
         "description": "Method to delete a subscription",
-        "operationId": "CaReconf_subscriptionsSubscrIdDELETE",
+        "operationId": "CaReConf_subscriptionsSubscrIdDELETE",
         "produces": [
           "application/json"
         ],
@@ -2725,7 +3189,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content. Successful deletion of Reconf Carrier Aggr subscription"
+            "description": "No Content. Successful deletion of CaReConf subscription"
           },
           "401": {
             "description": "Unauthorized"
@@ -3302,7 +3766,7 @@
         }
       }
     },
-    "CaReconfSubscription": {
+    "CaReConfSubscription": {
       "required": [
         "callbackReference",
         "_links",
@@ -3323,7 +3787,7 @@
         }
       }
     },
-    "CaReconfSubscriptionPost": {
+    "CaReConfSubscriptionPost": {
       "required": [
         "callbackReference",
         "filterCriteria"

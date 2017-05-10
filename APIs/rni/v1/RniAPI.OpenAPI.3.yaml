@@ -1,0 +1,2954 @@
+openapi: 3.0.0-RC1
+servers:
+  - url: 'http://127.0.0.1:8081/rnis/v1'
+  - url: 'https://127.0.0.1:8081/rnis/v1'
+info:
+  description: Description the RNIS API using OpenAPI
+  version: 1.0.1
+  title: RNIS API
+  termsOfService: TBD
+security:
+  - OauthSecurity:
+      - all
+paths:
+  /resources/plmn_info:
+    get:
+      description: >-
+        Gets the information on Mobile Network(s) that are associated with a
+        specific mobile edge application instance
+      operationId: plmn_infoGET
+      parameters:
+        - $ref: '#/components/parameters/Query.AppInsId'
+        - $ref: '#/components/parameters/Query.CellId'
+        - $ref: '#/components/parameters/Query.AssociateId'
+        - $ref: '#/components/parameters/Query.ErabId'
+        - $ref: '#/components/parameters/Query.Qci'
+        - $ref: '#/components/parameters/Query.ErabMbrDl'
+        - $ref: '#/components/parameters/Query.ErabMbrUl'
+        - $ref: '#/components/parameters/Query.ErabGbrDl'
+        - $ref: '#/components/parameters/Query.ErabGbrUl'
+      responses:
+        '200':
+          description: Successful response to rab_info request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlmnInfo'
+              examples:
+                - PlmnInfo:
+                    timeStamp:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+                    appInId: '01'
+                    ecgi:
+                      plmn:
+                        mcc: '001'
+                        mnc: '01'
+                      cellId: '0x800000A'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+  /resources/rab_info:
+    get:
+      description: >-
+        Gets information on existing E-RABs that are associated with a specific
+        mobile edge application instance
+      operationId: rab_infoGET
+      parameters:
+        - $ref: '#/components/parameters/Query.AppInsIdArr'
+      responses:
+        '200':
+          description: Successful response to rab_info request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabInfo'
+              examples:
+                - RabInfo:
+                    timeStamp:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+                    appInId: '01'
+                    requestId: '01'
+                    cellUserInfo:
+                      ecgi:
+                        plmn:
+                          mcc: '001'
+                          mnc: '01'
+                        cellId: '0x800000A'
+                      ueInfo:
+                        associatedId: null
+                        type: '1'
+                        value: 192.0.2.0
+                        erabInfo:
+                          erabId: 10
+                        erabQosParameters:
+                          qci: 7
+                          qosInformation:
+                            erabMbrDl: 10
+                            erabMbrUl: 10
+                            erabGbrDl: 10
+                            erabGbrUl: 10
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+  /resources/s1_bearer_info:
+    get:
+      description: >-
+        Gets information on existing E-RABs that are associated with a specific
+        mobile edge application instance
+      operationId: s1_bearer_infoGET
+      parameters:
+        - $ref: '#/components/parameters/Query.TempUeId'
+        - $ref: '#/components/parameters/Query.AssociateId'
+        - $ref: '#/components/parameters/Query.CellId'
+        - $ref: '#/components/parameters/Query.ErabIdArr'
+      responses:
+        '200':
+          description: Successful response to s1_bearer_info request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S1BearerInfo'
+              examples:
+                - S1BearerInfo:
+                    timeStamp:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+                    s1UeInfo:
+                      - tempUeId:
+                          mmec: '0'
+                          mtmsi: '1234'
+                        associateId:
+                          - type: '1'
+                            value: 192.0.2.0
+                          - type: '3'
+                            value: 198.51.100.0
+                        ecgi:
+                          plmn:
+                            mcc: '001'
+                            mnc: '01'
+                          cellid: '0x800000A'
+                        s1BearerInfoDetailed:
+                          - erabId: 1
+                            s1EnbInfo:
+                              ipAddress: 192.0.2.0
+                              tunnelId: '1111'
+                            sGwInfo:
+                              ipAddress: 192.0.2.1
+                              tunnelId: '2222'
+                      - tempUeId:
+                          mmec: '0'
+                          mtmsi: '1234'
+                        associateId:
+                          type: '1'
+                          value: 192.0.2.0
+                        ecgi:
+                          plmn:
+                            mcc: '001'
+                            mnc: '01'
+                          cellid: '0x800000B'
+                        s1BearerInfoDetailed:
+                          - erabId: 2
+                            s1EnbInfo:
+                              ipAddress: 192.0.2.0
+                              tunnelId: '3333'
+                            sGwInfo:
+                              ipAddress: 192.0.2.1
+                              tunnelId: '4444'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+  /subscriptions/:
+    get:
+      description: >-
+        The GET method can be used to request information about the
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptionsGET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: 'http://meAppServer.example.com/rni/v1/subscriptions'
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/cell_change/77777
+                          subscriptionType: CELL_CHANGE
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/MeasTa/77777
+                          subscriptionType: MEAS_TIMING_ADVANCE
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+  /subscriptions/cell_change:
+    get:
+      description: >-
+        The GET method can be used to request information about the cell_change
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptions_cc_GET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors cell_change
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/cell_change
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/cell_change/77777
+                          subscriptionType: CELL_CHANGE
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/cell_change/77778
+                          subscriptionType: CELL_CHANGE
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+    post:
+      description: >-
+        Creates a subscription to cell change notifications from Radio Network
+        Information Service
+      operationId: CellChange_subscriptionsPOST
+      parameters: []
+      responses:
+        '201':
+          description: Successful subscription to response to UE cell change notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CellChangeSubscription'
+              examples:
+                - CellChangeSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/cell_change/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/cell_change/sub123
+                    filterCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      appInsId: '01'
+                      trigger: 6
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/CellChangeSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '415':
+          description: Unsupported Media Type
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        '501':
+          description: Not implemented
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to cell change notifications based
+              on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/CellChangeSubscriptionPost'
+  '/subscriptions/cell_change/{subscrId}':
+    get:
+      description: Get cell change subscription information
+      operationId: CellChange_subscriptionsGET
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '200':
+          description: Subscription information regarding cell change notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CellChangeSubscription'
+              examples:
+                - CellChangeSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/cell_change/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/cell_change/sub123
+                    filterCriteria:
+                      appInsId: '01'
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      hoStatus: 3
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/CellChangeSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+    put:
+      description: >-
+        Updates a subscription to cell change notifications from Radio Network
+        Information Service
+      operationId: CellChange_subscriptionsPUT
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: Successful subscription to response to cell change notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CellChangeSubscription'
+              examples:
+                - CellChangeSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/cell_change/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/cell_change/sub123
+                    filterCriteria:
+                      appInsId: '01'
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      hoStatus: 3
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/CellChangeSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '412':
+          description: Precondition failed
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to cell change notifications based
+              on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/CellChangeSubscription'
+    delete:
+      description: Method to delete a subscription
+      operationId: CellChange_subscriptionsSubscrIdDELETE
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      x-swagger-router-controller: Default
+  /subscriptions/s1_bearer:
+    get:
+      description: >-
+        The GET method can be used to request information about the s1_bearer
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptions_s1_GET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors s1_bearer
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/s1_bearer
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77777
+                          subscriptionType: S1_BEARER
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77778
+                          subscriptionType: S1_BEARER
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+    post:
+      description: >-
+        Creates a subscription to S1 bearer notifications from Radio Network
+        Information Service
+      operationId: S1BearerSubscription_subscriptionsPOST
+      parameters: []
+      responses:
+        '201':
+          description: Successful subscription to response to S1 Bearer notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S1BearerSubscription'
+              examples:
+                - S1BearerSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/s1_bearer/sub123
+                    eventType: 1
+                    s1BearerSubscriptionCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      erabId: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/S1BearerSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '415':
+          description: Unsupported Media Type
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to S1 Bearer notifications based on
+              the filter criteria
+            schema:
+              - $ref: '#/components/schemas/S1BearerSubscriptionPost'
+  '/subscriptions/s1_bearer/{subscrId}':
+    get:
+      description: >-
+        Gets a subscription to S1 bearer notifications from Radio Network
+        Information Service
+      operationId: S1BearerSubscription_subscriptionsGET
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '200':
+          description: Successful subscription to response to S1 Bearer notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S1BearerSubscription'
+              examples:
+                - S1BearerSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/s1_bearer/sub123
+                    eventType: 1
+                    s1BearerSubscriptionCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      erabId: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/S1BearerSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+    put:
+      description: >-
+        Update a subscription to S1 bearer notifications from Radio Network
+        Information Service
+      operationId: S1BearerSubscription_subscriptionsPUT
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: >-
+            Successful subscription update to response to S1 Bearer
+            notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/S1BearerSubscription'
+              examples:
+                - S1BearerSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/s1_bearer/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/s1_bearer/sub123
+                    eventType: 1
+                    s1BearerSubscriptionCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      erabId: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/S1BearerSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '412':
+          description: Precondition failed
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to S1 Bearer notifications based on
+              the filter criteria
+            schema:
+              - $ref: '#/components/schemas/S1BearerSubscription'
+    delete:
+      description: Method to delete a subscription
+      operationId: S1Bearer_subscriptionsSubscrIdDELETE
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      x-swagger-router-controller: Default
+  /subscriptions/ta:
+    get:
+      description: >-
+        The GET method can be used to request information about the ta
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptions_ta_GET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors ta
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: 'http://meAppServer.example.com/rni/v1/subscriptions/ta'
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/ta/77777
+                          subscriptionType: MEAS_ REPORT_UE
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/ta/77778
+                          subscriptionType: MEAS_ REPORT_UE
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+    post:
+      description: >-
+        Creates a subscription to UE Timing Advance notifications from Radio
+        Network Information Service
+      operationId: MeasTa_subscriptionsPOST
+      parameters: []
+      responses:
+        '201':
+          description: >-
+            Successful subscription to response to UE Timing Advance
+            notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasTaSubscription'
+              examples:
+                - MeasTaSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/ta/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/ta/sub123
+                    filterCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      appInsId: '01'
+                      trigger: 6
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/MeasTaSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '415':
+          description: Unsupported Media Type
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to UE Timing Advance notifications
+              based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/MeasTaSubscriptionPost'
+  '/subscriptions/ta/{subscrId}':
+    get:
+      description: >-
+        Gets UE Timing Advance subscription information from Radio Network
+        Information Service
+      operationId: MeasTa_subscriptionsGET
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '200':
+          description: Subscription information regarding UE Timing Advance notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasTaSubscription'
+              examples:
+                - MeasTaSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/ta/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/ta/sub123
+                    filterCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      appInsId: '01'
+                      trigger: 6
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/MeasTaSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+    put:
+      description: >-
+        Updates a subscription to UE Timing Advance notifications from Radio
+        Network Information Service
+      operationId: MeasTa_subscriptionsPUT
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '200':
+          description: >-
+            Successful subscription to response to UE Timing Advance
+            notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasTaSubscription'
+              examples:
+                - MeasTaSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/ta/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/ta/sub123
+                    filterCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      appInsId: '01'
+                      trigger: 6
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/MeasTaSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '412':
+          description: Precondition failed
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to UE Timing Advance notifications
+              based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/MeasTaSubscription'
+    delete:
+      description: Method to delete a subscription
+      operationId: MeasTa_subscriptionsSubscrIdDELETE
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      x-swagger-router-controller: Default
+  /subscriptions/meas_rep_ue:
+    get:
+      description: >-
+        The GET method can be used to request information about the meas_rep_ue
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptions_mr_GET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors meas_rep_ue
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/meas_rep_ue
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/meas_rep_ue/77777
+                          subscriptionType: MEAS_ REPORT_UE
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/meas_rep_ue/77778
+                          subscriptionType: MEAS_ REPORT_UE
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+    post:
+      description: >-
+        Creates a subscription to UE measurement report notifications from Radio
+        Network Information Service
+      operationId: MeasRepUe_subscriptionsPOST
+      parameters: []
+      responses:
+        '201':
+          description: >-
+            Successful subscription to response to UE measurement report
+            notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasRepUeSubscription'
+              examples:
+                - MeasRepUeSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/meas_rep_ue/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/meas_rep_ue/sub123
+                    filterCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      appInsId: '01'
+                      trigger: 6
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/MeasRepUeSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '415':
+          description: Unsupported Media Type
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to UE measurement report
+              notifications based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/MeasRepUeSubscriptionPost'
+  '/subscriptions/meas_rep_ue/{subscrId}':
+    get:
+      description: >-
+        Creates a subscription to UE measurement report notifications from Radio
+        Network Information Service
+      operationId: MeasRepUe_subscriptionsGET
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '200':
+          description: >-
+            Successful subscription to response to UE measurement report
+            notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasRepUeSubscription'
+              examples:
+                - MeasRepUeSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/meas_rep_ue/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/meas_rep_ue/sub123
+                    filterCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      appInsId: '01'
+                      trigger: 6
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/MeasRepUeSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+    put:
+      description: >-
+        Updates a subscription to UE measurement report notifications from Radio
+        Network Information Service
+      operationId: MeasRepUeReport_subscriptionsPUT
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: >-
+            Successful update subscription to response to UE measurement report
+            notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeasRepUeSubscription'
+              examples:
+                - MeasRepUeSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/meas_rep_ue/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/meas_rep_ue/sub123
+                    filterCriteria:
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      appInsId: '01'
+                      trigger: 6
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/MeasRepUeSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '412':
+          description: Precondition failed
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to UE measurement report
+              notifications based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/MeasRepUeSubscription'
+    delete:
+      description: Method to delete a subscription
+      operationId: MeasRepUe_subscriptionsSubscrIdDELETE
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '204':
+          description: No Content. Successful deletion of UE Measurment Report subscription
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      x-swagger-router-controller: Default
+  /subscriptions/rab_est:
+    get:
+      description: >-
+        The GET method can be used to request information about the rab_est
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptions_re_GET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors rab_est
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_est
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/rab_est/77777
+                          subscriptionType: RAB_ESTABLISHMENT
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/rab_est/77778
+                          subscriptionType: RAB_ESTABLISHMENT
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+    post:
+      description: >-
+        Creates a subscription to RAB establishment notifications from Radio
+        Network Information Service
+      operationId: RabEstSubscription_subscriptionsPOST
+      parameters: []
+      responses:
+        '201':
+          description: Successful subscription to RAB establishment notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabEstSubscription'
+              examples:
+                - RabEstSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_est/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_est/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabEstSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '415':
+          description: Unsupported Media Type
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to RAB establishment notifications
+              based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/RabEstSubscriptionPost'
+  '/subscriptions/rab_est/{subscrId}':
+    get:
+      description: >-
+        Creates a subscription to RAB establishment notifications from Radio
+        Network Information Service
+      operationId: RabEstSubscription_subscriptionsGET
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: Subscription information regarding RAB establishment notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabEstSubscription'
+              examples:
+                - RabEstSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_est/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_est/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabEstSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+    put:
+      description: >-
+        Updates a subscription to RAB establishment notifications from Radio
+        Network Information Service
+      operationId: RabEstSubscription_subscriptionsPUT
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: Successful subscription update to RAB establishment notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabEstSubscription'
+              examples:
+                - RabEstSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_est/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_est/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabEstSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '412':
+          description: Precondition failed
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to RAB establishment notifications
+              based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/RabEstSubscription'
+    delete:
+      description: Method to delete a subscription
+      operationId: RabEst_subscriptionsSubscrIdDELETE
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '204':
+          description: No Content. Successful deletion of Rab Establishment subscription
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      x-swagger-router-controller: Default
+  /subscriptions/rab_mod:
+    get:
+      description: >-
+        The GET method can be used to request information about the rab_mod
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptions_rm_GET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors rab_mod
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_mod
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/rab_mod/77777
+                          subscriptionType: RAB_MODIFICATION
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/rab_mod/77778
+                          subscriptionType: RAB_MODIFICATION
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+    post:
+      description: >-
+        Creates a subscription to RAB Modification notifications from Radio
+        Network Information Service
+      operationId: RabModSubscription_subscriptionsPOST
+      parameters: []
+      responses:
+        '201':
+          description: Successful subscription to RAB Modification notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabModSubscription'
+              examples:
+                - RabModSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_mod/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_mod/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabModSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '415':
+          description: Unsupported Media Type
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to RAB Modification notifications
+              based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/RabModSubscriptionPost'
+  '/subscriptions/rab_mod/{subscrId}':
+    get:
+      description: >-
+        Creates a subscription to RAB Modification notifications from Radio
+        Network Information Service
+      operationId: RabModSubscription_subscriptionsGET
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: Subscription information regarding RAB Modification notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabModSubscription'
+              examples:
+                - RabModSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_mod/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_mod/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabModSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+    put:
+      description: >-
+        Updates a subscription to RAB Modification notifications from Radio
+        Network Information Service
+      operationId: RabModSubscription_subscriptionsPUT
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: Successful subscription update to RAB Modification notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabModSubscription'
+              examples:
+                - RabModSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_mod/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_mod/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabModSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '412':
+          description: Precondition failed
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to RAB Modification notifications
+              based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/RabModSubscription'
+    delete:
+      description: Method to delete a subscription
+      operationId: RabMod_subscriptionsSubscrIdDELETE
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '204':
+          description: No Content. Successful deletion of Rab Modification subscription
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      x-swagger-router-controller: Default
+  /subscriptions/rab_rel:
+    get:
+      description: >-
+        The GET method can be used to request information about the rab_rel
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptions_rr_GET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors rab_rel
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_rel
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/rab_rel/77777
+                          subscriptionType: RAB_RELEASE
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/rab_rel/77778
+                          subscriptionType: RAB_RELEASE
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+    post:
+      description: >-
+        Creates a subscription to RAB Release notifications from Radio Network
+        Information Service
+      operationId: RabRelSubscription_subscriptionsPOST
+      parameters: []
+      responses:
+        '201':
+          description: Successful subscription to RAB Release notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabRelSubscription'
+              examples:
+                - RabRelSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_rel/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_rel/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabRelSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '415':
+          description: Unsupported Media Type
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to RAB Release notifications based
+              on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/RabRelSubscriptionPost'
+  '/subscriptions/rab_rel/{subscrId}':
+    get:
+      description: >-
+        Creates a subscription to RAB Release notifications from Radio Network
+        Information Service
+      operationId: RabRelSubscription_subscriptionsGET
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: Subscription information regarding RAB Release notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabRelSubscription'
+              examples:
+                - RabRelSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_rel/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_rel/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabRelSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+    put:
+      description: >-
+        Updates a subscription to RAB Release notifications from Radio Network
+        Information Service
+      operationId: RabRelSubscription_subscriptionsPUT
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: Successful subscription update to RAB Release notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RabRelSubscription'
+              examples:
+                - RabRelSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/rab_rel/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/rab_rel/sub123
+                    filterCriteriaAssocQci:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                      qci: 1
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/RabRelSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '412':
+          description: Precondition failed
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to RAB Release notifications based
+              on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/RabRelSubscription'
+    delete:
+      description: Method to delete a subscription
+      operationId: RabRel_subscriptionsSubscrIdDELETE
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '204':
+          description: No Content. Successful deletion of Rab Release subscription
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      x-swagger-router-controller: Default
+  /subscriptions/ca_reconf:
+    get:
+      description: >-
+        The GET method can be used to request information about the ca_reconf
+        subscriptions for this requestor
+      operationId: SusbcriptionLinkList_subscriptions_cr_GET
+      parameters: []
+      responses:
+        '200':
+          description: >-
+            Response body contains the list of links to requestors ca_reconf
+            subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+              examples:
+                - SubscriptionLinkList:
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/ca_reconf
+                      susbcription:
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77777
+                          subscriptionType: CA_RECONF
+                        - href: >-
+                            http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77778
+                          subscriptionType: CA_RECONF
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/SusbcriptionLinkList'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+    post:
+      description: >-
+        Creates a subscription to Carrier Aggregation Reconfiguration
+        notifications from Radio Network Information Service
+      operationId: CaReConfSubscription_subscriptionsPOST
+      parameters: []
+      responses:
+        '201':
+          description: >-
+            Successful subscription to Carrier Aggregation Reconfiguration
+            notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaReConfSubscription'
+              examples:
+                - CaReConfSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/ca_reconf/sub123
+                    filterCriteriaAssoc:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/CaReConfSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '415':
+          description: Unsupported Media Type
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      x-swagger-router-controller: Default
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to Carrier Aggregation
+              Reconfiguration notifications based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/CaReConfSubscriptionPost'
+  '/subscriptions/ca_reconf/{subscrId}':
+    get:
+      description: >-
+        Creates a subscription to Carrier Aggregation Reconfiguration
+        notifications from Radio Network Information Service
+      operationId: CaReConfSubscription_subscriptionsGET
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: >-
+            Subscription information regarding Carrier Aggregation
+            Reconfiguration notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaReConfSubscription'
+              examples:
+                - CaReConfSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/ca_reconf/sub123
+                    filterCriteriaAssoc:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/CaReConfSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+    put:
+      description: >-
+        Updates a subscription to Carrier Aggregation Reconfiguration
+        notifications from Radio Network Information Service
+      operationId: CaReConfSubscription_subscriptionsPUT
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '201':
+          description: >-
+            Successful subscription to Carrier Aggregation Reconfiguration
+            notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaReConfSubscription'
+              examples:
+                - CaReConfSubscription:
+                    callbackReference: >-
+                      http://meAppClient.example.com/rni/v1/notifications/ca_reconf/77777
+                    _links:
+                      self: >-
+                        http://meAppServer.example.com/rni/v1/subscriptions/ca_reconf/sub123
+                    filterCriteriaAssoc:
+                      appInsId: app01
+                      associateId:
+                        type: '1'
+                        value: 192.0.2.0
+                      plmn:
+                        mnc: '01'
+                        mcc: '001'
+                      cellId: '0x800000B'
+                    expiryDeadline:
+                      seconds: 1577836800
+                      nanoSeconds: 0
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/CaReConfSubscription'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '406':
+          description: Not Acceptable
+        '412':
+          description: Precondition failed
+        '422':
+          description: Unprocessable Entity
+        '429':
+          description: Too Many Requests
+        default:
+          description: Error occured
+      requestBody:
+        content:
+          application/json:
+            description: >-
+              Use to creates a subscription to Carrier Aggregation
+              Reconfiguration notifications based on the filter criteria
+            schema:
+              - $ref: '#/components/schemas/CaReConfSubscription'
+    delete:
+      description: Method to delete a subscription
+      operationId: CaReConf_subscriptionsSubscrIdDELETE
+      parameters:
+        - $ref: '#/components/parameters/Path.subscrId'
+      responses:
+        '204':
+          description: No Content. Successful deletion of CaReConf subscription
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          description: Too Many Requests
+      x-swagger-router-controller: Default
+externalDocs:
+  description: ETSI MEC012 V1.0.1 Radio Network Information API
+  url: 'https://docbox.etsi.org/ISG/MEC/70-Draft/0012RnisApi'
+components:
+  schemas:
+    PlmnInfo:
+      type: object
+      required:
+        - appInsId
+        - ecgi
+      properties:
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+        appInsId:
+          $ref: '#/components/schemas/AppInsId'
+        ecgi:
+          $ref: '#/components/schemas/Ecgi'
+    RabInfo:
+      type: object
+      required:
+        - appInsId
+        - requestId
+      properties:
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+        appInsId:
+          $ref: '#/components/schemas/AppInsId'
+        requestId:
+          $ref: '#/components/schemas/RequestId'
+        cellUserInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/CellUserInfo'
+    S1BearerInfo:
+      type: object
+      required:
+        - s1UeInfo
+      properties:
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+        s1UeInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/S1UeInfo'
+    S1UeInfo:
+      type: object
+      required:
+        - tempUeId
+        - ecgi
+        - s1BearerInfoDetailed
+      properties:
+        tempUeId:
+          type: array
+          items:
+            $ref: '#/components/schemas/TempUeId'
+        associateId:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociateId'
+        ecgi:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ecgi'
+        s1BearerInfoDetailed:
+          type: array
+          items:
+            $ref: '#/components/schemas/S1BearerInfoDetailed'
+      description: The information on users per cell.
+    S1BearerInfoDetailed:
+      required:
+        - erabId
+        - s1EnbInfo
+      properties:
+        erabId:
+          $ref: '#/components/schemas/ErabId'
+        s1EnbInfo:
+          $ref: '#/components/schemas/S1EnbInfo'
+        sGwInfo:
+          $ref: '#/components/schemas/SGwInfo'
+      description: Information on UEs in the specific cell.
+    ErabId:
+      type: integer
+      format: int32
+      description: >-
+        The element that uniquely identifies a S1 bearer for a specific UE, as
+        defined in ETSI TS 136 413
+    TempUeId:
+      type: object
+      required:
+        - mmec
+        - mtmsi
+      properties:
+        mmec:
+          $ref: '#/components/schemas/Mmec'
+        mtmsi:
+          $ref: '#/components/schemas/Mtmsi'
+    Mmec:
+      type: string
+      description: MMEC as defined in ETSI TS 136 413
+    Mtmsi:
+      type: string
+      description: M-TMSI as defined in ETSI TS 136 413
+    S1EnbInfo:
+      type: object
+      required:
+        - ipAddress
+        - tunnelId
+      properties:
+        ipAddress:
+          type: string
+          description: eNB transport layer address of this S1 bearer.
+        tunnelId:
+          type: string
+          description: eNB GTP-U TEID of this S1 bearer.
+    SGwInfo:
+      type: object
+      required:
+        - ipAddress
+        - tunnelId
+      properties:
+        ipAddress:
+          type: string
+          description: SGW transport layer address of this S1 bearer.
+        tunnelId:
+          type: string
+          description: SGW GTP-U TEID of this S1 bearer.
+    TimeStamp:
+      type: object
+      required:
+        - nanoSeconds
+        - seconds
+      properties:
+        seconds:
+          type: integer
+          format: uint32
+          description: >-
+            The seconds part of the time. Time is defined as Unix-time since
+            January 1, 1970, 00:00:00 UTC
+        nanoSeconds:
+          type: integer
+          format: uint32
+          description: >-
+            The nanoseconds part of the time. Time is defined as Unix-time since
+            January 1, 1970, 00:00:00 UTC
+    AppInsId:
+      type: string
+      format: string
+      description: Unique identifier for the mobile edge application instance
+    RequestId:
+      type: string
+      format: string
+      description: >-
+        Unique identifier allocated by the Mobile Edge application for the 
+        Information request.
+    CellUserInfo:
+      type: object
+      required:
+        - ecgi
+        - ueInfo
+      properties:
+        ecgi:
+          $ref: '#/components/schemas/Ecgi'
+        ueInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/UeInfo'
+      description: The information on users per cell.
+    Ecgi:
+      type: object
+      required:
+        - cellid
+        - plmn
+      properties:
+        plmn:
+          $ref: '#/components/schemas/Plmn'
+        cellid:
+          $ref: '#/components/schemas/CellId'
+      description: E-UTRAN CelI Global Identifier as defined in 3GPP TS 36.413
+    Plmn:
+      type: object
+      required:
+        - mcc
+        - mnc
+      properties:
+        mcc:
+          type: string
+          format: string
+          description: >-
+            The Mobile Country Code part of PLMN Identity as defined in 3GPP TS
+            36.413
+        mnc:
+          type: string
+          format: string
+          description: >-
+            The Mobile Network Code part of PLMN Identity as defined in 3GPP TS
+            36.413
+    CellId:
+      type: array
+      items:
+        type: string
+        format: binary
+      description: >-
+        The E-UTRAN Cell Identity as a bit string (size (28)), as defined in
+        3GPP TS 36.413
+    UeInfo:
+      required:
+        - erabInfo
+      properties:
+        associateId:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociateId'
+        erabInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErabQosParameters'
+      description: Information on UEs in the specific cell.
+    AssociateId:
+      required:
+        - type
+        - value
+      properties:
+        type:
+          type: string
+          enum:
+            - TypeReserved
+            - UeIPv4Address
+            - UeIPv6Address
+            - NATedIpAddress
+            - GtpTeId
+          description: Numeric value (0-255) corresponding to specified type of identifier
+        value:
+          type: integer
+          format: int32
+          description: Value for the identifier
+    ErabQosParameters:
+      properties:
+        qci:
+          $ref: '#/components/schemas/ErabQosParameters_qci'
+    Qci:
+      type: integer
+      format: int32
+      description: QoS Class Identifier as defined in TS 23.401
+    QosInformation:
+      required:
+        - erabGbrDl
+        - erabGbrUl
+        - erabMbrDl
+        - erabMbrUl
+      properties:
+        erabMbrDl:
+          type: integer
+          format: int32
+          description: >-
+            This IE indicates the maximum downlink E-RAB Bit Rate as defined in
+            TS 23.401 for this bearer.
+        erabMbrUl:
+          type: integer
+          format: int32
+          description: >-
+            This IE indicates the maximum uplink E-RAB Bit Rate as defined in TS
+            23.401 for this bearer.
+        erabGbrDl:
+          type: integer
+          format: int32
+          description: >-
+            This IE indicates the guaranteed  downlink E-RAB Bit Rate as defined
+            in TS 23.401 for this bearer.
+        erabGbrUl:
+          type: integer
+          format: int32
+          description: >-
+            This IE indicates the guaranteed  uplink E-RAB Bit Rate as defined
+            in TS 23.401 for this bearer.
+    SusbcriptionLinkList:
+      required:
+        - _links
+      properties:
+        _links:
+          $ref: '#/components/schemas/LinkList'
+    MeasRepUeSubscriptionPost:
+      required:
+        - callbackReference
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocTri'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    MeasRepUeSubscription:
+      required:
+        - callbackReference
+        - _links
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        _links:
+          $ref: '#/components/schemas/Link'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocTri'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    S1BearerSubscriptionPost:
+      required:
+        - callbackReference
+        - s1BearerSubscriptionCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        s1BearerSubscriptionCriteria:
+          $ref: '#/components/schemas/S1BearerSubscriptionCriteria'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    S1BearerSubscription:
+      required:
+        - callbackReference
+        - _links
+        - s1BearerSubscriptionCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        _links:
+          $ref: '#/components/schemas/Link'
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        s1BearerSubscriptionCriteria:
+          $ref: '#/components/schemas/S1BearerSubscriptionCriteria'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    RabEstSubscription:
+      required:
+        - callbackReference
+        - _links
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        _links:
+          $ref: '#/components/schemas/Link'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocQci'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    RabEstSubscriptionPost:
+      required:
+        - callbackReference
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocQci'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    RabModSubscription:
+      required:
+        - callbackReference
+        - _links
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        _links:
+          $ref: '#/components/schemas/Link'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocQci'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    RabModSubscriptionPost:
+      required:
+        - callbackReference
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocQci'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    RabRelSubscription:
+      required:
+        - callbackReference
+        - _links
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        _links:
+          $ref: '#/components/schemas/Link'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocQci'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    RabRelSubscriptionPost:
+      required:
+        - callbackReference
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocQci'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    CaReConfSubscription:
+      required:
+        - callbackReference
+        - _links
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        _links:
+          $ref: '#/components/schemas/Link'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssoc'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    CaReConfSubscriptionPost:
+      required:
+        - callbackReference
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssoc'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    CellChangeSubscriptionPost:
+      required:
+        - callbackReference
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocHo'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    CellChangeSubscription:
+      required:
+        - callbackReference
+        - _links
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        _links:
+          $ref: '#/components/schemas/Link'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssocHo'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    MeasTaSubscriptionPost:
+      required:
+        - callbackReference
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssoc'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    MeasTaSubscription:
+      required:
+        - callbackReference
+        - _links
+        - filterCriteria
+      properties:
+        callbackReference:
+          $ref: '#/components/schemas/CallbackReference'
+        _links:
+          $ref: '#/components/schemas/Link'
+        filterCriteria:
+          $ref: '#/components/schemas/FilterCriteriaAssoc'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+    CallbackReference:
+      type: string
+      format: uri
+      description: >-
+        URL selected by the Mobile Edge application to receive notifications on
+        the subscribed RNIS information.
+    Link:
+      properties:
+        self:
+          $ref: '#/components/schemas/LinkType'
+      description: List of hyperlinks related to the resource.
+    LinkList:
+      required:
+        - self
+      properties:
+        self:
+          $ref: '#/components/schemas/LinkType'
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+      description: List of hyperlinks related to the resource.
+    LinkType:
+      properties:
+        self:
+          type: string
+          format: uri
+          description: >-
+            Self referring URL. This shall be included in the response from the
+            RNIS. The URI shall be unique within the RNI API as it acts as an ID
+            for the subscription
+    Subscription:
+      required:
+        - href
+        - subscriptionType
+      properties:
+        href:
+          type: string
+          format: uri
+        subscriptionType:
+          $ref: '#/components/schemas/SubscriptionType'
+      description: A link to a subscription.
+    SubscriptionType:
+      type: string
+      description: Numeric value corresponding to specified type of subscription.
+      enum:
+        - RESERVED
+        - CELL_CHANGE
+        - RAB_ESTABLISHMENT
+        - RAB_MODIFICATION
+        - RAB_RELEASE
+        - MEAS_ REPORT_UE
+        - MEAS_TIMING_ADVANCE
+        - CA_RECONF
+        - S1_BEARER
+    FilterCriteriaAssoc:
+      properties:
+        appInsId:
+          $ref: '#/components/schemas/AppInsId'
+        associateId:
+          $ref: '#/components/schemas/AssociateId'
+        plmn:
+          $ref: '#/components/schemas/Plmn'
+        cellId:
+          $ref: '#/components/schemas/CellId'
+      description: List of filtering criteria for the subscription.
+    FilterCriteriaAssocQci:
+      properties:
+        appInsId:
+          $ref: '#/components/schemas/AppInsId'
+        associateId:
+          $ref: '#/components/schemas/AssociateId'
+        plmn:
+          $ref: '#/components/schemas/Plmn'
+        cellId:
+          $ref: '#/components/schemas/CellId'
+        qci:
+          $ref: '#/components/schemas/Qci'
+      description: List of filtering criteria for the subscription.
+    FilterCriteriaAssocHo:
+      properties:
+        appInsId:
+          $ref: '#/components/schemas/AppInsId'
+        associateId:
+          $ref: '#/components/schemas/AssociateId'
+        plmn:
+          $ref: '#/components/schemas/Plmn'
+        cellId:
+          $ref: '#/components/schemas/CellId'
+        hoStatus:
+          $ref: '#/components/schemas/HoStatus'
+      description: List of filtering criteria for the subscription.
+    FilterCriteriaAssocTri:
+      properties:
+        appInsId:
+          $ref: '#/components/schemas/AppInsId'
+        associateId:
+          $ref: '#/components/schemas/AssociateId'
+        plmn:
+          $ref: '#/components/schemas/Plmn'
+        cellId:
+          $ref: '#/components/schemas/CellId'
+        trigger:
+          $ref: '#/components/schemas/Trigger'
+      description: List of filtering criteria for the subscription.
+    S1BearerSubscriptionCriteria:
+      properties:
+        associateId:
+          $ref: '#/components/schemas/AssociateId'
+        plmn:
+          $ref: '#/components/schemas/Plmn'
+        cellId:
+          $ref: '#/components/schemas/CellId'
+        erabId:
+          $ref: '#/components/schemas/ErabId'
+      description: List of filtering criteria for the subscription.
+    HoStatus:
+      type: string
+      description: Description of the subscribed to event
+      enum:
+        - RESERVED
+        - IN_PREPARATION
+        - IN_EXECUTION
+        - COMPLETED
+        - REJECTED
+        - CANCELLED
+    EventType:
+      type: string
+      description: Description of the subscribed event.
+      enum:
+        - RESERVED
+        - S1_BEARER_ESTABLISH
+        - S1_BEARER_MODIFY
+        - S1_BEARER_RELEASE
+    Trigger:
+      type: string
+      description: Unique identifier for the mobile edge application instance
+      enum:
+        - NOT_AVAILABLE
+        - PERIODICAL_REPORT_STRONGEST_CELLS
+        - PERIODICAL_REPORT_STRONGEST_CELLS_FOR_SON
+        - PERIODICAL_REPORT_CGI
+        - EVENT_A1
+        - EVENT_A2
+        - EVENT_A3
+        - EVENT_A4
+        - EVENT_A5
+        - EVENT_A6
+        - EVENT_B1
+        - EVENT_B2
+        - EVENT_C1
+        - EVENT_C2
+        - EVENT_W1
+        - EVENT_W2
+        - EVENT_W3
+    ErabQosParameters_qci:
+      properties:
+        qosInformation:
+          $ref: '#/components/schemas/QosInformation'
+      description: QoS Class Identifier as defined in TS 23.401
+  responses: {}
+  parameters:
+    Path.subscrId:
+      name: subscrId
+      in: path
+      description: >-
+        Subscription Id, specifically the "self" returned in the subsription
+        request
+      required: true
+      schema:
+        type: string
+        format: uri
+    Query.AppInsId:
+      name: appInsId
+      in: query
+      description: Application instance identifier
+      required: false
+      schema:
+        type: string
+    Query.AppInsIdArr:
+      name: appInsId
+      in: query
+      description: Application instance identifier
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+    Query.AssociateId:
+      name: associateId
+      in: query
+      description: Identifier associated to certain UE or flow
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+    Query.CellId:
+      name: cellId
+      in: query
+      description: >-
+        E-UTRAN Cell Identity as a bit string (size (28)), as defined in ETSI TS
+        136 413
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+    Query.ErabGbrDl:
+      name: erabGbrDl
+      in: query
+      description: Guaranteed downlink E-RAB Bit Rate as defined in ETSI TS 123 401
+      required: false
+      schema:
+        type: integer
+        format: uint32
+    Query.ErabGbrUl:
+      name: erabGbrUl
+      in: query
+      description: Guaranteed uplink E-RAB Bit Rate as defined in ETSI TS 123 401
+      required: false
+      schema:
+        type: integer
+        format: uint32
+    Query.ErabId:
+      name: erabId
+      in: query
+      description: E-RAB identifier
+      required: false
+      schema:
+        type: integer
+        format: uint32
+    Query.ErabIdArr:
+      name: erabId
+      in: query
+      description: E-RAB identifier
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: uint32
+    Query.ErabMbrDl:
+      name: erabMbrDl
+      in: query
+      description: Maximum downlink E-RAB Bit Rate as defined in ETSI TS 123 401
+      required: false
+      schema:
+        type: integer
+        format: uint32
+    Query.ErabMbrUl:
+      name: erabMbrUl
+      in: query
+      description: Maximum uplink E-RAB Bit Rate as defined in ETSI TS 123 401
+      required: false
+      schema:
+        type: integer
+        format: uint32
+    Query.Qci:
+      name: qci
+      in: query
+      description: QoS Class Identifier as defined in ETSI TS 123 401
+      required: false
+      schema:
+        type: integer
+        format: uint32
+    Query.TempUeId:
+      name: tempUeId
+      in: query
+      description: >-
+        The temporary identifier allocated for the specific UE as defined in
+        ETSI TS 136 413
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+  examples: {}
+  requestBodies: {}
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://oauth.exampleAPI/token'
+          scopes:
+            all: Single oauth2 scope for API
+  headers: {}
