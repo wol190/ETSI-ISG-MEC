@@ -291,12 +291,12 @@ paths:
         Creates a subscription to cell change notifications from Radio Network
         Information Service
       operationId: CellChange_subscriptionsPOST
-      parameters: []
+      parameters: []   # none, all that's passed is in the requestBody
       responses:
         '201':
           description: Successful subscription to response to UE cell change notifications
           content:
-            application/json:
+            application/json:   # I've a feeling this should come under encoding'
               schema:
                 $ref: '#/components/schemas/CellChangeSubscription'
               examples:
@@ -320,7 +320,7 @@ paths:
                       seconds: 1577836800
                       nanoSeconds: 0
             application/problem+json:
-              schema:
+              schema: # should be problem details, reference MEC-009
                 $ref: '#/components/schemas/CellChangeSubscription'
         '400':
           description: Bad Request
@@ -351,6 +351,10 @@ paths:
               on the filter criteria
             schema:
               - $ref: '#/components/schemas/CellChangeSubscriptionPost'
+      callbacks:
+        CellChangeWebhook:
+          $ref: '#/components/callbacks/CellChangeWebhook'
+
   '/subscriptions/cell_change/{subscrId}':
     get:
       description: Get cell change subscription information
@@ -2641,6 +2645,26 @@ components:
           $ref: '#/components/schemas/FilterCriteriaAssocHo'
         expiryDeadline:
           $ref: '#/components/schemas/TimeStamp'
+    CellChangeNotification:
+        required:
+        - srcEcgi
+        - trgEcgi
+        - hoStatus
+      properties:
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+        associateId:
+          $ref: '#/components/schemas/AssociateId'
+        srcEcgi:
+          $ref: '#/components/schemas/Ecgi'
+        trgEcgi:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ecgi'
+        hoStatus:
+          $ref: '#/components/schemas/HoStatus'
+        tempUeId:
+          $ref: '#/components/schemas/TempUeId'
     MeasTaSubscriptionPost:
       required:
         - callbackReference
@@ -2830,7 +2854,7 @@ components:
       name: subscrId
       in: path
       description: >-
-        Subscription Id, specifically the "self" returned in the subsription
+        Subscription Id, specifically the "self" returned in the subscription
         request
       required: true
       schema:
@@ -2952,3 +2976,15 @@ components:
           scopes:
             all: Single oauth2 scope for API
   headers: {}
+  callbacks:
+    CellChangeWebhook:
+      '$request.body#/callbackReference'
+        post:
+          parameters: {}
+          body:
+            name: CellChangeNotification
+            schema:
+              $ref: '#/components/definitions/CellChangeNotification'
+          responses:
+            '204':
+              description: No content

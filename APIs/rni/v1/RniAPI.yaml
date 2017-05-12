@@ -351,7 +351,7 @@ paths:
                       mnc: '01'
                     cellId: '0x800000A'
                   ueInfo:
-                    associatedId: null
+                    associateId: null
                     type: '1'
                     value: 192.0.2.0
                     erabInfo:
@@ -2527,11 +2527,11 @@ definitions:
       type:
         type: string
         enum:
-          - TypeReserved
-          - UeIPv4Address
-          - UeIPv6Address
-          - NATedIpAddress
-          - GtpTeId
+          - RESERVED
+          - UE_IPV4_ADDRESS
+          - UE_IPV6_ADDRESS
+          - NATED_IP_ADDRESS
+          - GTP_TEID
         description: Numeric value (0-255) corresponding to specified type of identifier
       value:
         type: integer
