@@ -172,7 +172,7 @@ parameters:
     name: subscrId
     in: path
     description: >-
-      Subscription Id, specifically the "self" returned in the subsription
+      Subscription Id, specifically the "self" returned in the subscription
       request
     required: true
     type: string

@@ -215,7 +215,7 @@
     "Path.subscrId": {
       "name": "subscrId",
       "in": "path",
-      "description": "Subscription Id, specifically the \"self\" returned in the subsription request",
+      "description": "Subscription Id, specifically the \"self\" returned in the subscription request",
       "required": true,
       "type": "string",
       "format": "uri"
