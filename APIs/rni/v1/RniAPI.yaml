@@ -29,10 +29,12 @@ parameters:
     in: body
     description: >-
       Use to creates a subscription to cell change notifications based on the
-      filter criteria
+         filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/CellChangeSubscriptionPost'
+      properties:
+        CellChangeSubscription:
+          $ref: '#/definitions/CellChangeSubscriptionPost'
   Body.CellChangeSubscription:
     name: CellChangeSubscription
     in: body
@@ -41,7 +43,9 @@ parameters:
       filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/CellChangeSubscription'
+      properties:
+        CellChangeSubscription:
+          $ref: '#/definitions/CellChangeSubscription'
   Body.S1BearerSubscriptionPost:
     name: S1BearerSubscriptionPost
     in: body
@@ -50,7 +54,9 @@ parameters:
       filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/S1BearerSubscriptionPost'
+      properties:
+        S1BearerSubscription:
+          $ref: '#/definitions/S1BearerSubscriptionPost'
   Body.S1BearerSubscription:
     name: S1BearerSubscription
     in: body
@@ -59,7 +65,9 @@ parameters:
       filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/S1BearerSubscription'
+      properties:
+        S1BearerSubscription:
+          $ref: '#/definitions/S1BearerSubscription'
   Body.MeasTaSubscriptionPost:
     name: MeasTaSubscriptionPost
     in: body
@@ -68,7 +76,9 @@ parameters:
       the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/MeasTaSubscriptionPost'
+      properties:
+        MeasTaSubscription:
+          $ref: '#/definitions/MeasTaSubscriptionPost'
   Body.MeasTaSubscription:
     name: MeasTaSubscription
     in: body
@@ -77,7 +87,9 @@ parameters:
       the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/MeasTaSubscription'
+      properties:
+        MeasTaSubscription:
+          $ref: '#/definitions/MeasTaSubscription'
   Body.MeasRepUeSubscriptionPost:
     name: MeasRepUeSubscriptionPost
     in: body
@@ -86,7 +98,9 @@ parameters:
       on the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/MeasRepUeSubscriptionPost'
+      properties:
+        MeasRepUeSubscription:
+          $ref: '#/definitions/MeasRepUeSubscriptionPost'
   Body.MeasRepUeSubscription:
     name: MeasRepUeSubscription
     in: body
@@ -95,7 +109,9 @@ parameters:
       on the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/MeasRepUeSubscription'
+      properties:
+        MeasRepUeSubscription:
+          $ref: '#/definitions/MeasRepUeSubscription'
   Body.RabEstSubscriptionPost:
     name: RabEstSubscriptionPost
     in: body
@@ -104,7 +120,9 @@ parameters:
       the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/RabEstSubscriptionPost'
+      properties:
+        RabEstSubscription:
+          $ref: '#/definitions/RabEstSubscriptionPost'
   Body.RabEstSubscription:
     name: RabEstSubscription
     in: body
@@ -113,7 +131,9 @@ parameters:
       the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/RabEstSubscription'
+      properties:
+        RabEstSubscription:
+          $ref: '#/definitions/RabEstSubscription'
   Body.RabModSubscriptionPost:
     name: RabEstSubscriptionPost
     in: body
@@ -122,7 +142,9 @@ parameters:
       the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/RabModSubscriptionPost'
+      properties:
+        RabModSubscription:
+          $ref: '#/definitions/RabModSubscriptionPost'
   Body.RabModSubscription:
     name: RabEstSubscription
     in: body
@@ -131,7 +153,9 @@ parameters:
       the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/RabModSubscription'
+      properties:
+        RabModSubscription:
+          $ref: '#/definitions/RabModSubscription'
   Body.RabRelSubscriptionPost:
     name: RabRelSubscriptionPost
     in: body
@@ -140,7 +164,9 @@ parameters:
       filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/RabRelSubscriptionPost'
+      properties:
+        RabRelSubscription:
+          $ref: '#/definitions/RabRelSubscriptionPost'
   Body.RabRelSubscription:
     name: RabRelSubscription
     in: body
@@ -149,7 +175,9 @@ parameters:
       filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/RabRelSubscription'
+      properties:
+        RabRelSubscription:
+          $ref: '#/definitions/RabRelSubscription'
   Body.CaReConfSubscriptionPost:
     name: CaReConfSubscriptionPost
     in: body
@@ -158,7 +186,9 @@ parameters:
       notifications based on the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/CaReConfSubscriptionPost'
+      properties:
+        CaReConfSubscription:
+          $ref: '#/definitions/CaReConfSubscriptionPost'
   Body.CaReConfSubscription:
     name: CaReConfSubscription
     in: body
@@ -167,9 +197,11 @@ parameters:
       notifications based on the filter criteria
     required: true
     schema:
-      - $ref: '#/definitions/CaReConfSubscription'
+      properties:
+        CaReConfSubscription:
+          $ref: '#/definitions/CaReConfSubscription'
   Path.subscrId:
-    name: subscrId
+    name: subscriptionId
     in: path
     description: >-
       Subscription Id, specifically the "self" returned in the subscription
@@ -178,29 +210,53 @@ parameters:
     type: string
     format: uri
   Query.AppInsId:
-    name: appInsId
+    name: app_ins_id
     in: query
     description: Application instance identifier
     required: false
     type: string
   Query.AppInsIdArr:
-    name: appInsId
+    name: app_ins_id
     in: query
     description: Application instance identifier
     required: true
     type: array
     items:
       type: string
-  Query.AssociateId:
-    name: associateId
+  Query.UeIpv4Address:
+    name: ue_ipv4_address
     in: query
-    description: Identifier associated to certain UE or flow
+    description: Comma separated list of IE IPv4 addresses as defined for the type for AssociateId
+    required: false
+    type: array
+    items:
+      type: string
+  Query.UeIpv6Address:
+    name: ue_ipv6_address
+    in: query
+    description: Comma separated list of IE IPv6 addresses as defined for the type for AssociateId
+    required: false
+    type: array
+    items:
+      type: string
+  Query.NatedIpAddress:
+    name: nated_ip_address
+    in: query
+    description: Comma separated list of IE NATed IP addresses as defined for the type for AssociateId
+    required: false
+    type: array
+    items:
+      type: string
+  Query.GtpTeId:
+    name: gtp_teid
+    in: query
+    description: Comma separated list of GTP TEID addresses as defined for the type for AssociateId
     required: false
     type: array
     items:
       type: string
   Query.CellId:
-    name: cellId
+    name: cell_id
     in: query
     description: >-
       E-UTRAN Cell Identity as a bit string (size (28)), as defined in ETSI TS
@@ -210,28 +266,28 @@ parameters:
     items:
       type: string
   Query.ErabGbrDl:
-    name: erabGbrDl
+    name: erab_gbr_dl
     in: query
     description: Guaranteed downlink E-RAB Bit Rate as defined in ETSI TS 123 401
     required: false
     type: integer
     format: uint32
   Query.ErabGbrUl:
-    name: erabGbrUl
+    name: erab_gbr_ul
     in: query
     description: Guaranteed uplink E-RAB Bit Rate as defined in ETSI TS 123 401
     required: false
     type: integer
     format: uint32
   Query.ErabId:
-    name: erabId
+    name: erab_id
     in: query
     description: E-RAB identifier
     required: false
     type: integer
     format: uint32
   Query.ErabIdArr:
-    name: erabId
+    name: erab_id
     in: query
     description: E-RAB identifier
     required: false
@@ -240,14 +296,14 @@ parameters:
       type: integer
       format: uint32
   Query.ErabMbrDl:
-    name: erabMbrDl
+    name: erab_mbr_dl
     in: query
     description: Maximum downlink E-RAB Bit Rate as defined in ETSI TS 123 401
     required: false
     type: integer
     format: uint32
   Query.ErabMbrUl:
-    name: erabMbrUl
+    name: erab_mbr_ul
     in: query
     description: Maximum uplink E-RAB Bit Rate as defined in ETSI TS 123 401
     required: false
@@ -261,7 +317,7 @@ parameters:
     type: integer
     format: uint32
   Query.TempUeId:
-    name: tempUeId
+    name: temp_ue_id
     in: query
     description: >-
       The temporary identifier allocated for the specific UE as defined in ETSI
@@ -271,18 +327,21 @@ parameters:
     items:
       type: string
 paths:
-  /resources/plmn_info:
+  /resources/rab_info:
     get:
       description: >-
-        Gets the information on Mobile Network(s) that are associated with a
-        specific mobile edge application instance
-      operationId: plmn_infoGET
+        Gets information on existing E-RABs that are associated with a specific
+        mobile edge application instance
+      operationId: rab_infoGET
       produces:
         - application/json
       parameters:
         - $ref: '#/parameters/Query.AppInsId'
         - $ref: '#/parameters/Query.CellId'
-        - $ref: '#/parameters/Query.AssociateId'
+        - $ref: '#/parameters/Query.UeIpv4Address'
+        - $ref: '#/parameters/Query.UeIpv6Address'
+        - $ref: '#/parameters/Query.NatedIpAddress'
+        - $ref: '#/parameters/Query.GtpTeId'
         - $ref: '#/parameters/Query.ErabId'
         - $ref: '#/parameters/Query.Qci'
         - $ref: '#/parameters/Query.ErabMbrDl'
@@ -293,49 +352,9 @@ paths:
         '200':
           description: Successful response to rab_info request
           schema:
-            $ref: '#/definitions/PlmnInfo'
-          examples:
-            application/json:
-              PlmnInfo:
-                timeStamp:
-                  seconds: 1577836800
-                  nanoSeconds: 0
-                appInId: '01'
-                ecgi:
-                  plmn:
-                    mcc: '001'
-                    mnc: '01'
-                  cellId: '0x800000A'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '406':
-          description: Not Acceptable
-        '429':
-          description: Too Many Requests
-        default:
-          description: Error occured
-      x-swagger-router-controller: Default
-  /resources/rab_info:
-    get:
-      description: >-
-        Gets information on existing E-RABs that are associated with a specific
-        mobile edge application instance
-      operationId: rab_infoGET
-      produces:
-        - application/json
-      parameters:
-        - $ref: '#/parameters/Query.AppInsIdArr'
-      responses:
-        '200':
-          description: Successful response to rab_info request
-          schema:
-            $ref: '#/definitions/RabInfo'
+            properties:
+              RabInfo:
+                $ref: '#/definitions/RabInfo'
           examples:
             application/json:
               RabInfo:
@@ -365,18 +384,106 @@ paths:
                         erabGbrUl: 10
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+      x-swagger-router-controller: Default
+  /resources/plmn_info:
+    get:
+      description: >-
+        Gets the information on Mobile Network(s) that are associated with a
+        specific mobile edge application instance
+      operationId: plmn_infoGET
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Query.AppInsIdArr'
+      responses:
+        '200':
+          description: Successful response to rab_info request
+          schema:
+            properties:
+              PlmnInfo:
+                $ref: '#/definitions/PlmnInfo'
+          examples:
+            application/json:
+              PlmnInfo:
+                timeStamp:
+                  seconds: 1577836800
+                  nanoSeconds: 0
+                appInId: '01'
+                ecgi:
+                  plmn:
+                    mcc: '001'
+                    mnc: '01'
+                  cellId: '0x800000A'
+        '400':
+          description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '401':
+          description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '406':
+          description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '429':
+          description: Too Many Requests
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
   /resources/s1_bearer_info:
     get:
@@ -388,14 +495,19 @@ paths:
         - application/json
       parameters:
         - $ref: '#/parameters/Query.TempUeId'
-        - $ref: '#/parameters/Query.AssociateId'
+        - $ref: '#/parameters/Query.UeIpv4Address'
+        - $ref: '#/parameters/Query.UeIpv6Address'
+        - $ref: '#/parameters/Query.NatedIpAddress'
+        - $ref: '#/parameters/Query.GtpTeId'
         - $ref: '#/parameters/Query.CellId'
         - $ref: '#/parameters/Query.ErabIdArr'
       responses:
         '200':
           description: Successful response to s1_bearer_info request
           schema:
-            $ref: '#/definitions/S1BearerInfo'
+            properties:
+              S1BearerInfo:
+                $ref: '#/definitions/S1BearerInfo'
           examples:
             application/json:
               S1BearerInfo:
@@ -445,18 +557,40 @@ paths:
                           tunnelId: '4444'
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
   /subscriptions/:
     get:
@@ -467,14 +601,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SusbcriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -489,18 +624,40 @@ paths:
                       subscriptionType: MEAS_TIMING_ADVANCE
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
   /subscriptions/cell_change:
     get:
@@ -511,14 +668,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             cell_change subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SubscriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -533,18 +691,40 @@ paths:
                       subscriptionType: CELL_CHANGE
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
     post:
       description: >-
@@ -560,7 +740,9 @@ paths:
         '201':
           description: Successful subscription to response to UE cell change notifications
           schema:
-            $ref: '#/definitions/CellChangeSubscription'
+            properties:
+              CellChangeSubscription:
+                $ref: '#/definitions/CellChangeSubscription'
           examples:
             application/json:
               CellChangeSubscription:
@@ -584,26 +766,62 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '415':
           description: Unsupported Media Type
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        '501':
-          description: Not implemented
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
-  '/subscriptions/cell_change/{subscrId}':
+  '/subscriptions/cell_change/{subscriptionId}':
     get:
       description: Get cell change subscription information
       operationId: CellChange_subscriptionsGET
@@ -616,7 +834,9 @@ paths:
         '200':
           description: Subscription information regarding cell change notifications
           schema:
-            $ref: '#/definitions/CellChangeSubscription'
+            properties:
+              CellChangeSubscription:
+                $ref: '#/definitions/CellChangeSubscription'
           examples:
             application/json:
               CellChangeSubscription:
@@ -640,18 +860,40 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: >-
         Updates a subscription to cell change notifications from Radio Network
@@ -667,7 +909,9 @@ paths:
         '201':
           description: Successful subscription to response to cell change notifications
           schema:
-            $ref: '#/definitions/CellChangeSubscription'
+            properties:
+              CellChangeSubscription:
+                $ref: '#/definitions/CellChangeSubscription'
           examples:
             application/json:
               CellChangeSubscription:
@@ -691,22 +935,60 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '412':
           description: Precondition failed
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: Method to delete a subscription
       operationId: CellChange_subscriptionsSubscrIdDELETE
@@ -717,14 +999,6 @@ paths:
       responses:
         '204':
           description: No Content
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '429':
-          description: Too Many Requests
       x-swagger-router-controller: Default
   /subscriptions/s1_bearer:
     get:
@@ -735,14 +1009,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             s1_bearer subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SusbcriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -757,18 +1032,40 @@ paths:
                       subscriptionType: S1_BEARER
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
     post:
       description: >-
@@ -784,7 +1081,9 @@ paths:
         '201':
           description: Successful subscription to response to S1 Bearer notifications
           schema:
-            $ref: '#/definitions/S1BearerSubscription'
+            properties:
+              S1BearerSubscription:
+                $ref: '#/definitions/S1BearerSubscription'
           examples:
             application/json:
               S1BearerSubscription:
@@ -808,24 +1107,62 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '415':
           description: Unsupported Media Type
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
-  '/subscriptions/s1_bearer/{subscrId}':
+  '/subscriptions/s1_bearer/{subscriptionId}':
     get:
       description: >-
         Gets a subscription to S1 bearer notifications from Radio Network
@@ -840,7 +1177,9 @@ paths:
         '200':
           description: Successful subscription to response to S1 Bearer notifications
           schema:
-            $ref: '#/definitions/S1BearerSubscription'
+            properties:
+              S1BearerSubscription:
+                $ref: '#/definitions/S1BearerSubscription'
           examples:
             application/json:
               S1BearerSubscription:
@@ -864,18 +1203,40 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: >-
         Update a subscription to S1 bearer notifications from Radio Network
@@ -893,7 +1254,9 @@ paths:
             Successful subscription update to response to S1 Bearer
             notifications
           schema:
-            $ref: '#/definitions/S1BearerSubscription'
+            properties:
+              S1BearerSubscription:
+                $ref: '#/definitions/S1BearerSubscription'
           examples:
             application/json:
               S1BearerSubscription:
@@ -917,22 +1280,60 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '412':
           description: Precondition failed
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: Method to delete a subscription
       operationId: S1Bearer_subscriptionsSubscrIdDELETE
@@ -943,14 +1344,6 @@ paths:
       responses:
         '204':
           description: No Content
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '429':
-          description: Too Many Requests
       x-swagger-router-controller: Default
   /subscriptions/ta:
     get:
@@ -961,14 +1354,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             ta subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SusbcriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -983,18 +1377,40 @@ paths:
                       subscriptionType: MEAS_ REPORT_UE
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
     post:
       description: >-
@@ -1012,7 +1428,9 @@ paths:
             Successful subscription to response to UE Timing Advance
             notifications
           schema:
-            $ref: '#/definitions/MeasTaSubscription'
+            properties:
+              MeasTaSubscription:
+                $ref: '#/definitions/MeasTaSubscription'
           examples:
             application/json:
               MeasTaSubscription:
@@ -1035,24 +1453,62 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '415':
           description: Unsupported Media Type
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
-  '/subscriptions/ta/{subscrId}':
+  '/subscriptions/ta/{subscriptionId}':
     get:
       description: >-
         Gets UE Timing Advance subscription information from Radio Network
@@ -1067,7 +1523,9 @@ paths:
         '200':
           description: Subscription information regarding UE Timing Advance notifications
           schema:
-            $ref: '#/definitions/MeasTaSubscription'
+            properties:
+              MeasTaSubscription:
+                $ref: '#/definitions/MeasTaSubscription'
           examples:
             application/json:
               MeasTaSubscription:
@@ -1090,18 +1548,40 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: >-
         Updates a subscription to UE Timing Advance notifications from Radio
@@ -1119,7 +1599,9 @@ paths:
             Successful subscription to response to UE Timing Advance
             notifications
           schema:
-            $ref: '#/definitions/MeasTaSubscription'
+            properties:
+              MeasTaSubscription:
+                $ref: '#/definitions/MeasTaSubscription'
           examples:
             application/json:
               MeasTaSubscription:
@@ -1142,22 +1624,60 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '412':
           description: Precondition failed
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: Method to delete a subscription
       operationId: MeasTa_subscriptionsSubscrIdDELETE
@@ -1168,14 +1688,6 @@ paths:
       responses:
         '204':
           description: No Content
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '429':
-          description: Too Many Requests
       x-swagger-router-controller: Default
   /subscriptions/meas_rep_ue:
     get:
@@ -1186,14 +1698,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             meas_rep_ue subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SusbcriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -1208,18 +1721,40 @@ paths:
                       subscriptionType: MEAS_ REPORT_UE
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
     post:
       description: >-
@@ -1237,7 +1772,9 @@ paths:
             Successful subscription to response to UE measurement report
             notifications
           schema:
-            $ref: '#/definitions/MeasRepUeSubscription'
+            properties:
+              MeasRepUeSubscription:
+                $ref: '#/definitions/MeasRepUeSubscription'
           examples:
             application/json:
               MeasRepUeSubscription:
@@ -1261,24 +1798,62 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '415':
           description: Unsupported Media Type
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
-  '/subscriptions/meas_rep_ue/{subscrId}':
+  '/subscriptions/meas_rep_ue/{subscriptionId}':
     get:
       description: >-
         Creates a subscription to UE measurement report notifications from Radio
@@ -1295,7 +1870,9 @@ paths:
             Successful subscription to response to UE measurement report
             notifications
           schema:
-            $ref: '#/definitions/MeasRepUeSubscription'
+            properties:
+              MeasRepUeSubscription:
+                $ref: '#/definitions/MeasRepUeSubscription'
           examples:
             application/json:
               MeasRepUeSubscription:
@@ -1319,18 +1896,40 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: >-
         Updates a subscription to UE measurement report notifications from Radio
@@ -1348,7 +1947,9 @@ paths:
             Successful update subscription to response to UE measurement report
             notifications
           schema:
-            $ref: '#/definitions/MeasRepUeSubscription'
+            properties:
+              MeasRepUeSubscription:
+                $ref: '#/definitions/MeasRepUeSubscription'
           examples:
             application/json:
               MeasRepUeSubscription:
@@ -1372,22 +1973,60 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '412':
           description: Precondition failed
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: Method to delete a subscription
       operationId: MeasRepUe_subscriptionsSubscrIdDELETE
@@ -1398,14 +2037,6 @@ paths:
       responses:
         '204':
           description: No Content. Successful deletion of UE Measurment Report subscription
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '429':
-          description: Too Many Requests
       x-swagger-router-controller: Default
   /subscriptions/rab_est:
     get:
@@ -1416,14 +2047,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             rab_est subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SusbcriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -1438,18 +2070,40 @@ paths:
                       subscriptionType: RAB_ESTABLISHMENT
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
     post:
       description: >-
@@ -1465,7 +2119,9 @@ paths:
         '201':
           description: Successful subscription to RAB establishment notifications
           schema:
-            $ref: '#/definitions/RabEstSubscription'
+            properties:
+              RabEstSubscription:
+                $ref: '#/definitions/RabEstSubscription'
           examples:
             application/json:
               RabEstSubscription:
@@ -1489,24 +2145,62 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '415':
           description: Unsupported Media Type
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
-  '/subscriptions/rab_est/{subscrId}':
+  '/subscriptions/rab_est/{subscriptionId}':
     get:
       description: >-
         Creates a subscription to RAB establishment notifications from Radio
@@ -1521,7 +2215,9 @@ paths:
         '201':
           description: Subscription information regarding RAB establishment notifications
           schema:
-            $ref: '#/definitions/RabEstSubscription'
+            properties:
+              RabEstSubscription:
+                $ref: '#/definitions/RabEstSubscription'
           examples:
             application/json:
               RabEstSubscription:
@@ -1545,18 +2241,40 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: >-
         Updates a subscription to RAB establishment notifications from Radio
@@ -1572,7 +2290,9 @@ paths:
         '201':
           description: Successful subscription update to RAB establishment notifications
           schema:
-            $ref: '#/definitions/RabEstSubscription'
+            properties:
+              RabEstSubscription:
+                $ref: '#/definitions/RabEstSubscription'
           examples:
             application/json:
               RabEstSubscription:
@@ -1596,22 +2316,60 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '412':
           description: Precondition failed
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: Method to delete a subscription
       operationId: RabEst_subscriptionsSubscrIdDELETE
@@ -1622,14 +2380,6 @@ paths:
       responses:
         '204':
           description: No Content. Successful deletion of Rab Establishment subscription
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '429':
-          description: Too Many Requests
       x-swagger-router-controller: Default
   /subscriptions/rab_mod:
     get:
@@ -1640,14 +2390,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             rab_mod subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SusbcriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -1662,18 +2413,40 @@ paths:
                       subscriptionType: RAB_MODIFICATION
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
     post:
       description: >-
@@ -1689,7 +2462,9 @@ paths:
         '201':
           description: Successful subscription to RAB Modification notifications
           schema:
-            $ref: '#/definitions/RabModSubscription'
+            properties:
+              RabModSubscription:
+                $ref: '#/definitions/RabModSubscription'
           examples:
             application/json:
               RabModSubscription:
@@ -1713,24 +2488,62 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '415':
           description: Unsupported Media Type
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
-  '/subscriptions/rab_mod/{subscrId}':
+  '/subscriptions/rab_mod/{subscriptionId}':
     get:
       description: >-
         Creates a subscription to RAB Modification notifications from Radio
@@ -1745,7 +2558,9 @@ paths:
         '201':
           description: Subscription information regarding RAB Modification notifications
           schema:
-            $ref: '#/definitions/RabModSubscription'
+            properties:
+              RabModSubscription:
+                $ref: '#/definitions/RabModSubscription'
           examples:
             application/json:
               RabModSubscription:
@@ -1769,18 +2584,40 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: >-
         Updates a subscription to RAB Modification notifications from Radio
@@ -1796,7 +2633,9 @@ paths:
         '201':
           description: Successful subscription update to RAB Modification notifications
           schema:
-            $ref: '#/definitions/RabModSubscription'
+            properties:
+              RabModSubscription:
+                $ref: '#/definitions/RabModSubscription'
           examples:
             application/json:
               RabModSubscription:
@@ -1820,22 +2659,60 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '412':
           description: Precondition failed
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: Method to delete a subscription
       operationId: RabMod_subscriptionsSubscrIdDELETE
@@ -1846,14 +2723,6 @@ paths:
       responses:
         '204':
           description: No Content. Successful deletion of Rab Modification subscription
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '429':
-          description: Too Many Requests
       x-swagger-router-controller: Default
   /subscriptions/rab_rel:
     get:
@@ -1864,14 +2733,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             rab_rel subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SusbcriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -1886,18 +2756,40 @@ paths:
                       subscriptionType: RAB_RELEASE
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
     post:
       description: >-
@@ -1913,7 +2805,9 @@ paths:
         '201':
           description: Successful subscription to RAB Release notifications
           schema:
-            $ref: '#/definitions/RabRelSubscription'
+            properties:
+              RabRelSubscription:
+                $ref: '#/definitions/RabRelSubscription'
           examples:
             application/json:
               RabRelSubscription:
@@ -1937,24 +2831,62 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '415':
           description: Unsupported Media Type
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
-  '/subscriptions/rab_rel/{subscrId}':
+  '/subscriptions/rab_rel/{subscriptionId}':
     get:
       description: >-
         Creates a subscription to RAB Release notifications from Radio Network
@@ -1969,7 +2901,9 @@ paths:
         '201':
           description: Subscription information regarding RAB Release notifications
           schema:
-            $ref: '#/definitions/RabRelSubscription'
+            properties:
+              RabRelSubscription:
+                $ref: '#/definitions/RabRelSubscription'
           examples:
             application/json:
               RabRelSubscription:
@@ -1993,18 +2927,40 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: >-
         Updates a subscription to RAB Release notifications from Radio Network
@@ -2020,7 +2976,9 @@ paths:
         '201':
           description: Successful subscription update to RAB Release notifications
           schema:
-            $ref: '#/definitions/RabRelSubscription'
+            properties:
+              RabRelSubscription:
+                $ref: '#/definitions/RabRelSubscription'
           examples:
             application/json:
               RabRelSubscription:
@@ -2044,22 +3002,60 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '412':
           description: Precondition failed
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: Method to delete a subscription
       operationId: RabRel_subscriptionsSubscrIdDELETE
@@ -2070,14 +3066,6 @@ paths:
       responses:
         '204':
           description: No Content. Successful deletion of Rab Release subscription
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '429':
-          description: Too Many Requests
       x-swagger-router-controller: Default
   /subscriptions/ca_reconf:
     get:
@@ -2088,14 +3076,15 @@ paths:
       produces:
         - application/json
         - application/problem+json
-      parameters: []
       responses:
         '200':
           description: >-
             Response body contains the list of links to requestors
             ca_reconf subscriptions.
           schema:
-            $ref: '#/definitions/SusbcriptionLinkList'
+            properties:
+              SusbcriptionLinkList:
+                $ref: '#/definitions/SusbcriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -2110,18 +3099,40 @@ paths:
                       subscriptionType: CA_RECONF
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
     post:
       description: >-
@@ -2139,7 +3150,9 @@ paths:
             Successful subscription to Carrier Aggregation Reconfiguration
             notifications
           schema:
-            $ref: '#/definitions/CaReConfSubscription'
+            properties:
+              CaReConfSubscription:
+                $ref: '#/definitions/CaReConfSubscription'
           examples:
             application/json:
               CaReConfSubscription:
@@ -2162,24 +3175,62 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '415':
           description: Unsupported Media Type
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
       x-swagger-router-controller: Default
-  '/subscriptions/ca_reconf/{subscrId}':
+  '/subscriptions/ca_reconf/{subscriptionId}':
     get:
       description: >-
         Creates a subscription to Carrier Aggregation Reconfiguration
@@ -2196,7 +3247,9 @@ paths:
             Subscription information regarding Carrier Aggregation
             Reconfiguration notifications
           schema:
-            $ref: '#/definitions/CaReConfSubscription'
+            properties:
+              CaReConfSubscription:
+                $ref: '#/definitions/CaReConfSubscription'
           examples:
             application/json:
               CaReConfSubscription:
@@ -2219,18 +3272,40 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: >-
         Updates a subscription to Carrier Aggregation Reconfiguration
@@ -2248,7 +3323,9 @@ paths:
             Successful subscription to Carrier Aggregation Reconfiguration
             notifications
           schema:
-            $ref: '#/definitions/CaReConfSubscription'
+            properties:
+              CaReConfSubscription:
+                $ref: '#/definitions/CaReConfSubscription'
           examples:
             application/json:
               CaReConfSubscription:
@@ -2271,22 +3348,60 @@ paths:
                   nanoSeconds: 0
         '400':
           description: Bad Request
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '401':
           description: Unauthorized
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '403':
           description: Forbidden
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '404':
           description: Not Found
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '406':
           description: Not Acceptable
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '412':
           description: Precondition failed
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
         '422':
           description: Unprocessable Entity
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+          examples: 
+            'application/problem+json':
+              ProblemDetails:
+                type: 'https://meAppServer.example.com/rni/v1/probs/too-many-targets'
+                title: Too mnay targets
+                status: '422'
+                detail: The target area for the request is considered too large
+                instance: '/meAppClient.example.com/77777/msgs/abc'
         '429':
           description: Too Many Requests
-        default:
-          description: Error occured
+          schema:
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: Method to delete a subscription
       operationId: CaReConf_subscriptionsSubscrIdDELETE
@@ -2296,17 +3411,45 @@ paths:
         - $ref: '#/parameters/Path.subscrId'
       responses:
         '204':
-          description: No Content. Successful deletion of CaReConf subscription
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '429':
-          description: Too Many Requests
+          description: No Content
       x-swagger-router-controller: Default
 definitions:
+  ProblemDetails: 
+    type: object
+    properties:
+      type:
+        $ref: '#/definitions/Problem.type'
+      title:
+        $ref: '#/definitions/Problem.title'
+      status:
+        $ref: '#/definitions/Problem.status'
+      detail:
+        $ref: '#/definitions/Problem.detail'
+      instance:
+        $ref: '#/definitions/Problem.instance'
+  Problem.type:
+    type: string
+    format: uri
+    description: >-
+      A URI reference according to IETF RFC 3986 that identifies the problem type
+  Problem.title:
+    type: string
+    description: >-
+      A short, human-readable summary of the problem type
+  Problem.status:
+    type: integer
+    format: uint32
+    description: >-
+      The HTTP status code for this occurrence of the problem
+  Problem.detail:
+    type: string
+    description: >-
+      A human-readable explanation specific to this occurrence of the problem
+  Problem.instance:
+    type: string
+    format: uri
+    description: >-
+      A URI reference that identifies the specific occurrence of the problem
   PlmnInfo:
     type: object
     required:
@@ -2388,6 +3531,7 @@ definitions:
     description: >-
       The element that uniquely identifies a S1 bearer for a specific UE, as
       defined in ETSI TS 136 413
+    example: 10
   TempUeId:
     type: object
     required:
@@ -2401,9 +3545,11 @@ definitions:
   Mmec:
     type: string
     description: MMEC as defined in ETSI TS 136 413
+    example: '0'
   Mtmsi:
     type: string
     description: M-TMSI as defined in ETSI TS 136 413
+    example: '1234'
   S1EnbInfo:
     type: object
     required:
@@ -2413,9 +3559,11 @@ definitions:
       ipAddress:
         type: string
         description: eNB transport layer address of this S1 bearer.
+        example: '192.0.2.0'
       tunnelId:
         type: string
         description: eNB GTP-U TEID of this S1 bearer.
+        example: '1111'
   SGwInfo:
     type: object
     required:
@@ -2425,9 +3573,11 @@ definitions:
       ipAddress:
         type: string
         description: SGW transport layer address of this S1 bearer.
+        example: '192.0.2.1'
       tunnelId:
         type: string
         description: SGW GTP-U TEID of this S1 bearer.
+        example: '2222'
   TimeStamp:
     type: object
     required:
@@ -2440,22 +3590,26 @@ definitions:
         description: >-
           The seconds part of the time. Time is defined as Unix-time since
           January 1, 1970, 00:00:00 UTC
+        example: 1577836800
       nanoSeconds:
         type: integer
         format: uint32
         description: >-
           The nanoseconds part of the time. Time is defined as Unix-time since
           January 1, 1970, 00:00:00 UTC
+        example: 0
   AppInsId:
     type: string
     format: string
     description: Unique identifier for the mobile edge application instance
+    example: '01'
   RequestId:
     type: string
     format: string
     description: >-
       Unique identifier allocated by the Mobile Edge application for the 
       Information request.
+    example: '01'
   CellUserInfo:
     type: object
     required:
@@ -2492,12 +3646,14 @@ definitions:
         description: >-
           The Mobile Country Code part of PLMN Identity as defined in 3GPP TS
           36.413
+        example: '001'
       mnc:
         type: string
         format: string
         description: >-
           The Mobile Network Code part of PLMN Identity as defined in 3GPP TS
           36.413
+        example: '01'
   CellId:
     type: array
     items:
@@ -2506,6 +3662,7 @@ definitions:
     description: >-
       The E-UTRAN Cell Identity as a bit string (size (28)), as defined in 3GPP
       TS 36.413
+    example: '0x800000A'
   UeInfo:
     required:
       - erabInfo
@@ -2533,10 +3690,12 @@ definitions:
           - NATED_IP_ADDRESS
           - GTP_TEID
         description: Numeric value (0-255) corresponding to specified type of identifier
+        example: 'UE_IPV4_ADDRESS'
       value:
         type: integer
         format: int32
         description: Value for the identifier
+        example: 1
   ErabQosParameters:
     properties:
       qci:
@@ -2545,6 +3704,7 @@ definitions:
     type: integer
     format: int32
     description: QoS Class Identifier as defined in TS 23.401
+    example: 7
   QosInformation:
     required:
       - erabGbrDl
@@ -2558,30 +3718,36 @@ definitions:
         description: >-
           This IE indicates the maximum downlink E-RAB Bit Rate as defined in TS
           23.401 for this bearer.
+        example: 10
       erabMbrUl:
         type: integer
         format: int32
         description: >-
           This IE indicates the maximum uplink E-RAB Bit Rate as defined in TS
           23.401 for this bearer.
+        example: 10
       erabGbrDl:
         type: integer
         format: int32
         description: >-
           This IE indicates the guaranteed  downlink E-RAB Bit Rate as defined
           in TS 23.401 for this bearer.
+        example: 10
       erabGbrUl:
         type: integer
         format: int32
         description: >-
           This IE indicates the guaranteed  uplink E-RAB Bit Rate as defined in
           TS 23.401 for this bearer.
+        example: 10
   SusbcriptionLinkList:
     required:
       - _links
     properties:
       _links:
         $ref: '#/definitions/LinkList'
+      subscription:
+        $ref: '#/definitions/Subscription'
   MeasRepUeSubscriptionPost:
     required:
       - callbackReference
@@ -2792,11 +3958,12 @@ definitions:
     description: >-
       URL selected by the Mobile Edge application to receive notifications on
       the subscribed RNIS information.
+    example: http://meAppClient.example.com/rni/v1/
   Link:
     properties:
       self:
         $ref: '#/definitions/LinkType'
-    description: List of hyperlinks related to the resource.
+    description: List of hyperlinks related to the resource
   LinkList:
     required:
       - self
@@ -2805,24 +3972,19 @@ definitions:
         $ref: '#/definitions/LinkType'
       subscription:
         $ref: '#/definitions/Subscription'
-    description: List of hyperlinks related to the resource.
+    description: List of hyperlinks related to the resource
   LinkType:
-    properties:
-      self:
-        type: string
-        format: uri
-        description: >-
-          Self referring URL. This shall be included in the response from the
-          RNIS. The URI shall be unique within the RNI API as it acts as an ID
-          for the subscription
+    description: URI referring to a resource
+    type: string
+    format: uri
+    example: http://meAppClient.example.com/rni/v1/
   Subscription:
     required:
       - href
       - subscriptionType
     properties:
       href:
-        type: string
-        format: uri
+        $ref: '#/definitions/LinkType'
       subscriptionType:
         $ref: '#/definitions/SubscriptionType'
     description: A link to a subscription.
@@ -2838,7 +4000,8 @@ definitions:
       - MEAS_ REPORT_UE
       - MEAS_TIMING_ADVANCE
       - CA_RECONF
-      - S1_BEARER
+      - S1_BEARE
+    example: CELL_CHANGE
   FilterCriteriaAssoc:
     properties:
       appInsId:
@@ -2910,6 +4073,7 @@ definitions:
       - COMPLETED
       - REJECTED
       - CANCELLED
+    example: COMPLETED
   EventType:
     type: string
     description: Description of the subscribed event.
@@ -2918,6 +4082,7 @@ definitions:
       - S1_BEARER_ESTABLISH
       - S1_BEARER_MODIFY
       - S1_BEARER_RELEASE
+    example: S1_BEARER_ESTABLISH
   Trigger:
     type: string
     description: Unique identifier for the mobile edge application instance
@@ -2939,6 +4104,7 @@ definitions:
       - EVENT_W1
       - EVENT_W2
       - EVENT_W3
+    example: EVENT_A3
   ErabQosParameters_qci:
     properties:
       qosInformation:
