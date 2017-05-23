@@ -1,13 +1,13 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Description the RNIS API using OpenAPI",
+        "description": "Description of the MEC-012 RNI API using OpenAPI",
         "version": "1.0.1",
         "title": "RNIS API",
         "termsOfService": "TBD"
     },
     "host": "127.0.0.1:8081",
-    "basePath": "/rnis/v1",
+    "basePath": "/rni/v1",
     "schemes": [
         "http",
         "https"

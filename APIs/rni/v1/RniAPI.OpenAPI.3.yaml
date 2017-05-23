@@ -3,7 +3,7 @@ servers:
   - url: 'http://127.0.0.1:8081/rnis/v1'
   - url: 'https://127.0.0.1:8081/rnis/v1'
 info:
-  description: Description the RNIS API using OpenAPI
+  description: Description of the MEC-012 RNI API using OpenAPI
   version: 1.0.1
   title: RNIS API
   termsOfService: TBD

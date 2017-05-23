@@ -1,0 +1,11 @@
+description: The enumeration TransportTypes represents types of transports
+type: string
+enum:
+  - REST_HTTP
+  - MB_TOPIC_BASED
+  - MB_ROUTING
+  - MB_PUBSUB
+  - RPC
+  - RPC_STREAMING
+  - WEBSOCKET
+example: JSON

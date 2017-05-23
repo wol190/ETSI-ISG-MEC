@@ -1,0 +1,17 @@
+description: This method retrieves information about a meService resource. This method is typically used in "service availability query" procedure
+operationId: ServicesServiceId.GET
+produces:
+- application/json
+parameters:
+- $ref: '../parameters/index.yaml#/Path.ServiceId'
+responses:
+  200:
+    description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+    schema:
+      properties:
+        ServiceInfo:
+          $ref: '../definitions/index.yaml#/ServiceInfo'
+
+#    examples:
+#      application/json:
+#        $ref: '../examples/ServiceInfo.json' 

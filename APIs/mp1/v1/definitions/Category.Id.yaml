@@ -1,0 +1,3 @@
+description: Unique identifier of the category
+type: string
+example: id12345

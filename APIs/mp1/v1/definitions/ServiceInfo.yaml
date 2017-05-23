@@ -1,0 +1,26 @@
+description: This type represents the general information of a mobile edge service.
+required:
+- serName
+- version
+- state
+- serializer
+properties:
+  serInstanceId:
+#    $ref: './SerInstanceId.yaml'  # works 2.1.7, but not in 3.0.0
+    $ref: '../definitions/SerInstanceId.yaml'  # works 2.1.7, but not in 3.0.0
+#    $ref: './index.yaml#/SerInstanceId'  # doesn't get resolved
+#    $ref: '../definitions/index.yaml#/SerInstanceId'  # also doesn't get resolved
+  serName:
+    $ref: 'index.yaml#/SerName'
+  serCategory:
+    $ref: 'index.yaml#/CategoryRef'
+  version:
+    $ref: 'index.yaml#/Service.Version'
+  state:
+    $ref: 'index.yaml#/State'
+  transportId:
+    $ref: 'index.yaml#/TransportId'
+  transportInfo:
+    $ref: 'index.yaml#/TransportInfo'
+  serializer:
+    $ref: 'index.yaml#/SerializerTypes'

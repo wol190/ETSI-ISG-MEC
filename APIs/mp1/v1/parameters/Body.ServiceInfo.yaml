@@ -1,0 +1,6 @@
+name: ServiceInfo
+description: New ServiceInfo with updated "state" is included as entity body of the request
+in: body
+required: true
+schema:
+  $ref: '../definitions/index.yaml#/ServiceInfo'

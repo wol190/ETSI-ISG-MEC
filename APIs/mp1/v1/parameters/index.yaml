@@ -1,0 +1,5 @@
+Body.ServiceInfo:
+  $ref: ./Body.ServiceInfo.yaml
+
+Path.ServiceId:
+  $ref: ./Path.ServiceId.yaml

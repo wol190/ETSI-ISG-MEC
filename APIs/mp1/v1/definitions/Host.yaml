@@ -1,0 +1,3 @@
+description: Host portion of the address
+type: string
+example: '192.0.2.0'

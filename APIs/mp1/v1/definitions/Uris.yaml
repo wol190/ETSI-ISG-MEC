@@ -1,0 +1,4 @@
+description: Entry point information of the service
+type: string
+format: uri
+example: '/meMp1/service/EntryPoint'

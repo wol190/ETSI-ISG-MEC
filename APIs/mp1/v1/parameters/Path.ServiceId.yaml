@@ -1,0 +1,6 @@
+name: serviceId
+description: Represents a mobile edge service instance.
+in: path
+required: true
+type: string
+format: uri

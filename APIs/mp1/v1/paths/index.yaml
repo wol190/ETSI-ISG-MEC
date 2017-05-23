@@ -1,0 +1,2 @@
+/services/{serviceId}:
+  $ref: ./ServicesServiceId.yaml

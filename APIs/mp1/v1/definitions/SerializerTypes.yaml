@@ -1,0 +1,7 @@
+description: The enumeration SerializerTypes represents types of serializers
+type: string
+enum:
+  - JSON
+  - XML
+  - PROTOBUF3
+example: JSON

@@ -1,0 +1,3 @@
+description: The name of this transport
+type: string
+example: REST

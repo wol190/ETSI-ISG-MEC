@@ -1,5 +1,5 @@
-  description: "An initial attempt to describe the MEC Location API using OpenAPI, which is based on the Open Mobile Alliance's specification RESTful Network API for Zonal Presence"
-  version: '1.0.0'
+  description: "The MEC-012 Location API described using OpenAPI, which is based on the Open Mobile Alliance's specification RESTful Network API for Zonal Presence"
+  version: '1.0.1'
   title: 'MEC Location API'
   termsOfService: "TBD"
   contact:

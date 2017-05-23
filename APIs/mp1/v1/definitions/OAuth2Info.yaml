@@ -1,0 +1,9 @@
+description: Parameters related to use of OAuth 2.0
+required:
+- grantTypes
+- tokenEndpoint
+properties:
+  grantTypes:
+    $ref: 'index.yaml#/GrantTypes'
+  tokenEndpoint:
+    $ref: 'index.yaml#/TokenEndpoint'

@@ -1,0 +1,4 @@
+description: The token endpoint
+type: string
+format: uri
+example: '/meMp1/mp1.security/TokenEndPoint'

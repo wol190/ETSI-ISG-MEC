@@ -1,0 +1,87 @@
+Address:
+  $ref: ./Address.yaml
+
+CategoryRef:
+  $ref: ./CategoryRef.yaml
+  
+EndPointInfo:
+  $ref: ./EndPointInfo.yaml
+  
+GrantTypes:
+  $ref: ./GrantTypes.yaml
+  
+Host:
+  $ref: ./Host.yaml
+  
+Category.Href:
+  $ref: ./Category.Href.yaml
+  
+Category.Id:
+  $ref: ./Category.Id.yaml
+  
+Category.Name:
+  $ref: ./Category.Name.yaml
+
+Category.Version:
+  $ref: ./Category.Version.yaml
+
+LinkType:
+  $ref: ./LinkType.yaml
+  
+OAuth2Info:
+  $ref: ./OAuth2Info.yaml
+  
+Port:
+  $ref: ./Port.yaml
+  
+SecurityInfo:
+  $ref: ./SecurityInfo.yaml
+  
+SerializerTypes:
+  $ref: ./SerializerTypes.yaml
+  
+SerInstanceId:
+  $ref: ./SerInstanceId.yaml
+  
+SerName:
+  $ref: ./SerName.yaml
+  
+Service.Version:
+  $ref: ./Service.Version.yaml
+
+ServiceInfo:
+  $ref: ./ServiceInfo.yaml
+
+State:
+  $ref: ./State.yaml
+  
+TokenEndpoint:
+  $ref: ./TokenEndpoint.yaml
+  
+TransportId:
+  $ref: ./TransportId.yaml
+  
+TransportInfo:
+  $ref: ./TransportInfo.yaml
+
+TransportInfo.Description:
+  $ref: ./TransportInfo.Description.yaml
+
+TransportInfo.Id:
+  $ref: ./TransportInfo.Id.yaml
+  
+TransportInfo.Name:
+  $ref: ./TransportInfo.Name.yaml
+
+TransportInfo.Protocol:
+  $ref: ./TransportInfo.Protocol.yaml
+
+TransportInfo.Version:
+  $ref: ./TransportInfo.Version.yaml
+
+TransportTypes:
+  $ref: ./TransportTypes.yaml
+
+Uris:
+  $ref: ./Uris.yaml
+

@@ -1,0 +1,12 @@
+# The file constitutes OpenAPI "Parameter Object"
+# The filename should be MEC parameter name, with "yaml" extension e.g. Path.SubscriptionId.yaml for URI a variables
+# The JSON Schema specification defines all available properties, e.g. minimum, exclusiveMaximum
+# Below are the minimum set for a MEC parameter, i.e. name, description, in, required, type & format
+# "example" is not supported in the current OpenAPI specification release
+
+name: subscriptionId  # Name of the parameter
+description: Subscription identifier # Description of the parameter
+in: path
+required: true
+type: string # MEC Attribute "Data Type"
+format: uri

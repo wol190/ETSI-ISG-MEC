@@ -1,0 +1,5 @@
+get:
+  $ref: ./ServicesServiceId.GET.yaml
+
+put:
+  $ref: ./ServicesServiceId.PUT.yaml

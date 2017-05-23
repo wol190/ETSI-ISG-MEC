@@ -1,0 +1,4 @@
+description: URI referring to a resource 
+type: string
+format: uri
+example: '/meMp1/example'
