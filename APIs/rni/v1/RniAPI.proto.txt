@@ -1,10 +1,10 @@
 /*
 info:
-  description: 'Description of the ETSI MEC ISG RNI API using Protocol Buffer'
+  description: 'Description of the ETSI MEC ISG RNIS API using Protocol Buffer'
   version: '1.0.1'
   title: 'MEC RNIS API, Protobuf'
 externalDocs: 
-  description: "ETSI MEC-012 V1.0.1 Radio Network Information API"
+  description: "ETSI MEC012 V1.0.1 Radio Network Information API"
   url: "https://docbox.etsi.org/ISG/MEC/70-Draft/0012RnisApi"
 */
 
