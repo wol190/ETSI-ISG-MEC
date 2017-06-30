@@ -1,18 +1,11 @@
 swagger: '2.0'
 info:
   description: 'The MEC-012 Location API described using OpenAPI, which is based on the Open Mobile Alliance''s specification RESTful Network API for Zonal Presence'
-  version: 1.0.1
+  version: 1.0.2
   title: MEC Location API
-  termsOfService: TBD
-  contact:
-    name: TBD
-    url: TBD
-  license:
-    name: ETSI MEC
-    url: TBD
 externalDocs:
-  description: ETSI MEC013 V1.0.1 Location Service API
-  url: 'https://docbox.etsi.org/ISG/MEC/70-Draft/0013LocationApi'
+  description: ETSI MEC013 V1.0.2 Location Service API
+  url: 'https://docbox.etsi.org/ISG/MEC/Open/MEC-013locationapiv102-final-draft.pdf'
 host: '127.0.0.1:8081'
 basePath: /exampleAPI/location/v1/
 schemes:
@@ -23,693 +16,62 @@ consumes:
 produces:
   - application/json
 parameters:
-  ZoneId:
-    name: zoneId
-    in: query
-    description: Zone ID
-    required: trueswagger: '2.0'
-                  info:
-                    description: 'The MEC-012 Location API described using OpenAPI, which is based on the Open Mobile Alliance''s specification RESTful Network API for Zonal Presence'
-                    version: 1.0.1
-                    title: MEC Location API
-                    termsOfService: TBD
-                    contact:
-                      name: TBD
-                      url: TBD
-                    license:
-                      name: ETSI MEC
-                      url: TBD
-                  externalDocs:
-                    description: ETSI MEC013 V1.0.1 Location Service API
-                    url: 'https://docbox.etsi.org/ISG/MEC/70-Draft/0013LocationApi'
-                  host: '127.0.0.1:8081'
-                  basePath: /exampleAPI/location/v1/
-                  schemes:
-                    - http
-                    - https
-                  consumes:
-                    - application/json
-                  produces:
-                    - application/json
-                  parameters:
-                    ZoneId:
-                      name: zoneId
-                      in: query
-                      description: Zone ID
-                      required: true
-                      type: string
-                    AccessPointId:
-                      name: accessPointId
-                      in: query
-                      description: 'Identifier of access point, reference "definitions" for string format'
-                      required: false
-                      type: string
-                    InterestRealm:
-                      name: interestRealm
-                      in: query
-                      description: 'Interest realm of access point (e.g. geographical area, a type of industry etc.).'
-                      required: false
-                      type: string
-                  paths:
-                    /zones:
-                      get:
-                        description: Used to get a list of identifiers for zones authorized for use by the application.
-                        produces:
-                          - application/json
-                        responses:
-                          '200':
-                            description: Successful response to a query regarding the status of a zone
-                            schema:
-                              properties:
-                                zoneList:
-                                  $ref: '#/definitions/ZoneList'
-                            examples:
-                              application/json:
-                                zoneList:
-                                  zone:
-                                    - zoneId: zone01
-                                      numberOfAccessPoints: '3'
-                                      numberOfUnserviceableAccessPoints: '1'
-                                      numberOfUsers: '10'
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/zones/zone01'
-                                    - zoneId: zone02
-                                      numberOfAccessPoints: '12'
-                                      numberOfUnserviceableAccessPoints: '0'
-                                      numberOfUsers: '36'
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/zones/zone02'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/zones'
-                    '/zones/{zoneId}':
-                      get:
-                        description: Used to get the status of a zone.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: zoneId
-                            in: path
-                            description: Zone ID
-                            required: true
-                            type: string
-                        responses:
-                          '200':
-                            description: Successful response to a query regarding the status of a zone
-                            schema:
-                              properties:
-                                zoneInfo:
-                                  $ref: '#/definitions/ZoneInfo'
-                            examples:
-                              application/json:
-                                zoneInfo:
-                                  zoneId: zone01
-                                  numberOfAccessPoints: '3'
-                                  numberOfUnserviceableAccessPoints: '1'
-                                  numberOfUsers: '10'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/zones/zone01'
-                    '/zones/{zoneId}/accessPoints':
-                      get:
-                        description: Access point status can be retrieved for sets of access points matching attribute in the request.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: zoneId
-                            in: path
-                            description: Zone ID
-                            required: true
-                            type: string
-                          - $ref: '#/parameters/InterestRealm'
-                        responses:
-                          '200':
-                            description: Successful response to a query a named set of access point status request
-                            schema:
-                              properties:
-                                accessPointList:
-                                  $ref: '#/definitions/AccessPointList'
-                            examples:
-                              application/json:
-                                accessPointList:
-                                  zoneId: zone01
-                                  accessPoint:
-                                    - accessPointId: '001010000000000000000000000000001'
-                                      locationInfo:
-                                        latitude: '90.123'
-                                        longitude: '80.123'
-                                        altitude: '10.0'
-                                        accuracy: '0'
-                                      connectionType: Macro
-                                      operationStatus: Serviceable
-                                      numberOfUsers: '5'
-                                      interestRealm: LA
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/zones/zone01/accessPoints/ap001'
-                                    - accessPointId: '001010000000000000000000000000010'
-                                      locationInfo:
-                                        latitude: '91.123'
-                                        longitude: '81.123'
-                                        altitude: '12.0'
-                                        accuracy: '1'
-                                      connectionType: Macro
-                                      operationStatus: Unserviceable
-                                      numberOfUsers: '0'
-                                      interestRealm: DC
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/zones/zone01/accessPoints/ap002'
-                                    - accessPointId: '001010000000000000000000000000011'
-                                      locationInfo:
-                                        latitude: '93.123'
-                                        longitude: '83.123'
-                                        altitude: '16.0'
-                                        accuracy: '3'
-                                      connectionType: Macro
-                                      operationStatus: Serviceable
-                                      numberOfUsers: '5'
-                                      interestRealm: NJ
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/zones/zone01/accessPoints/ap003'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/zones/zone01/accessPoints'
-                    '/zones/{zoneId}/accessPoints/{accessPointId}':
-                      get:
-                        description: Access point status can be retrieved for sets of access points matching attribute in the request.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: zoneId
-                            in: path
-                            description: Zone ID
-                            required: true
-                            type: string
-                          - name: accessPointId
-                            in: path
-                            description: Access Point ID
-                            required: true
-                            type: string
-                        responses:
-                          '200':
-                            description: Successful response to a query a named set of access point status request
-                            schema:
-                              properties:
-                                accessPointInfo:
-                                  $ref: '#/definitions/AccessPointInfo'
-                            examples:
-                              application/json:
-                                accessPointInfo:
-                                  accessPointId: '001010000000000000000000000000001'
-                                  locationInfo:
-                                    latitude: '90.123'
-                                    longitude: '80.123'
-                                    altitude: '10.0'
-                                    accuracy: '0'
-                                  connectionType: Macro
-                                  operationStatus: Serviceable
-                                  numberOfUsers: '5'
-                                  interestRealm: LA
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/zones/zone001/accessPoints/ap001'
-                    /users:
-                      get:
-                        description: Users currently using a zone may be retrieved for sets of access points matching attribute in the request
-                        produces:
-                          - application/json
-                        parameters:
-                          - $ref: '#/parameters/ZoneId'
-                          - $ref: '#/parameters/AccessPointId'
-                        responses:
-                          '200':
-                            description: Successful response to a query users within a zone request
-                            schema:
-                              properties:
-                                userList:
-                                  $ref: '#/definitions/UserList'
-                            examples:
-                              application/json:
-                                userList:
-                                  user:
-                                    - address: 'acr:192.0.2.1'
-                                      accessPointId: '001010000000000000000000000000001'
-                                      zoneId: zone01
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.1'
-                                    - address: 'acr:192.0.2.2'
-                                      accessPointId: '001010000000000000000000000000001'
-                                      zoneId: zone01
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.2'
-                                    - address: 'acr:192.0.2.3'
-                                      accessPointId: '001010000000000000000000000000010'
-                                      zoneId: zone01
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.3'
-                                    - address: 'acr:192.0.2.4'
-                                      accessPointId: '001010000000000000000000000000001'
-                                      zoneId: zone02
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.4'
-                                    - address: 'acr:192.0.2.5'
-                                      accessPointId: '001010000000000000000000000000010'
-                                      zoneId: zone02
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.5'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/users'
-                    '/users/{userId}':
-                      get:
-                        description: Users currently using a zone may be retrieved for sets of access points matching attribute in the request
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: userId
-                            in: path
-                            description: User ID
-                            required: true
-                            type: string
-                        responses:
-                          '200':
-                            description: Successful response to a query users within a zone request
-                            schema:
-                              properties:
-                                userInfo:
-                                  $ref: '#/definitions/UserInfo'
-                            examples:
-                              application/json:
-                                userInfo:
-                                  address: 'acr:192.0.2.1'
-                                  accessPointId: '001010000000000000000000000000001'
-                                  zoneId: zone01
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/users/acr%3A192.0.2.1'
-                                  locationInfo:
-                                    latitude: '90.123'
-                                    longitude: '80.123'
-                                    altitude: '10.0'
-                                    accuracy: '0'
-                                  contextLocationInfo: GroundFloor
-                    /subscriptions/zonalTraffic:
-                      get:
-                        description: This operation is used for retrieving all active subscriptions to zonal traffic change notifications.
-                        produces:
-                          - application/json
-                        responses:
-                          '200':
-                            description: Response to retrieve zonal traffic subscriptions
-                            schema:
-                              type: object
-                              properties:
-                                notificationSubscriptionList:
-                                  type: object
-                                  properties:
-                                    zonalTrafficSubscription:
-                                      type: array
-                                      items:
-                                        $ref: '#/definitions/ZonalTrafficSubscription'
-                                    resourceURL:
-                                      $ref: '#/definitions/ResourceURL'
-                            examples:
-                              application/json:
-                                notificationSubscriptionList:
-                                  zonalTrafficSubscription:
-                                    - clientCorrelator: '0123'
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zonalTraffic/subscription123'
-                                      callbackReference:
-                                        notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                      zoneId: zone01
-                                      interestRealm: LA
-                                      userEventCriteria: Transferring
-                                    - clientCorrelator: '0124'
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zonalTraffic/subscription124'
-                                      callbackReference:
-                                        notifyURL: 'http://clientApp.example.com/location_notifications/123457'
-                                      zoneId: zone02
-                                      interestRealm: LA
-                                      userEventCriteria: Transferring
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/zonalTraffic'
-                      post:
-                        description: This operation is used for creating a new subscription to zonal traffic change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: zonalTrafficSubscription
-                            in: body
-                            description: Zonal Traffic Subscription
-                            required: true
-                            schema:
-                              $ref: '#/definitions/ZonalTrafficSubscription'
-                        responses:
-                          '201':
-                            description: Response to create new zonal traffic subscription
-                            schema:
-                              properties:
-                                zonalTrafficSubscription:
-                                  $ref: '#/definitions/ZonalTrafficSubscription'
-                            examples:
-                              application/json:
-                                zonalTrafficSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zonalTraffic/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  zoneId: zone01
-                                  interestRealm: LA
-                                  userEventCriteria: Transferring
-                    '/subscriptions/zonalTraffic/{subscriptionId}':
-                      get:
-                        description: This operation is used for updating an individual subscription to zonal traffic change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: subscriptionId
-                            in: path
-                            description: Subscription ID
-                            required: true
-                            type: string
-                        responses:
-                          '200':
-                            description: Response to retrieve individual zonal traffic subscription
-                            schema:
-                              properties:
-                                zonalTrafficSubscription:
-                                  $ref: '#/definitions/ZonalTrafficSubscription'
-                            examples:
-                              application/json:
-                                zonalTrafficSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zonalTraffic/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  zoneId: zone01
-                                  interestRealm: LA
-                                  userEventCriteria: Transferring
-                      put:
-                        description: This operation is used for updating an individual subscription to zonal traffic change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: subscriptionId
-                            in: path
-                            description: Subscription ID
-                            required: true
-                            type: string
-                          - name: zonalTrafficSubscription
-                            in: body
-                            description: Zonal Traffic Subscription
-                            required: true
-                            schema:
-                              $ref: '#/definitions/ZonalTrafficSubscription'
-                        responses:
-                          '200':
-                            description: Response to update individual zonal traffic subscription
-                            schema:
-                              properties:
-                                zonalTrafficSubscription:
-                                  $ref: '#/definitions/ZonalTrafficSubscription'
-                            examples:
-                              application/json:
-                                zonalTrafficSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zonalTraffic/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  zoneId: zone01
-                                  interestRealm: LA
-                                  userEventCriteria: Transferring
-                      delete:
-                        description: This operation is used for cancelling a subscription and stopping corresponding notifications.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: subscriptionId
-                            in: path
-                            description: Subscription ID
-                            required: true
-                            type: string
-                        responses:
-                          '204':
-                            description: No content
-                    /subscriptions/userTracking:
-                      get:
-                        description: This operation is used for retrieving all active subscriptions to user tracking change notifications.
-                        produces:
-                          - application/json
-                        responses:
-                          '200':
-                            description: Response to retrieve user tracking subscriptions
-                            schema:
-                              type: object
-                              properties:
-                                notificationSubscriptionList:
-                                  type: object
-                                  properties:
-                                    userTrackingSubscription:
-                                      type: array
-                                      items:
-                                        $ref: '#/definitions/UserTrackingSubscription'
-                                    resourceURL:
-                                      $ref: '#/definitions/ResourceURL'
-                            examples:
-                              application/json:
-                                notificationSubscriptionList:
-                                  userTrackingSubscription:
-                                    - clientCorrelator: '0123'
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123'
-                                      callbackReference:
-                                        notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                      address: 'acr:192.0.2.1'
-                                      userEventCriteria: Transferring
-                                    - clientCorrelator: '0124'
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription124'
-                                      callbackReference:
-                                        notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                      address: 'acr:192.0.2.2'
-                                      userEventCriteria: Transferring
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/userTracking'
-                      post:
-                        description: This operation is used for creating a new subscription to user tracking change notification
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: userTrackingSubscription
-                            in: body
-                            description: User Tracking Subscription
-                            required: true
-                            schema:
-                              $ref: '#/definitions/UserTrackingSubscription'
-                        responses:
-                          '201':
-                            description: Response to create new user tracking subscription
-                            schema:
-                              properties:
-                                userTrackingSubscription:
-                                  $ref: '#/definitions/UserTrackingSubscription'
-                            examples:
-                              application/json:
-                                userTrackingSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  address: 'acr:192.0.2.1'
-                                  userEventCriteria: Transferring
-                    '/subscriptions/userTracking/{subscriptionId}':
-                      get:
-                        description: This operation is used for retrieving an individual subscription to user tracking change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: subscriptionId
-                            in: path
-                            description: Subscription ID
-                            required: true
-                            type: string
-                        responses:
-                          '200':
-                            description: Response to retrieve individual user tracking subscription
-                            schema:
-                              properties:
-                                userTrackingSubscription:
-                                  $ref: '#/definitions/UserTrackingSubscription'
-                            examples:
-                              application/json:
-                                userTrackingSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  address: 'acr:192.0.2.1'
-                                  userEventCriteria: Transferring
-                      put:
-                        description: This operation is used for updating an individual subscription to user tracking change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: subscriptionId
-                            in: path
-                            description: Subscription ID
-                            required: true
-                            type: string
-                          - name: userTrackingSubscription
-                            in: body
-                            description: User Tracking Subscription
-                            required: true
-                            schema:
-                              $ref: '#/definitions/UserTrackingSubscription'
-                        responses:
-                          '200':
-                            description: Response to update individual user tracking subscription
-                            schema:
-                              properties:
-                                userTrackingSubscription:
-                                  $ref: '#/definitions/UserTrackingSubscription'
-                            examples:
-                              application/json:
-                                userTrackingSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/userTracking/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  address: 'acr:192.0.2.1'
-                                  userEventCriteria: Transferring
-                      delete:
-                        description: This operation is used for retrieving an individual subscription to user tracking change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: subscriptionId
-                            in: path
-                            description: Subscription ID
-                            required: true
-                            type: string
-                        responses:
-                          '204':
-                            description: No Content
-                    /subscriptions/zonalStatus:
-                      get:
-                        description: This operation is used for creating a new subscription to zone status change notification.
-                        produces:
-                          - application/json
-                        responses:
-                          '200':
-                            description: Response to retrieve zone status subscriptions
-                            schema:
-                              type: object
-                              properties:
-                                notificationSubscriptionList:
-                                  type: object
-                                  properties:
-                                    zonalTrafficSubscription:
-                                      type: array
-                                      items:
-                                        $ref: '#/definitions/ZoneStatusSubscription'
-                                    resourceURL:
-                                      $ref: '#/definitions/ResourceURL'
-                            examples:
-                              application/json:
-                                notificationSubscriptionList:
-                                  zoneStatusSubscription:
-                                    - clientCorrelator: '0123'
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zoneStatus/subscription123'
-                                      callbackReference:
-                                        notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                      zoneId: zone01
-                                      numberOfUsersZoneThreshold: '500'
-                                      operationStatus: Serviceable
-                                    - clientCorrelator: '0124'
-                                      resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zoneStatus/subscription124'
-                                      callbackReference:
-                                        notifyURL: 'http://clientApp.example.com/location_notifications/123457'
-                                      zoneId: zone02
-                                      numberOfUsersAPThreshold: '50'
-                                      operationStatus: Serviceable
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zoneStatus'
-                      post:
-                        description: This operation is used for creating a new subscription to zone status change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: zoneStatusSubscription
-                            in: body
-                            description: Zone Status Subscription
-                            required: true
-                            schema:
-                              $ref: '#/definitions/ZoneStatusSubscription'
-                        responses:
-                          '201':
-                            description: Response to create new zone status subscription
-                            schema:
-                              properties:
-                                zonalTrafficSubscription:
-                                  $ref: '#/definitions/ZoneStatusSubscription'
-                            examples:
-                              application/json:
-                                zoneStatusSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zoneStatus/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  zoneId: zone01
-                                  numberOfUsersZoneThreshold: '500'
-                                  operationStatus: Serviceable
-                    '/subscriptions/zoneStatus/{subscriptionId}':
-                      get:
-                        description: This operation is used for retrieving an individual subscription to zone status change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: subscriptionId
-                            in: path
-                            description: Subscription ID
-                            required: true
-                            type: string
-                        responses:
-                          '200':
-                            description: Response to retrieve individual zone status subscription
-                            schema:
-                              properties:
-                                zoneStatusSubscription:
-                                  $ref: '#/definitions/ZoneStatusSubscription'
-                            examples:
-                              application/json:
-                                zoneStatusSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zoneStatus/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  zoneId: zone01
-                                  numberOfUsersZoneThreshold: '500'
-                                  operationStatus: Serviceable
-                      put:
-                        description: This operation is used for updating an individual subscription to zone status change notification.
-                        produces:
-                          - application/json
-                        parameters:
-                          - name: subscriptionId
-                            in: path
-                            description: Subscription ID
-                            required: true
-                            type: string
-                          - name: zoneStatusSubscription
-                            in: body
-                            description: Zone Status Subscription
-                            required: true
-                            schema:
-                              $ref: '#/definitions/ZoneStatusSubscription'
-                        responses:
-                          '200':
-                            description: Response to update individual zone status subscription
-                            schema:
-                              properties:
-                                zoneStatusSubscription:
-                                  $ref: '#/definitions/ZoneStatusSubscription'
-                            examples:
-                              application/json:
-                                zoneStatusSubscription:
-                                  clientCorrelator: '0123'
-                                  resourceURL: 'http://example.com/exampleAPI/location/v1/subscriptions/zoneStatus/subscription123'
-                                  callbackReference:
-                                    notifyURL: 'http://clientApp.example.com/location_notifications/123456'
-                                  zoneId: zone01
-                                  numberOfUsersZoneThreshold: '500'
-                                  operationStatus: Serviceable
-                  definitions:
-                    $ref: ./definitions/index.yaml
-                  
+  Body.UserTrackingSubscription:
+    name: userTrackingSubscription
+    in: body
+    description: User Tracking Subscription
+    required: true
+    schema:
+      $ref: '#/definitions/UserTrackingSubscription'
+  Body.ZonalTrafficSubscription: null
+  Body.ZoneStatusSubscription:
+    name: zoneStatusSubscription
+    in: body
+    description: Zone Status Subscription
+    required: true
+    schema:
+      $ref: '#/definitions/ZoneStatusSubscription'
+  Path.AccessPointId:
+    name: accessPointId
+    in: path
+    description: Access Point ID
+    required: true
     type: string
-  AccessPointId:
+  Path.SubscriptionId:
+    name: subscriptionId
+    in: path
+    description: Subscription ID
+    required: true
+    type: string
+  Path.UserId:
+    name: userId
+    in: path
+    description: User ID
+    required: true
+    type: string
+  Path.ZoneId:
+    name: zoneId
+    in: path
+    description: Zone ID
+    required: true
+    type: string
+  Query.AccessPointId:
     name: accessPointId
     in: query
     description: 'Identifier of access point, reference "definitions" for string format'
     required: false
     type: string
-  InterestRealm:
+  Query.InterestRealm:
     name: interestRealm
     in: query
     description: 'Interest realm of access point (e.g. geographical area, a type of industry etc.).'
     required: false
+    type: string
+  Query.ZoneId:
+    name: zoneId
+    in: query
+    description: Zone ID
+    required: true
     type: string
 paths:
   /zones:
@@ -745,11 +107,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zoneId
-          in: path
-          description: Zone ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.ZoneId'
       responses:
         '200':
           description: Successful response to a query regarding the status of a zone
@@ -771,12 +129,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zoneId
-          in: path
-          description: Zone ID
-          required: true
-          type: string
-        - $ref: '#/parameters/InterestRealm'
+        - $ref: '#/parameters/Path.ZoneId'
+        - $ref: '#/parameters/Query.InterestRealm'
       responses:
         '200':
           description: Successful response to a query a named set of access point status request
@@ -829,16 +183,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zoneId
-          in: path
-          description: Zone ID
-          required: true
-          type: string
-        - name: accessPointId
-          in: path
-          description: Access Point ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.ZoneId'
+        - $ref: '#/parameters/Path.AccessPointId'
       responses:
         '200':
           description: Successful response to a query a named set of access point status request
@@ -866,8 +212,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - $ref: '#/parameters/ZoneId'
-        - $ref: '#/parameters/AccessPointId'
+        - $ref: '#/parameters/Query.ZoneId'
+        - $ref: '#/parameters/Query.AccessPointId'
       responses:
         '200':
           description: Successful response to a query users within a zone request
@@ -906,11 +252,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: userId
-          in: path
-          description: User ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.UserId'
       responses:
         '200':
           description: Successful response to a query users within a zone request
@@ -975,12 +317,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zonalTrafficSubscription
-          in: body
-          description: Zonal Traffic Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/ZonalTrafficSubscription'
+        - $ref: '#/parameters/Body.ZonalTrafficSubscription'
       responses:
         '201':
           description: Response to create new zonal traffic subscription
@@ -1004,11 +341,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '200':
           description: Response to retrieve individual zonal traffic subscription
@@ -1031,17 +364,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
-        - name: zonalTrafficSubscription
-          in: body
-          description: Zonal Traffic Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/ZonalTrafficSubscription'
+        - $ref: '#/parameters/Path.SubscriptionId'
+        - $ref: '#/parameters/Body.ZonalTrafficSubscription'
       responses:
         '200':
           description: Response to update individual zonal traffic subscription
@@ -1064,11 +388,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '204':
           description: No content
@@ -1114,12 +434,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: userTrackingSubscription
-          in: body
-          description: User Tracking Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/UserTrackingSubscription'
+        - $ref: '#/parameters/Body.UserTrackingSubscription'
       responses:
         '201':
           description: Response to create new user tracking subscription
@@ -1142,11 +457,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '200':
           description: Response to retrieve individual user tracking subscription
@@ -1168,17 +479,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
-        - name: userTrackingSubscription
-          in: body
-          description: User Tracking Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/UserTrackingSubscription'
+        - $ref: '#/parameters/Path.SubscriptionId'
+        - $ref: '#/parameters/Body.UserTrackingSubscription'
       responses:
         '200':
           description: Response to update individual user tracking subscription
@@ -1200,11 +502,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '204':
           description: No Content
@@ -1252,12 +550,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: zoneStatusSubscription
-          in: body
-          description: Zone Status Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/ZoneStatusSubscription'
+        - $ref: '#/parameters/Body.ZoneStatusSubscription'
       responses:
         '201':
           description: Response to create new zone status subscription
@@ -1281,11 +574,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
+        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '200':
           description: Response to retrieve individual zone status subscription
@@ -1308,17 +597,8 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: subscriptionId
-          in: path
-          description: Subscription ID
-          required: true
-          type: string
-        - name: zoneStatusSubscription
-          in: body
-          description: Zone Status Subscription
-          required: true
-          schema:
-            $ref: '#/definitions/ZoneStatusSubscription'
+        - $ref: '#/parameters/Path.SubscriptionId'
+        - $ref: '#/parameters/Body.ZoneStatusSubscription'
       responses:
         '200':
           description: Response to update individual zone status subscription
@@ -1336,6 +616,15 @@ paths:
                 zoneId: zone01
                 numberOfUsersZoneThreshold: '500'
                 operationStatus: Serviceable
+    delete:
+      description: This operation is used for cancelling a subscription and stopping corresponding notifications.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Path.SubscriptionId'
+      responses:
+        '204':
+          description: No content
 definitions:
   AccessPointId:
     description: 'Identifier of access point, <E-CGI><Cell Portion ID> (reference ETSI TS 129 171). Where the E-CGI is made up of the PLMN and Cell Identity (28 bit string). Then the PLMN is made up of the 3 digit MCC & 2 or 3 digit MNC. The Cell Portion is an optional element'
