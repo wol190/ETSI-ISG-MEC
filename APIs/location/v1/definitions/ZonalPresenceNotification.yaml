@@ -1,3 +1,5 @@
+description: A type containing zonal presence notification
+type: object
 required:
 - zoneId
 - address

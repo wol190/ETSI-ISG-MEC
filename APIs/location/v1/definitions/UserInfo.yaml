@@ -1,3 +1,5 @@
+description: A type containing user information.
+type: object
 required:
 - address
 - accessPointId

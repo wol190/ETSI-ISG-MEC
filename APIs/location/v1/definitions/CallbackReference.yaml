@@ -1,3 +1,5 @@
+description: Notification callback definition.
+type: object
 required:
 - notifyURL
 properties:

@@ -631,6 +631,8 @@ definitions:
     type: string
     example: '001010000000000000000000000000001'
   AccessPointInfo:
+    description: A type containing access point information.
+    type: object
     required:
       - accessPointId
       - connectionType
@@ -655,6 +657,8 @@ definitions:
       resourceURL:
         $ref: '#/definitions/ResourceURL'
   AccessPointList:
+    description: A type containing list of access points.
+    type: object
     required:
       - zoneId
       - resourceURL
@@ -674,16 +678,15 @@ definitions:
     format: uri
     example: 'acr:192.0.2.1'
   AncillaryInfo:
-    required:
-      - address
-    properties:
-      address:
-        $ref: '#/definitions/Address'
+    description: Reserved for future use.
+    type: string
   CallbackData:
     description: 'CallBackData if passed by the application during the associated ZonalTrafficSubscription and UserTrackingSubscription operation. See [REST_NetAPI_Common].'
     type: string
     example: '1234'
   CallbackReference:
+    description: Notification callback definition.
+    type: object
     required:
       - notifyURL
     properties:
@@ -714,6 +717,8 @@ definitions:
     type: string
     example: LA
   Link:
+    description: Link to other resources
+    type: object
     required:
       - rel
       - href
@@ -823,6 +828,8 @@ definitions:
     type: string
     example: Entering
   UserInfo:
+    description: A type containing user information.
+    type: object
     required:
       - address
       - accessPointId
@@ -845,6 +852,7 @@ definitions:
         $ref: '#/definitions/AncillaryInfo'
   UserList:
     description: A type containing list of users.
+    type: object
     required:
       - resourceURL
     properties:
@@ -856,6 +864,8 @@ definitions:
       resourceURL:
         $ref: '#/definitions/ResourceURL'
   UserTrackingSubscription:
+    description: A type containing user tracking subscription.
+    type: object
     required:
       - callbackReference
       - address
@@ -871,6 +881,8 @@ definitions:
       resourceURL:
         $ref: '#/definitions/ResourceURL'
   ZonalPresenceNotification:
+    description: A type containing zonal presence notification
+    type: object
     required:
       - zoneId
       - address
@@ -933,6 +945,7 @@ definitions:
     example: zone01
   ZoneInfo:
     description: A type containing zone information.
+    type: object
     required:
       - zoneId
       - numberOfAccessPoints
@@ -952,6 +965,7 @@ definitions:
         $ref: '#/definitions/ResourceURL'
   ZoneList:
     description: Collection of the zone information list.
+    type: object
     required:
       - resourceURL
     properties:
@@ -963,6 +977,8 @@ definitions:
       resourceURL:
         $ref: '#/definitions/ResourceURL'
   ZoneStatusNotification:
+    description: A type containing zone status notification.
+    type: object
     required:
       - zoneId
       - timestamp
@@ -988,6 +1004,8 @@ definitions:
           $ref: '#/definitions/Link'
         example: 'rel="ZonalStatusSubscription" href="http://example.com/exampleAPI/location/v1/subscriptions/zonalStatus/sub123"'
   ZoneStatusSubscription:
+    description: A type containing zone status subscription.
+    type: object
     required:
       - callbackReference
       - zoneId

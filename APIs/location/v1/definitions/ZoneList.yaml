@@ -1,4 +1,5 @@
 description: Collection of the zone information list.
+type: object
 required:
 - resourceURL
 properties:

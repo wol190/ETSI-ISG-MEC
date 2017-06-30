@@ -1,3 +1,5 @@
+description: A type containing list of access points.
+type: object
 required:
 - zoneId
 - resourceURL

@@ -1,3 +1,5 @@
+description: A type containing user tracking subscription.
+type: object
 required:
 - callbackReference
 - address

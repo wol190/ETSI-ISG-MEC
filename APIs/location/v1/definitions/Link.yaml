@@ -1,3 +1,5 @@
+description: Link to other resources
+type: object
 required:
 - rel
 - href

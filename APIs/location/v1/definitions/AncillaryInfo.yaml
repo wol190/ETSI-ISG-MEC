@@ -1,5 +1,2 @@
-required:
-- address
-properties:
-  address:
-    $ref: '#/definitions/Address'
+description: Reserved for future use.
+type: string

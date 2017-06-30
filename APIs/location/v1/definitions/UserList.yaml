@@ -1,4 +1,5 @@
 description: A type containing list of users.
+type: object
 required:
 - resourceURL
 properties:

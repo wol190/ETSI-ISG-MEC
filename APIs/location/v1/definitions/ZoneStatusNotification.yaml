@@ -1,3 +1,5 @@
+description: A type containing zone status notification.
+type: object
 required:
 - zoneId
 - timestamp

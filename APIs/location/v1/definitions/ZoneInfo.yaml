@@ -1,4 +1,5 @@
 description: A type containing zone information.
+type: object
 required:
 - zoneId
 - numberOfAccessPoints
