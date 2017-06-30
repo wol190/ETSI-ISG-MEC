@@ -1,0 +1,349 @@
+swagger: '2.0'
+info:
+  description: The MEC-011 Application Enablement API described using OpenAPI
+  version: 1.0.2
+  title: MEC-011 Mp1 API
+  termsOfService: TBD
+externalDocs:
+  description: ETSI MEC011 V1.0.2 Application Enablement API
+  url: 'https://docbox.etsi.org/ISG/MEC/Open/MEC-011application_enablement-v-1_0_2-final-draft.pdf'
+host: '127.0.0.1:8081'
+basePath: /exampleAPI/mp1/v1/
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  Body.ServiceInfo:
+    name: ServiceInfo
+    description: New ServiceInfo with updated "state" is included as entity body of the request
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/ServiceInfo'
+  Path.ServiceId:
+    name: serviceId
+    description: Represents a mobile edge service instance.
+    in: path
+    required: true
+    type: string
+    format: uri
+paths:
+  '/services/{serviceId}':
+    get:
+      description: This method retrieves information about a meService resource. This method is typically used in "service availability query" procedure
+      operationId: ServicesServiceId.GET
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Path.ServiceId'
+      responses:
+        '200':
+          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          schema:
+            properties:
+              ServiceInfo:
+                $ref: '#/definitions/ServiceInfo'
+          examples:
+            application/json:
+              ServiceInfo:
+                serInstanceId: ServiceInstance123
+                serName: ExampleService
+                serCategory:
+                  href: catItem1
+                  id: id12345
+                  name: RNI
+                  version: version1
+                version: ServiceVersion1
+                state: ACTIVE
+                transportId: Rest1
+                transportInfo:
+                  id: TransId12345
+                  name: REST
+                  description: REST API
+                  type: JSON
+                  protocol: HTTP
+                  version: '2.0'
+                  endpoint:
+                    uris:
+                      - /meMp1/service/EntryPoint
+                    addresses:
+                      - host: 192.0.2.0
+                        port: '8080'
+                  mp1.security:
+                    oAuth2Info:
+                      grantTypes: OAUTH2_CLIENT_CREDENTIALS
+                      tokenEndpoint: /meMp1/mp1.security/TokenEndPoint
+                serializer: JSON
+    put:
+      description: This method updates the information about a meService resource
+      operationId: ServicesServiceId.PUT
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Path.ServiceId'
+        - $ref: '#/parameters/Body.ServiceInfo'
+      responses:
+        '200':
+          description: 'Upon success, a response body containing data type describing the updated ServiceInfo is returned'
+          schema:
+            properties:
+              ServiceInfo:
+                $ref: '#/definitions/ServiceInfo'
+          examples:
+            application/json:
+              ServiceInfo:
+                serInstanceId: ServiceInstance123
+                serName: ExampleService
+                serCategory:
+                  href: catItem1
+                  id: id12345
+                  name: RNI
+                  version: version1
+                version: ServiceVersion1
+                state: ACTIVE
+                transportId: Rest1
+                transportInfo:
+                  id: TransId12345
+                  name: REST
+                  description: REST API
+                  type: JSON
+                  protocol: HTTP
+                  version: '2.0'
+                  endpoint:
+                    uris:
+                      - /meMp1/service/EntryPoint
+                    addresses:
+                      - host: 192.0.2.0
+                        port: '8080'
+                  mp1.security:
+                    oAuth2Info:
+                      grantTypes: OAUTH2_CLIENT_CREDENTIALS
+                      tokenEndpoint: /meMp1/mp1.security/TokenEndPoint
+                serializer: JSON
+definitions:
+  Address:
+    description: A IP address and port pair
+    type: object
+    properties:
+      host:
+        $ref: '#/definitions/Host'
+      port:
+        $ref: '#/definitions/Port'
+  CategoryRef:
+    description: This type represents the category reference
+    type: object
+    required:
+      - href
+      - id
+      - name
+      - version
+    properties:
+      href:
+        $ref: '#/definitions/Category.Href'
+      id:
+        $ref: '#/definitions/Category.Id'
+      name:
+        $ref: '#/definitions/Category.Name'
+      version:
+        $ref: '#/definitions/Category.Version'
+  EndPointInfo:
+    description: This type represents information about a transport endpoint
+    type: object
+    properties:
+      uris:
+        description: 'Entry point information of the service as string, formatted according to URI syntax'
+        type: array
+        items:
+          $ref: '#/definitions/Uris'
+      addresses:
+        description: Entry point information of the service as one or more pairs of IP address and port
+        type: array
+        items:
+          $ref: '#/definitions/Address'
+  GrantTypes:
+    description: List of supported OAuth 2.0 grant types
+    type: string
+    enum:
+      - OAUTH2_AUTHORIZATION_CODE
+      - OAUTH2_IMPLICIT_GRANT
+      - OAUTH2_RESOURCE_OWNER
+      - OAUTH2_CLIENT_CREDENTIALS
+    example: OAUTH2_CLIENT_CREDENTIALS
+  Host:
+    description: Host portion of the address
+    type: string
+    example: 192.0.2.0
+  Category.Href:
+    description: Reference of the catalogue
+    type: string
+    example: catItem1
+  Category.Id:
+    description: Unique identifier of the category
+    type: string
+    example: id12345
+  Category.Name:
+    description: Name of the category
+    type: string
+    example: RNI
+  Category.Version:
+    description: Category version
+    type: string
+    example: version1
+  LinkType:
+    description: URI referring to a resource
+    type: string
+    format: uri
+    example: /meMp1/example
+  OAuth2Info:
+    description: Parameters related to use of OAuth 2.0
+    required:
+      - grantTypes
+      - tokenEndpoint
+    properties:
+      grantTypes:
+        $ref: '#/definitions/GrantTypes'
+      tokenEndpoint:
+        $ref: '#/definitions/TokenEndpoint'
+  Port:
+    description: Port portion of the address
+    type: integer
+    format: uint32
+    example: '8080'
+  SecurityInfo:
+    description: This type represents security information related to a transport
+    type: object
+    required:
+      - oAuth2Info
+    properties:
+      oAuth2Info:
+        $ref: '#/definitions/OAuth2Info'
+  SerializerTypes:
+    description: The enumeration SerializerTypes represents types of serializers
+    type: string
+    enum:
+      - JSON
+      - XML
+      - PROTOBUF3
+    example: JSON
+  SerInstanceId:
+    description: Identifier of the service instance assigned by the MEPM / mobile edge platform.
+    type: string
+    example: ServiceInstance123
+  SerName:
+    description: The name of the service. This is how the service producing mobile edge application identifies the service instance it produces.
+    type: string
+    example: ExampleService
+  Service.Version:
+    description: Service version
+    type: string
+    example: ServiceVersion1
+  ServiceInfo:
+    description: This type represents the general information of a mobile edge service.
+    type: object
+    required:
+      - serName
+      - version
+      - state
+      - serializer
+    properties:
+      serInstanceId:
+        $ref: '#/definitions/SerInstanceId'
+      serName:
+        $ref: '#/definitions/SerName'
+      serCategory:
+        $ref: '#/definitions/CategoryRef'
+      version:
+        $ref: '#/definitions/Service.Version'
+      state:
+        $ref: '#/definitions/State'
+      transportId:
+        $ref: '#/definitions/TransportId'
+      transportInfo:
+        $ref: '#/definitions/TransportInfo'
+      serializer:
+        $ref: '#/definitions/SerializerTypes'
+  State:
+    description: Contains the state
+    type: string
+    enum:
+      - ACTIVE
+      - INACTIVE
+    example: ACTIVE
+  TokenEndpoint:
+    description: The token endpoint
+    type: string
+    format: uri
+    example: /meMp1/mp1.security/TokenEndPoint
+  TransportId:
+    description: 'Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the ÔÇ£Transport information queryÔÇØ procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.'
+    type: string
+    example: Rest1
+  TransportInfo:
+    description: This type represents the general information of a mobile edge service.
+    type: object
+    required:
+      - id
+      - name
+      - type
+      - protocol
+      - version
+      - endpoint
+      - mp1.security
+    properties:
+      id:
+        $ref: '#/definitions/TransportInfo.Id'
+      name:
+        $ref: '#/definitions/TransportInfo.Name'
+      description:
+        $ref: '#/definitions/TransportInfo.Description'
+      type:
+        $ref: '#/definitions/TransportTypes'
+      protocol:
+        $ref: '#/definitions/TransportInfo.Protocol'
+      version:
+        $ref: '#/definitions/TransportInfo.Version'
+      endpoint:
+        $ref: '#/definitions/EndPointInfo'
+      mp1.security:
+        $ref: '#/definitions/SecurityInfo'
+  TransportInfo.Description:
+    description: Human-readable description of this transport
+    type: string
+    example: REST API
+  TransportInfo.Id:
+    description: The identifier of this transport
+    type: string
+    example: TransId12345
+  TransportInfo.Name:
+    description: The name of this transport
+    type: string
+    example: REST
+  TransportInfo.Protocol:
+    description: The name of the protocol used. Shall be set to ÔÇ£HTTPÔÇØ for a REST API.
+    type: string
+    example: HTTP
+  TransportInfo.Version:
+    description: The version of the protocol used
+    type: string
+    example: '2.0'
+  TransportTypes:
+    description: The enumeration TransportTypes represents types of transports
+    type: string
+    enum:
+      - REST_HTTP
+      - MB_TOPIC_BASED
+      - MB_ROUTING
+      - MB_PUBSUB
+      - RPC
+      - RPC_STREAMING
+      - WEBSOCKET
+    example: JSON
+  Uris:
+    description: Entry point information of the service
+    type: string
+    format: uri
+    example: /meMp1/service/EntryPoint

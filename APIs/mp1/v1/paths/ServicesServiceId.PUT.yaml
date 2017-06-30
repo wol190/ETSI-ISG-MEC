@@ -3,16 +3,19 @@ operationId: ServicesServiceId.PUT
 produces:
 - application/json
 parameters:
-- $ref: '../parameters/Path.ServiceId.yaml'
-- $ref: '../parameters/Body.ServiceInfo.yaml'
+- $ref: '#/parameters/Path.ServiceId'
+#- $ref: '../parameters/Path.ServiceId.yaml'
+- $ref: '#/parameters/Body.ServiceInfo'
+#- $ref: '../parameters/Body.ServiceInfo.yaml'
 responses:
   200:
     description: Upon success, a response body containing data type describing the updated ServiceInfo is returned
     schema:
       properties:
         ServiceInfo:
-          $ref: '../definitions/ServiceInfo.yaml'
+          $ref: '#/definitions/ServiceInfo'
+#          $ref: '../definitions/ServiceInfo.yaml'
 
-#    examples:
-#      application/json:
-#        $ref: '../examples/ServiceInfo.json' 
+    examples:
+      application/json:
+        $ref: '../examples/ServiceInfo.json' 

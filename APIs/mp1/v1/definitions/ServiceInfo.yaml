@@ -7,21 +7,18 @@ required:
 - serializer
 properties:
   serInstanceId:
-#    $ref: './SerInstanceId.yaml'  # works 2.1.7, but not in 3.0.0
-    $ref: '../definitions/SerInstanceId.yaml'  # works 2.1.7, but not in 3.0.0
-#    $ref: './index.yaml#/SerInstanceId'  # doesn't get resolved
-#    $ref: '../definitions/index.yaml#/SerInstanceId'  # also doesn't get resolved
+    $ref: '#/definitions/SerInstanceId'
   serName:
-    $ref: '../definitions/SerName.yaml'
+    $ref: '#/definitions/SerName'
   serCategory:
-    $ref: '../definitions/CategoryRef.yaml'
+    $ref: '#/definitions/CategoryRef'
   version:
-    $ref: '../definitions/Service.Version.yaml'
+    $ref: '#/definitions/Service.Version'
   state:
-    $ref: '../definitions/State.yaml'
+    $ref: '#/definitions/State'
   transportId:
-    $ref: '../definitions/TransportId.yaml'
+    $ref: '#/definitions/TransportId'
   transportInfo:
-    $ref: '../definitions/TransportInfo.yaml'
+    $ref: '#/definitions/TransportInfo'
   serializer:
-    $ref: '../definitions/SerializerTypes.yaml'
+    $ref: '#/definitions/SerializerTypes'

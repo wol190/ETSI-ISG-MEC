@@ -3,6 +3,4 @@ description: New ServiceInfo with updated "state" is included as entity body of 
 in: body
 required: true
 schema:
-#  $ref: ../definitions/index.yaml#/ServiceInfo  # with 3.0.0 end up with $ref: ./ServiceInfo.yaml - not expanded
-  $ref: '../definitions/ServiceInfo.yaml'
-#  $ref: '#/definitions/ServiceInfo' # no good with json-refs 3.0
+  $ref: '#/definitions/ServiceInfo'

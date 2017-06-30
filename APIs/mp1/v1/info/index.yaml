@@ -1,8 +1,4 @@
 description: 'The MEC-011 Application Enablement API described using OpenAPI'
-version: '1.0.1'
+version: '1.0.2'
 title: 'MEC-011 Mp1 API'
 termsOfService: "TBD"
-contact:
-  name: "TBD"
-license:
-  name: "ETSI MEC"

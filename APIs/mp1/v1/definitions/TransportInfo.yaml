@@ -10,18 +10,18 @@ required:
 - mp1.security
 properties:
   id:
-    $ref: '../definitions/TransportInfo.Id.yaml'
+    $ref: '#/definitions/TransportInfo.Id'
   name:
-    $ref: '../definitions/TransportInfo.Name.yaml'
+    $ref: '#/definitions/TransportInfo.Name'
   description:
-    $ref: '../definitions/TransportInfo.Description.yaml'
+    $ref: '#/definitions/TransportInfo.Description'
   type:
-    $ref: '../definitions/TransportTypes.yaml'
+    $ref: '#/definitions/TransportTypes'
   protocol:
-    $ref: '../definitions/TransportInfo.Protocol.yaml'
+    $ref: '#/definitions/TransportInfo.Protocol'
   version:
-    $ref: '../definitions/TransportInfo.Version.yaml'
+    $ref: '#/definitions/TransportInfo.Version'
   endpoint:
-    $ref: '../definitions/EndPointInfo.yaml'
+    $ref: '#/definitions/EndPointInfo'
   mp1.security:
-    $ref: '../definitions/SecurityInfo.yaml'
+    $ref: '#/definitions/SecurityInfo'
