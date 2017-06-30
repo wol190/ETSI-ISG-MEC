@@ -21,22 +21,7 @@ consumes:
 produces:
   - application/json
 parameters:
-  Body.ServiceInfo:
-    name: ServiceInfo
-    description: >-
-      New ServiceInfo with updated "state" is included as entity body of the
-      request
-    in: body
-    required: true
-    schema:
-      $ref: ./ServiceInfo.yaml
-  Path.ServiceId:
-    name: serviceId
-    description: Represents a mobile edge service instance.
-    in: path
-    required: true
-    type: string
-    format: uri
+  $ref: './parameters/index.yaml'
 paths:
   '/services/{serviceId}':
     get:
@@ -47,7 +32,12 @@ paths:
       produces:
         - application/json
       parameters:
-        - $ref: ./Path.ServiceId.yaml
+        - name: serviceId
+          description: Represents a mobile edge service instance.
+          in: path
+          required: true
+          type: string
+          format: uri
       responses:
         '200':
           description: >-
@@ -59,6 +49,7 @@ paths:
                 description: >-
                   This type represents the general information of a mobile edge
                   service.
+                type: object
                 required:
                   - serName
                   - version
@@ -72,19 +63,180 @@ paths:
                     type: string
                     example: ServiceInstance123
                   serName:
-                    $ref: ./SerName.yaml
+                    description: >-
+                      The name of the service. This is how the service producing
+                      mobile edge application identifies the service instance it
+                      produces.
+                    type: string
+                    example: ExampleService
                   serCategory:
-                    $ref: ./CategoryRef.yaml
+                    description: This type represents the category reference
+                    type: object
+                    required:
+                      - href
+                      - id
+                      - name
+                      - version
+                    properties:
+                      href:
+                        description: Reference of the catalogue
+                        type: string
+                        example: catItem1
+                      id:
+                        description: Unique identifier of the category
+                        type: string
+                        example: id12345
+                      name:
+                        description: Name of the category
+                        type: string
+                        example: RNI
+                      version:
+                        description: Category version
+                        type: string
+                        example: version1
                   version:
-                    $ref: ./Service.Version.yaml
+                    description: Service version
+                    type: string
+                    example: ServiceVersion1
                   state:
-                    $ref: ./State.yaml
+                    description: Contains the state
+                    type: string
+                    enum:
+                      - ACTIVE
+                      - INACTIVE
+                    example: ACTIVE
                   transportId:
-                    $ref: ./TransportId.yaml
+                    description: >-
+                      Identifier of the platform-provided transport to be used
+                      by the service. Valid identifiers may be obtained using
+                      the ???Transport information query??? procedure. May be
+                      present in POST requests to signal the use of a
+                      platform-provided transport for the service, and shall be
+                      absent otherwise.
+                    type: string
+                    example: Rest1
                   transportInfo:
-                    $ref: ./TransportInfo.yaml
+                    description: >-
+                      This type represents the general information of a mobile
+                      edge service.
+                    type: object
+                    required:
+                      - id
+                      - name
+                      - type
+                      - protocol
+                      - version
+                      - endpoint
+                      - mp1.security
+                    properties:
+                      id:
+                        description: The identifier of this transport
+                        type: string
+                        example: TransId12345
+                      name:
+                        description: The name of this transport
+                        type: string
+                        example: REST
+                      description:
+                        description: Human-readable description of this transport
+                        type: string
+                        example: REST API
+                      type:
+                        description: >-
+                          The enumeration TransportTypes represents types of
+                          transports
+                        type: string
+                        enum:
+                          - REST_HTTP
+                          - MB_TOPIC_BASED
+                          - MB_ROUTING
+                          - MB_PUBSUB
+                          - RPC
+                          - RPC_STREAMING
+                          - WEBSOCKET
+                        example: JSON
+                      protocol:
+                        description: >-
+                          The name of the protocol used. Shall be set to ???HTTP???
+                          for a REST API.
+                        type: string
+                        example: HTTP
+                      version:
+                        description: The version of the protocol used
+                        type: string
+                        example: '2.0'
+                      endpoint:
+                        description: >-
+                          This type represents information about a transport
+                          endpoint
+                        type: object
+                        properties:
+                          uris:
+                            description: >-
+                              Entry point information of the service as string,
+                              formatted according to URI syntax
+                            type: array
+                            items:
+                              description: Entry point information of the service
+                              type: string
+                              format: uri
+                              example: /meMp1/service/EntryPoint
+                          addresses:
+                            description: >-
+                              Entry point information of the service as one or
+                              more pairs of IP address and port
+                            type: array
+                            items:
+                              description: A IP address and port pair
+                              type: object
+                              properties:
+                                host:
+                                  description: Host portion of the address
+                                  type: string
+                                  example: 192.0.2.0
+                                port:
+                                  description: Port portion of the address
+                                  type: integer
+                                  format: uint32
+                                  example: '8080'
+                      mp1.security:
+                        description: >-
+                          This type represents security information related to a
+                          transport
+                        type: object
+                        required:
+                          - oAuth2Info
+                        properties:
+                          oAuth2Info:
+                            description: Parameters related to use of OAuth 2.0
+                            required:
+                              - grantTypes
+                              - tokenEndpoint
+                            properties:
+                              grantTypes:
+                                description: List of supported OAuth 2.0 grant types
+                                type: string
+                                enum:
+                                  - OAUTH2_AUTHORIZATION_CODE
+                                  - OAUTH2_IMPLICIT_GRANT
+                                  - OAUTH2_RESOURCE_OWNER
+                                  - OAUTH2_CLIENT_CREDENTIALS
+                                example: OAUTH2_CLIENT_CREDENTIALS
+                              tokenEndpoint:
+                                description: The token endpoint
+                                type: string
+                                format: uri
+                                example: /meMp1/mp1.security/TokenEndPoint
                   serializer:
-                    $ref: ./SerializerTypes.yaml
+                    description: >-
+                      The enumeration SerializerTypes represents types of
+                      serializers
+                    type: string
+                    enum:
+                      - JSON
+                      - XML
+                      - PROTOBUF3
+                    example: JSON
     put:
       description: This method updates the information about a meService resource
       operationId: ServicesServiceId.PUT
@@ -97,7 +249,203 @@ paths:
           required: true
           type: string
           format: uri
-        - $ref: ./Body.ServiceInfo.yaml
+        - name: ServiceInfo
+          description: >-
+            New ServiceInfo with updated "state" is included as entity body of
+            the request
+          in: body
+          required: true
+          schema:
+            description: >-
+              This type represents the general information of a mobile edge
+              service.
+            type: object
+            required:
+              - serName
+              - version
+              - state
+              - serializer
+            properties:
+              serInstanceId:
+                description: >-
+                  Identifier of the service instance assigned by the MEPM /
+                  mobile edge platform.
+                type: string
+                example: ServiceInstance123
+              serName:
+                description: >-
+                  The name of the service. This is how the service producing
+                  mobile edge application identifies the service instance it
+                  produces.
+                type: string
+                example: ExampleService
+              serCategory:
+                description: This type represents the category reference
+                type: object
+                required:
+                  - href
+                  - id
+                  - name
+                  - version
+                properties:
+                  href:
+                    description: Reference of the catalogue
+                    type: string
+                    example: catItem1
+                  id:
+                    description: Unique identifier of the category
+                    type: string
+                    example: id12345
+                  name:
+                    description: Name of the category
+                    type: string
+                    example: RNI
+                  version:
+                    description: Category version
+                    type: string
+                    example: version1
+              version:
+                description: Service version
+                type: string
+                example: ServiceVersion1
+              state:
+                description: Contains the state
+                type: string
+                enum:
+                  - ACTIVE
+                  - INACTIVE
+                example: ACTIVE
+              transportId:
+                description: >-
+                  Identifier of the platform-provided transport to be used by
+                  the service. Valid identifiers may be obtained using the
+                  ???Transport information query??? procedure. May be present in
+                  POST requests to signal the use of a platform-provided
+                  transport for the service, and shall be absent otherwise.
+                type: string
+                example: Rest1
+              transportInfo:
+                description: >-
+                  This type represents the general information of a mobile edge
+                  service.
+                type: object
+                required:
+                  - id
+                  - name
+                  - type
+                  - protocol
+                  - version
+                  - endpoint
+                  - mp1.security
+                properties:
+                  id:
+                    description: The identifier of this transport
+                    type: string
+                    example: TransId12345
+                  name:
+                    description: The name of this transport
+                    type: string
+                    example: REST
+                  description:
+                    description: Human-readable description of this transport
+                    type: string
+                    example: REST API
+                  type:
+                    description: >-
+                      The enumeration TransportTypes represents types of
+                      transports
+                    type: string
+                    enum:
+                      - REST_HTTP
+                      - MB_TOPIC_BASED
+                      - MB_ROUTING
+                      - MB_PUBSUB
+                      - RPC
+                      - RPC_STREAMING
+                      - WEBSOCKET
+                    example: JSON
+                  protocol:
+                    description: >-
+                      The name of the protocol used. Shall be set to ???HTTP??? for
+                      a REST API.
+                    type: string
+                    example: HTTP
+                  version:
+                    description: The version of the protocol used
+                    type: string
+                    example: '2.0'
+                  endpoint:
+                    description: >-
+                      This type represents information about a transport
+                      endpoint
+                    type: object
+                    properties:
+                      uris:
+                        description: >-
+                          Entry point information of the service as string,
+                          formatted according to URI syntax
+                        type: array
+                        items:
+                          description: Entry point information of the service
+                          type: string
+                          format: uri
+                          example: /meMp1/service/EntryPoint
+                      addresses:
+                        description: >-
+                          Entry point information of the service as one or more
+                          pairs of IP address and port
+                        type: array
+                        items:
+                          description: A IP address and port pair
+                          type: object
+                          properties:
+                            host:
+                              description: Host portion of the address
+                              type: string
+                              example: 192.0.2.0
+                            port:
+                              description: Port portion of the address
+                              type: integer
+                              format: uint32
+                              example: '8080'
+                  mp1.security:
+                    description: >-
+                      This type represents security information related to a
+                      transport
+                    type: object
+                    required:
+                      - oAuth2Info
+                    properties:
+                      oAuth2Info:
+                        description: Parameters related to use of OAuth 2.0
+                        required:
+                          - grantTypes
+                          - tokenEndpoint
+                        properties:
+                          grantTypes:
+                            description: List of supported OAuth 2.0 grant types
+                            type: string
+                            enum:
+                              - OAUTH2_AUTHORIZATION_CODE
+                              - OAUTH2_IMPLICIT_GRANT
+                              - OAUTH2_RESOURCE_OWNER
+                              - OAUTH2_CLIENT_CREDENTIALS
+                            example: OAUTH2_CLIENT_CREDENTIALS
+                          tokenEndpoint:
+                            description: The token endpoint
+                            type: string
+                            format: uri
+                            example: /meMp1/mp1.security/TokenEndPoint
+              serializer:
+                description: >-
+                  The enumeration SerializerTypes represents types of
+                  serializers
+                type: string
+                enum:
+                  - JSON
+                  - XML
+                  - PROTOBUF3
+                example: JSON
       responses:
         '200':
           description: >-
@@ -109,6 +457,7 @@ paths:
                 description: >-
                   This type represents the general information of a mobile edge
                   service.
+                type: object
                 required:
                   - serName
                   - version
@@ -122,29 +471,197 @@ paths:
                     type: string
                     example: ServiceInstance123
                   serName:
-                    $ref: ./SerName.yaml
+                    description: >-
+                      The name of the service. This is how the service producing
+                      mobile edge application identifies the service instance it
+                      produces.
+                    type: string
+                    example: ExampleService
                   serCategory:
-                    $ref: ./CategoryRef.yaml
+                    description: This type represents the category reference
+                    type: object
+                    required:
+                      - href
+                      - id
+                      - name
+                      - version
+                    properties:
+                      href:
+                        description: Reference of the catalogue
+                        type: string
+                        example: catItem1
+                      id:
+                        description: Unique identifier of the category
+                        type: string
+                        example: id12345
+                      name:
+                        description: Name of the category
+                        type: string
+                        example: RNI
+                      version:
+                        description: Category version
+                        type: string
+                        example: version1
                   version:
-                    $ref: ./Service.Version.yaml
+                    description: Service version
+                    type: string
+                    example: ServiceVersion1
                   state:
-                    $ref: ./State.yaml
+                    description: Contains the state
+                    type: string
+                    enum:
+                      - ACTIVE
+                      - INACTIVE
+                    example: ACTIVE
                   transportId:
-                    $ref: ./TransportId.yaml
+                    description: >-
+                      Identifier of the platform-provided transport to be used
+                      by the service. Valid identifiers may be obtained using
+                      the ???Transport information query??? procedure. May be
+                      present in POST requests to signal the use of a
+                      platform-provided transport for the service, and shall be
+                      absent otherwise.
+                    type: string
+                    example: Rest1
                   transportInfo:
-                    $ref: ./TransportInfo.yaml
+                    description: >-
+                      This type represents the general information of a mobile
+                      edge service.
+                    type: object
+                    required:
+                      - id
+                      - name
+                      - type
+                      - protocol
+                      - version
+                      - endpoint
+                      - mp1.security
+                    properties:
+                      id:
+                        description: The identifier of this transport
+                        type: string
+                        example: TransId12345
+                      name:
+                        description: The name of this transport
+                        type: string
+                        example: REST
+                      description:
+                        description: Human-readable description of this transport
+                        type: string
+                        example: REST API
+                      type:
+                        description: >-
+                          The enumeration TransportTypes represents types of
+                          transports
+                        type: string
+                        enum:
+                          - REST_HTTP
+                          - MB_TOPIC_BASED
+                          - MB_ROUTING
+                          - MB_PUBSUB
+                          - RPC
+                          - RPC_STREAMING
+                          - WEBSOCKET
+                        example: JSON
+                      protocol:
+                        description: >-
+                          The name of the protocol used. Shall be set to ???HTTP???
+                          for a REST API.
+                        type: string
+                        example: HTTP
+                      version:
+                        description: The version of the protocol used
+                        type: string
+                        example: '2.0'
+                      endpoint:
+                        description: >-
+                          This type represents information about a transport
+                          endpoint
+                        type: object
+                        properties:
+                          uris:
+                            description: >-
+                              Entry point information of the service as string,
+                              formatted according to URI syntax
+                            type: array
+                            items:
+                              description: Entry point information of the service
+                              type: string
+                              format: uri
+                              example: /meMp1/service/EntryPoint
+                          addresses:
+                            description: >-
+                              Entry point information of the service as one or
+                              more pairs of IP address and port
+                            type: array
+                            items:
+                              description: A IP address and port pair
+                              type: object
+                              properties:
+                                host:
+                                  description: Host portion of the address
+                                  type: string
+                                  example: 192.0.2.0
+                                port:
+                                  description: Port portion of the address
+                                  type: integer
+                                  format: uint32
+                                  example: '8080'
+                      mp1.security:
+                        description: >-
+                          This type represents security information related to a
+                          transport
+                        type: object
+                        required:
+                          - oAuth2Info
+                        properties:
+                          oAuth2Info:
+                            description: Parameters related to use of OAuth 2.0
+                            required:
+                              - grantTypes
+                              - tokenEndpoint
+                            properties:
+                              grantTypes:
+                                description: List of supported OAuth 2.0 grant types
+                                type: string
+                                enum:
+                                  - OAUTH2_AUTHORIZATION_CODE
+                                  - OAUTH2_IMPLICIT_GRANT
+                                  - OAUTH2_RESOURCE_OWNER
+                                  - OAUTH2_CLIENT_CREDENTIALS
+                                example: OAUTH2_CLIENT_CREDENTIALS
+                              tokenEndpoint:
+                                description: The token endpoint
+                                type: string
+                                format: uri
+                                example: /meMp1/mp1.security/TokenEndPoint
                   serializer:
-                    $ref: ./SerializerTypes.yaml
+                    description: >-
+                      The enumeration SerializerTypes represents types of
+                      serializers
+                    type: string
+                    enum:
+                      - JSON
+                      - XML
+                      - PROTOBUF3
+                    example: JSON
 definitions:
   Address:
     description: A IP address and port pair
+    type: object
     properties:
       host:
-        $ref: ./Host.yaml
+        description: Host portion of the address
+        type: string
+        example: 192.0.2.0
       port:
-        $ref: ./Port.yaml
+        description: Port portion of the address
+        type: integer
+        format: uint32
+        example: '8080'
   CategoryRef:
     description: This type represents the category reference
+    type: object
     required:
       - href
       - id
@@ -152,15 +669,24 @@ definitions:
       - version
     properties:
       href:
-        $ref: ./Category.Href.yaml
+        description: Reference of the catalogue
+        type: string
+        example: catItem1
       id:
-        $ref: ./Category.Id.yaml
+        description: Unique identifier of the category
+        type: string
+        example: id12345
       name:
-        $ref: ./Category.Name.yaml
+        description: Name of the category
+        type: string
+        example: RNI
       version:
-        $ref: ./Category.Version.yaml
+        description: Category version
+        type: string
+        example: version1
   EndPointInfo:
     description: This type represents information about a transport endpoint
+    type: object
     properties:
       uris:
         description: >-
@@ -168,14 +694,28 @@ definitions:
           to URI syntax
         type: array
         items:
-          $ref: ./Uris.yaml
+          description: Entry point information of the service
+          type: string
+          format: uri
+          example: /meMp1/service/EntryPoint
       addresses:
         description: >-
           Entry point information of the service as one or more pairs of IP
           address and port
         type: array
         items:
-          $ref: ./Address.yaml
+          description: A IP address and port pair
+          type: object
+          properties:
+            host:
+              description: Host portion of the address
+              type: string
+              example: 192.0.2.0
+            port:
+              description: Port portion of the address
+              type: integer
+              format: uint32
+              example: '8080'
   GrantTypes:
     description: List of supported OAuth 2.0 grant types
     type: string
@@ -217,9 +757,19 @@ definitions:
       - tokenEndpoint
     properties:
       grantTypes:
-        $ref: ./GrantTypes.yaml
+        description: List of supported OAuth 2.0 grant types
+        type: string
+        enum:
+          - OAUTH2_AUTHORIZATION_CODE
+          - OAUTH2_IMPLICIT_GRANT
+          - OAUTH2_RESOURCE_OWNER
+          - OAUTH2_CLIENT_CREDENTIALS
+        example: OAUTH2_CLIENT_CREDENTIALS
       tokenEndpoint:
-        $ref: ./TokenEndpoint.yaml
+        description: The token endpoint
+        type: string
+        format: uri
+        example: /meMp1/mp1.security/TokenEndPoint
   Port:
     description: Port portion of the address
     type: integer
@@ -227,11 +777,30 @@ definitions:
     example: '8080'
   SecurityInfo:
     description: This type represents security information related to a transport
+    type: object
     required:
       - oAuth2Info
     properties:
       oAuth2Info:
-        $ref: ./OAuth2Info.yaml
+        description: Parameters related to use of OAuth 2.0
+        required:
+          - grantTypes
+          - tokenEndpoint
+        properties:
+          grantTypes:
+            description: List of supported OAuth 2.0 grant types
+            type: string
+            enum:
+              - OAUTH2_AUTHORIZATION_CODE
+              - OAUTH2_IMPLICIT_GRANT
+              - OAUTH2_RESOURCE_OWNER
+              - OAUTH2_CLIENT_CREDENTIALS
+            example: OAUTH2_CLIENT_CREDENTIALS
+          tokenEndpoint:
+            description: The token endpoint
+            type: string
+            format: uri
+            example: /meMp1/mp1.security/TokenEndPoint
   SerializerTypes:
     description: The enumeration SerializerTypes represents types of serializers
     type: string
@@ -258,6 +827,7 @@ definitions:
     example: ServiceVersion1
   ServiceInfo:
     description: This type represents the general information of a mobile edge service.
+    type: object
     required:
       - serName
       - version
@@ -271,19 +841,168 @@ definitions:
         type: string
         example: ServiceInstance123
       serName:
-        $ref: ./SerName.yaml
+        description: >-
+          The name of the service. This is how the service producing mobile edge
+          application identifies the service instance it produces.
+        type: string
+        example: ExampleService
       serCategory:
-        $ref: ./CategoryRef.yaml
+        description: This type represents the category reference
+        type: object
+        required:
+          - href
+          - id
+          - name
+          - version
+        properties:
+          href:
+            description: Reference of the catalogue
+            type: string
+            example: catItem1
+          id:
+            description: Unique identifier of the category
+            type: string
+            example: id12345
+          name:
+            description: Name of the category
+            type: string
+            example: RNI
+          version:
+            description: Category version
+            type: string
+            example: version1
       version:
-        $ref: ./Service.Version.yaml
+        description: Service version
+        type: string
+        example: ServiceVersion1
       state:
-        $ref: ./State.yaml
+        description: Contains the state
+        type: string
+        enum:
+          - ACTIVE
+          - INACTIVE
+        example: ACTIVE
       transportId:
-        $ref: ./TransportId.yaml
+        description: >-
+          Identifier of the platform-provided transport to be used by the
+          service. Valid identifiers may be obtained using the ???Transport
+          information query??? procedure. May be present in POST requests to
+          signal the use of a platform-provided transport for the service, and
+          shall be absent otherwise.
+        type: string
+        example: Rest1
       transportInfo:
-        $ref: ./TransportInfo.yaml
+        description: This type represents the general information of a mobile edge service.
+        type: object
+        required:
+          - id
+          - name
+          - type
+          - protocol
+          - version
+          - endpoint
+          - mp1.security
+        properties:
+          id:
+            description: The identifier of this transport
+            type: string
+            example: TransId12345
+          name:
+            description: The name of this transport
+            type: string
+            example: REST
+          description:
+            description: Human-readable description of this transport
+            type: string
+            example: REST API
+          type:
+            description: The enumeration TransportTypes represents types of transports
+            type: string
+            enum:
+              - REST_HTTP
+              - MB_TOPIC_BASED
+              - MB_ROUTING
+              - MB_PUBSUB
+              - RPC
+              - RPC_STREAMING
+              - WEBSOCKET
+            example: JSON
+          protocol:
+            description: >-
+              The name of the protocol used. Shall be set to ???HTTP??? for a REST
+              API.
+            type: string
+            example: HTTP
+          version:
+            description: The version of the protocol used
+            type: string
+            example: '2.0'
+          endpoint:
+            description: This type represents information about a transport endpoint
+            type: object
+            properties:
+              uris:
+                description: >-
+                  Entry point information of the service as string, formatted
+                  according to URI syntax
+                type: array
+                items:
+                  description: Entry point information of the service
+                  type: string
+                  format: uri
+                  example: /meMp1/service/EntryPoint
+              addresses:
+                description: >-
+                  Entry point information of the service as one or more pairs of
+                  IP address and port
+                type: array
+                items:
+                  description: A IP address and port pair
+                  type: object
+                  properties:
+                    host:
+                      description: Host portion of the address
+                      type: string
+                      example: 192.0.2.0
+                    port:
+                      description: Port portion of the address
+                      type: integer
+                      format: uint32
+                      example: '8080'
+          mp1.security:
+            description: This type represents security information related to a transport
+            type: object
+            required:
+              - oAuth2Info
+            properties:
+              oAuth2Info:
+                description: Parameters related to use of OAuth 2.0
+                required:
+                  - grantTypes
+                  - tokenEndpoint
+                properties:
+                  grantTypes:
+                    description: List of supported OAuth 2.0 grant types
+                    type: string
+                    enum:
+                      - OAUTH2_AUTHORIZATION_CODE
+                      - OAUTH2_IMPLICIT_GRANT
+                      - OAUTH2_RESOURCE_OWNER
+                      - OAUTH2_CLIENT_CREDENTIALS
+                    example: OAUTH2_CLIENT_CREDENTIALS
+                  tokenEndpoint:
+                    description: The token endpoint
+                    type: string
+                    format: uri
+                    example: /meMp1/mp1.security/TokenEndPoint
       serializer:
-        $ref: ./SerializerTypes.yaml
+        description: The enumeration SerializerTypes represents types of serializers
+        type: string
+        enum:
+          - JSON
+          - XML
+          - PROTOBUF3
+        example: JSON
   State:
     description: Contains the state
     type: string
@@ -307,6 +1026,7 @@ definitions:
     example: Rest1
   TransportInfo:
     description: This type represents the general information of a mobile edge service.
+    type: object
     required:
       - id
       - name
@@ -317,21 +1037,95 @@ definitions:
       - mp1.security
     properties:
       id:
-        $ref: ./TransportInfo.Id.yaml
+        description: The identifier of this transport
+        type: string
+        example: TransId12345
       name:
-        $ref: ./TransportInfo.Name.yaml
+        description: The name of this transport
+        type: string
+        example: REST
       description:
-        $ref: ./TransportInfo.Description.yaml
+        description: Human-readable description of this transport
+        type: string
+        example: REST API
       type:
-        $ref: ./TransportTypes.yaml
+        description: The enumeration TransportTypes represents types of transports
+        type: string
+        enum:
+          - REST_HTTP
+          - MB_TOPIC_BASED
+          - MB_ROUTING
+          - MB_PUBSUB
+          - RPC
+          - RPC_STREAMING
+          - WEBSOCKET
+        example: JSON
       protocol:
-        $ref: ./TransportInfo.Protocol.yaml
+        description: The name of the protocol used. Shall be set to ???HTTP??? for a REST API.
+        type: string
+        example: HTTP
       version:
-        $ref: ./TransportInfo.Version.yaml
+        description: The version of the protocol used
+        type: string
+        example: '2.0'
       endpoint:
-        $ref: ./EndPointInfo.yaml
+        description: This type represents information about a transport endpoint
+        type: object
+        properties:
+          uris:
+            description: >-
+              Entry point information of the service as string, formatted
+              according to URI syntax
+            type: array
+            items:
+              description: Entry point information of the service
+              type: string
+              format: uri
+              example: /meMp1/service/EntryPoint
+          addresses:
+            description: >-
+              Entry point information of the service as one or more pairs of IP
+              address and port
+            type: array
+            items:
+              description: A IP address and port pair
+              type: object
+              properties:
+                host:
+                  description: Host portion of the address
+                  type: string
+                  example: 192.0.2.0
+                port:
+                  description: Port portion of the address
+                  type: integer
+                  format: uint32
+                  example: '8080'
       mp1.security:
-        $ref: ./SecurityInfo.yaml
+        description: This type represents security information related to a transport
+        type: object
+        required:
+          - oAuth2Info
+        properties:
+          oAuth2Info:
+            description: Parameters related to use of OAuth 2.0
+            required:
+              - grantTypes
+              - tokenEndpoint
+            properties:
+              grantTypes:
+                description: List of supported OAuth 2.0 grant types
+                type: string
+                enum:
+                  - OAUTH2_AUTHORIZATION_CODE
+                  - OAUTH2_IMPLICIT_GRANT
+                  - OAUTH2_RESOURCE_OWNER
+                  - OAUTH2_CLIENT_CREDENTIALS
+                example: OAUTH2_CLIENT_CREDENTIALS
+              tokenEndpoint:
+                description: The token endpoint
+                type: string
+                format: uri
+                example: /meMp1/mp1.security/TokenEndPoint
   TransportInfo.Description:
     description: Human-readable description of this transport
     type: string

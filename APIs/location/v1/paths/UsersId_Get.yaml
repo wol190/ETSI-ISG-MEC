@@ -3,11 +3,7 @@ description:
 produces:
 - application/json
 parameters:
-- name: userId
-  in: path
-  description: User ID
-  required: true
-  type: string
+- $ref: '#/parameters/Path.UserId'
   
 responses:
   200:

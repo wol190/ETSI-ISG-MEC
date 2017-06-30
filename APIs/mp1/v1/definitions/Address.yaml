@@ -1,12 +1,13 @@
 description: A IP address and port pair
+type: object
 properties:
   host:
 #    $ref: '#/definitions/Host' # worked until json-ref 3.0.0
-#    $ref: '../definitions/Host.yaml'  # works
+    $ref: '../definitions/Host.yaml'  # works
 #    $ref: '../definitions/index.yaml#/Host'  # works
-    $ref: 'index.yaml#/Host'  # works
+#    $ref: 'index.yaml#/Host'  # works
   port:
 #    $ref: '#/definitions/Port' # worked until json-ref 3.0.0
-#    $ref: '../definitions/Port.yaml'  # works
+    $ref: '../definitions/Port.yaml'  # works
 #    $ref: '../definitions/index.yaml#/Port'  # works
-    $ref: 'index.yaml#/Port'  # works
+#    $ref: 'index.yaml#/Port'  # works

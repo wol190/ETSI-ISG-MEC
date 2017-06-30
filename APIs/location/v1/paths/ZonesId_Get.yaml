@@ -3,11 +3,7 @@ description:
 produces:
 - application/json
 parameters:
-- name: zoneId
-  in: path
-  description: Zone ID
-  required: true
-  type: string
+- $ref: '#/parameters/Path.ZoneId'
 
 responses:
   200:

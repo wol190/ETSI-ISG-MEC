@@ -3,8 +3,8 @@ description:
 produces:
 - application/json
 parameters:
-- $ref: '#/parameters/ZoneId'
-- $ref: '#/parameters/AccessPointId'
+- $ref: '#/parameters/Query.ZoneId'
+- $ref: '#/parameters/Query.AccessPointId'
 
 responses:
   200:

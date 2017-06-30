@@ -1,10 +1,3 @@
-  description: "The MEC-012 Location API described using OpenAPI, which is based on the Open Mobile Alliance's specification RESTful Network API for Zonal Presence"
-  version: '1.0.1'
-  title: 'MEC Location API'
-  termsOfService: "TBD"
-  contact:
-    name: "TBD"
-    url: "TBD"
-  license:
-    name: "ETSI MEC"
-    url: "TBD"
+description: "The MEC-012 Location API described using OpenAPI, which is based on the Open Mobile Alliance's specification RESTful Network API for Zonal Presence"
+version: '1.0.2'
+title: 'MEC Location API'

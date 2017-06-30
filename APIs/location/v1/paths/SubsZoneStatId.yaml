@@ -3,3 +3,6 @@ get:
 
 put:
   $ref: ./SubsZoneStatId_Put.yaml
+
+delete:
+  $ref: ./SubsZoneStatId_Del.yaml

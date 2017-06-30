@@ -1,0 +1,5 @@
+name: accessPointId
+in: path
+description: Access Point ID
+required: true
+type: string

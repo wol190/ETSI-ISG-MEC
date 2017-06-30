@@ -3,11 +3,7 @@ description:
 produces:
 - application/json
 parameters:
-- name: subscriptionId
-  in: path
-  description: Subscription ID
-  required: true
-  type: string
+- $ref: '#/parameters/Path.SubscriptionId'
 
 responses:
   204:

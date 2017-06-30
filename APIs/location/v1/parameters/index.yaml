@@ -1,6 +1,20 @@
-ZoneId:
-  $ref: ./ZoneId.yaml
-AccessPointId:
-  $ref: ./AccessPointId.yaml
-InterestRealm:
-  $ref: ./InterestRealm.yaml
+Body.UserTrackingSubscription:
+  $ref: ./Body.UserTrackingSubscription.yaml
+Body.ZonalTrafficSubscription:
+  $ref: ./Body.ZonalTrafficSubscription.yaml
+Body.ZoneStatusSubscription:
+  $ref: ./Body.ZoneStatusSubscription.yaml
+Path.AccessPointId:
+  $ref: ./Path.AccessPointId.yaml
+Path.SubscriptionId:
+  $ref: ./Path.SubscriptionId.yaml
+Path.UserId:
+  $ref: ./Path.UserId.yaml
+Path.ZoneId:
+  $ref: ./Path.ZoneId.yaml
+Query.AccessPointId:
+  $ref: ./Query.AccessPointId.yaml
+Query.InterestRealm:
+  $ref: ./Query.InterestRealm.yaml
+Query.ZoneId:
+  $ref: ./Query.ZoneId.yaml

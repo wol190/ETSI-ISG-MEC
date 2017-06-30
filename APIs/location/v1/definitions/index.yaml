@@ -1,119 +1,80 @@
 AccessPointId:
   $ref: ./AccessPointId.yaml
-
 AccessPointInfo:
   $ref: ./AccessPointInfo.yaml
-	  
 AccessPointList:
   $ref: ./AccessPointList.yaml
-	 
 Address:
   $ref: ./Address.yaml
-
 AncillaryInfo:
   $ref: ./AncillaryInfo.yaml
-
 CallbackData:
   $ref: ./CallbackData.yaml
-
 CallbackReference:
   $ref: ./CallbackReference.yaml
-
 ClientCorrelator:
   $ref: ./ClientCorrelator.yaml
-	
 ConnectionType:
   $ref: ./ConnectionType.yaml
-
 ContextLocationInfo:
   $ref: ./ContextLocationInfo.yaml
-
 CurrentAccessPointId:
   $ref: ./CurrentAccessPointId.yaml
-	
 Duration:
   $ref: ./Duration.yaml
-	
 InterestRealm:
   $ref: ./InterestRealm.yaml
-
 Link:
   $ref: ./Link.yaml
-
 LocationInfo:
   $ref: ./LocationInfo.yaml
-	
 NotifyURL:
   $ref: ./NotifyURL.yaml
-	 
 NumberOfAccessPoints:
   $ref: ./NumberOfAccessPoints.yaml
-
 NumberOfUnserviceableAccessPoints:
   $ref: ./NumberOfUnserviceableAccessPoints.yaml
-
 NumberOfUsers:
   $ref: ./NumberOfUsers.yaml
-	 
 NumberOfUsersAPThreshold:
   $ref: ./NumberOfUsersAPThreshold.yaml
-
 NumberOfUsersInAP:
   $ref: ./NumberOfUsersInAP.yaml
-	 
 NumberOfUsersInZone:
   $ref: ./NumberOfUsersInZone.yaml
-
 NumberOfUsersZoneThreshold:
   $ref: ./NumberOfUsersZoneThreshold.yaml
-
 OperationStatus:
   $ref: ./OperationStatus.yaml
-
 PreviousAccessPointId:
   $ref: ./PreviousAccessPointId.yaml
-
 ResourceURL:
   $ref: ./ResourceURL.yaml
-
 Timestamp:
   $ref: ./Timestamp.yaml
-	 
 Timezone:
   $ref: ./Timezone.yaml
-
 UserEventCriteria:
   $ref: ./UserEventCriteria.yaml
-
 UserEventType:
   $ref: ./UserEventType.yaml
-
 UserInfo:
   $ref: ./UserInfo.yaml
-
 UserList:
   $ref: ./UserList.yaml
-
 UserTrackingSubscription:
   $ref: ./UserTrackingSubscription.yaml
-
 ZonalPresenceNotification:
   $ref: ./ZonalPresenceNotification.yaml
-
 ZonalTrafficSubscription:
   $ref: ./ZonalTrafficSubscription.yaml
-
 ZoneId:
   $ref: ./ZoneId.yaml
-
 ZoneInfo:
   $ref: ./ZoneInfo.yaml
-
 ZoneList:
   $ref: ./ZoneList.yaml
-
 ZoneStatusNotification:
   $ref: ./ZoneStatusNotification.yaml
-
 ZoneStatusSubscription:
   $ref: ./ZoneStatusSubscription.yaml

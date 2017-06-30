@@ -1,0 +1,5 @@
+name: subscriptionId
+in: path
+description: Subscription ID
+required: true
+type: string

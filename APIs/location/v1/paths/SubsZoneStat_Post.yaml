@@ -3,13 +3,7 @@ description:
 produces:
 - application/json
 parameters:
-- name: zoneStatusSubscription
-  in: body
-  description: Zone Status Subscription
-  required: true
-  schema: 
-    $ref: '#/definitions/ZoneStatusSubscription'
-
+- $ref: '#/parameters/Body.ZoneStatusSubscription'
 
 responses:
   201:

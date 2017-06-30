@@ -1,0 +1,5 @@
+name: zoneId
+in: path
+description: Zone ID
+required: true
+type: string

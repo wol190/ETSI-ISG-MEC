@@ -3,17 +3,8 @@ description:
 produces:
 - application/json
 parameters:
-- name: subscriptionId
-  in: path
-  description: Subscription ID
-  required: true
-  type: string
-- name: zonalTrafficSubscription
-  in: body
-  description: Zonal Traffic Subscription
-  required: true
-  schema: 
-    $ref: '#/definitions/ZonalTrafficSubscription'
+- $ref: '#/parameters/Path.SubscriptionId'
+- $ref: '#/parameters/Body.ZonalTrafficSubscription'
 
 responses:
   200:

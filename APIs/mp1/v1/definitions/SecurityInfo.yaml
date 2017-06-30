@@ -1,6 +1,7 @@
 description: This type represents security information related to a transport
+type: object
 required:
 - oAuth2Info
 properties:
   oAuth2Info:
-    $ref: 'index.yaml#/OAuth2Info'
+    $ref: '../definitions/OAuth2Info.yaml'

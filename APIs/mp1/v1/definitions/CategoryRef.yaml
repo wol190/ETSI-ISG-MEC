@@ -1,4 +1,5 @@
 description: This type represents the category reference
+type: object
 required:
 - href
 - id
@@ -6,10 +7,10 @@ required:
 - version
 properties:
   href:
-    $ref: 'index.yaml#/Category.Href'
+    $ref: '../definitions/Category.Href.yaml'
   id:
-    $ref: 'index.yaml#/Category.Id'
+    $ref: '../definitions/Category.Id.yaml'
   name:
-    $ref: 'index.yaml#/Category.Name'
+    $ref: '../definitions/Category.Name.yaml'
   version:
-    $ref: 'index.yaml#/Category.Version'
+    $ref: '../definitions/Category.Version.yaml'

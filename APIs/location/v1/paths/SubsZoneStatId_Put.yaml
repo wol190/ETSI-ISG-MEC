@@ -3,17 +3,8 @@ description:
 produces:
 - application/json
 parameters:
-- name: subscriptionId
-  in: path
-  description: Subscription ID
-  required: true
-  type: string
-- name: zoneStatusSubscription
-  in: body
-  description: Zone Status Subscription
-  required: true
-  schema: 
-    $ref: '#/definitions/ZoneStatusSubscription'
+- $ref: '#/parameters/Path.SubscriptionId'
+- $ref: '#/parameters/Body.ZoneStatusSubscription'
 
 responses:
   200:

@@ -51,6 +51,7 @@ Service.Version:
 
 ServiceInfo:
   $ref: ./ServiceInfo.yaml
+#  $ref: ../definitions/ServiceInfo.yaml
 
 State:
   $ref: ./State.yaml

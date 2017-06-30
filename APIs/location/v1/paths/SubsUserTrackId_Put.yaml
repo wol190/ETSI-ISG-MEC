@@ -3,17 +3,8 @@ description:
 produces:
 - application/json
 parameters:
-- name: subscriptionId
-  in: path
-  description: Subscription ID
-  required: true
-  type: string
-- name: userTrackingSubscription
-  in: body
-  description: User Tracking Subscription
-  required: true
-  schema: 
-    $ref: '#/definitions/UserTrackingSubscription'
+- $ref: '#/parameters/Path.SubscriptionId'
+- $ref: '#/parameters/Body.UserTrackingSubscription'
 
 responses:
   200:

@@ -4,6 +4,6 @@ required:
 - tokenEndpoint
 properties:
   grantTypes:
-    $ref: 'index.yaml#/GrantTypes'
+    $ref: '../definitions/GrantTypes.yaml'
   tokenEndpoint:
-    $ref: 'index.yaml#/TokenEndpoint'
+    $ref: '../definitions/TokenEndpoint.yaml'

@@ -1,4 +1,5 @@
 description: This type represents the general information of a mobile edge service.
+type: object
 required:
 - id
 - name
@@ -9,18 +10,18 @@ required:
 - mp1.security
 properties:
   id:
-    $ref: 'index.yaml#/TransportInfo.Id'
+    $ref: '../definitions/TransportInfo.Id.yaml'
   name:
-    $ref: 'index.yaml#/TransportInfo.Name'
+    $ref: '../definitions/TransportInfo.Name.yaml'
   description:
-    $ref: 'index.yaml#/TransportInfo.Description'
+    $ref: '../definitions/TransportInfo.Description.yaml'
   type:
-    $ref: 'index.yaml#/TransportTypes'
+    $ref: '../definitions/TransportTypes.yaml'
   protocol:
-    $ref: 'index.yaml#/TransportInfo.Protocol'
+    $ref: '../definitions/TransportInfo.Protocol.yaml'
   version:
-    $ref: 'index.yaml#/TransportInfo.Version'
+    $ref: '../definitions/TransportInfo.Version.yaml'
   endpoint:
-    $ref: 'index.yaml#/EndPointInfo'
+    $ref: '../definitions/EndPointInfo.yaml'
   mp1.security:
-    $ref: 'index.yaml#/SecurityInfo'
+    $ref: '../definitions/SecurityInfo.yaml'

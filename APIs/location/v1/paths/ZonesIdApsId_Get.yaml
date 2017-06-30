@@ -3,16 +3,8 @@ description:
 produces:
 - application/json
 parameters:
-- name: zoneId
-  in: path
-  description: Zone ID
-  required: true
-  type: string
-- name: accessPointId
-  in: path
-  description: Access Point ID
-  required: true
-  type: string
+- $ref: '#/parameters/Path.ZoneId'
+- $ref: '#/parameters/Path.AccessPointId'
 
 responses:
   200:

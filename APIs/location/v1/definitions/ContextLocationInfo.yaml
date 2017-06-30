@@ -1,3 +1,3 @@
 description: Contextual information of a user location (e.g., aisle, floor, room number, etc.)
 type: string
-example: "GroundFoor"
+example: "GroundFloor"

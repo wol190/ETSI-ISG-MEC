@@ -1,0 +1,5 @@
+name: userId
+in: path
+description: User ID
+required: true
+type: string
