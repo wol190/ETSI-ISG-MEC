@@ -1,0 +1,4 @@
+description: Maximum poll interval for NTP messages, in seconds as a power of two. Range 3…17
+type: integer
+format: uint32
+example: 17

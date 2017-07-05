@@ -1,7 +1,0 @@
-description: A IP address and port pair
-type: object
-properties:
-  host:
-    $ref: '#/definitions/Host'
-  port:
-    $ref: '#/definitions/Port'

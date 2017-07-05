@@ -1,0 +1,21 @@
+description: The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription. 
+operationId: ApplicationsSubscriptions.POST
+produces:
+- application/json
+parameters:
+- $ref: '#/parameters/Path.AppInstanceId'
+- $ref: '#/parameters/Body.AppTerminationNotificationSubscription'
+# The alternative request
+#- $ref: '#/parameters/Body.SerAvailabilityNotificationSubscription'
+
+responses:
+  200:
+    description: Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created. 
+    schema:
+      type: object
+      properties:
+        AppTerminationNotificationSubscription:
+          $ref: '#/definitions/AppTerminationNotificationSubscription.Response'
+# The alternative response
+#        SerAvailabilityNotificationSubscription:
+#          $ref: '#/definitions/SerAvailabilityNotificationSubscription'

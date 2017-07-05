@@ -1,0 +1,7 @@
+description: A IP address and port pair
+type: object
+properties:
+  host:
+    $ref: '#/definitions/EndPointInfo.Address.Host'
+  port:
+    $ref: '#/definitions/EndPointInfo.Address.Port'

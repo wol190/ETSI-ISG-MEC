@@ -1,0 +1,5 @@
+get:
+  $ref: ./ApplicationsSubscription.GET.yaml
+
+delete:
+  $ref: ./ApplicationsSubscription.DELETE.yaml

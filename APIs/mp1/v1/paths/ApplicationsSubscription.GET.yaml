@@ -1,0 +1,20 @@
+description: The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.
+operationId: ApplicationsSubscription.GET
+produces:
+- application/json
+parameters:
+- $ref: '#/parameters/Path.AppInstanceId'
+- $ref: '#/parameters/Path.SubscriptionType'
+- $ref: '#/parameters/Path.SubscriptionId'
+
+responses:
+  200:
+    description: Upon success, a response body containing the requested subscription is returned.
+    schema:
+      type: object
+      properties:
+        SerAvailabilityNotificationSubscription:
+          $ref: '#/definitions/SerAvailabilityNotificationSubscription.Response'
+# The alternative response
+#        AppTerminationNotificationSubscription:
+#          $ref: '#/definitions/AppTerminationNotificationSubscription.Response'

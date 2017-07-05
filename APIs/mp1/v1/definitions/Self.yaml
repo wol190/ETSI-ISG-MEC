@@ -1,0 +1,7 @@
+description: Self-referring URI.
+type: object
+required:
+- self
+properties:
+  self:
+    $ref: '#/definitions/LinkType'

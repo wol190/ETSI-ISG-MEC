@@ -1,0 +1,21 @@
+description: This type represents the general information of a DNS rule.
+type: object
+required:
+- dnsRuleId
+- domainName
+- ipAddressType
+- ipAddress
+- state
+properties:
+  dnsRuleId:
+    $ref: '#/definitions/DnsRule.Id'
+  domainName:
+    $ref: '#/definitions/DnsRule.DomainName'
+  ipAddressType:
+    $ref: '#/definitions/DnsRule.IpAddressType'
+  ipAddress:
+    $ref: '#/definitions/DnsRule.IpAddress'
+  ttl:
+    $ref: '#/definitions/DnsRule.Ttl'
+  state:
+    $ref: '#/definitions/DnsRule.State'

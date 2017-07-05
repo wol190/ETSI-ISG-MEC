@@ -7,17 +7,17 @@ required:
 - serializer
 properties:
   serInstanceId:
-    $ref: '#/definitions/SerInstanceId'
+    $ref: '#/definitions/ServiceInfo.SerInstanceId'
   serName:
-    $ref: '#/definitions/SerName'
+    $ref: '#/definitions/ServiceInfo.SerName'
   serCategory:
     $ref: '#/definitions/CategoryRef'
   version:
-    $ref: '#/definitions/Service.Version'
+    $ref: '#/definitions/ServiceInfo.Version'
   state:
-    $ref: '#/definitions/State'
+    $ref: '#/definitions/ServiceInfo.State'
   transportId:
-    $ref: '#/definitions/TransportId'
+    $ref: '#/definitions/ServiceInfo.TransportId'
   transportInfo:
     $ref: '#/definitions/TransportInfo'
   serializer:

@@ -1,0 +1,16 @@
+description: This type represents a subscription to the notifications from the mobile edge platform regarding the availability of a mobile edge service or a list of mobile edge services.
+type: object
+required:
+  - subscriptionType
+  - callbackReference
+  - _links
+  - filteringCriteria
+properties:
+  subscriptionType:
+    $ref: '#/definitions/SerAvailabilityNotificationSubscription.SubscriptionType'
+  callbackReference:
+    $ref: '#/definitions/SerAvailabilityNotificationSubscription.CallbackReference'
+  _links:
+    $ref: '#/definitions/Self'
+  filteringCriteria:
+    $ref: '#/definitions/ServiceInfo'

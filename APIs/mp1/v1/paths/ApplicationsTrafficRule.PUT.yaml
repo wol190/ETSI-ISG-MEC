@@ -1,0 +1,17 @@
+description: This method retrieves information about all the traffic rules associated with a mobile edge application instance. 
+operationId: ApplicationsTrafficRules.PUT
+produces:
+- application/json
+parameters:
+- $ref: '#/parameters/Body.TrafficRule'
+- $ref: '#/parameters/Path.AppInstanceId'
+- $ref: '#/parameters/Path.TrafficRuleId'
+
+responses:
+  200:
+    description: Upon success, a response body containing data type describing the updated TrafficRule is returned.
+    schema:
+      type: object
+      properties:
+        TrafficRule:
+          $ref: '#/definitions/TrafficRule'

@@ -1,0 +1,6 @@
+description: Definition of filter per FLOW or PACKET. If flow the filter match UE->EPC packet and the reverse packet is handled in the same context
+type: string
+enum:
+  - FLOW
+  - PACKET
+example: FLOW

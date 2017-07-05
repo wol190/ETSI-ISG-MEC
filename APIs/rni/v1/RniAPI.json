@@ -2,9 +2,16 @@
   "swagger": "2.0",
   "info": {
     "description": "Description of the MEC-012 RNI API using OpenAPI",
-    "version": "1.0.1",
+    "version": "1.1.1",
     "title": "RNIS API",
-    "termsOfService": "TBD"
+    "license": {
+      "name": "ETSI Forge copyright notice",
+      "url": "https://forge.etsi.org/etsi-forge-copyright-notice.txt"
+    }
+  },
+  "externalDocs": {
+    "description": "ETSI MEC-012 V1.1.1 Radio Network Information API",
+    "url": "http://www.etsi.org/deliver/etsi_gs/MEC/001_099/012/01.01.01_60/gs_mec012v010101p.pdf"
   },
   "host": "127.0.0.1:8081",
   "basePath": "/rni/v1",

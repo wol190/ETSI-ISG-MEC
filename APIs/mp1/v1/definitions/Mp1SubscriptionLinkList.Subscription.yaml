@@ -1,0 +1,14 @@
+description: A link to a subscription.
+type: object
+required:
+- href
+- rel
+properties:
+  href:
+    description: The URI referring to the subscription
+    type: string
+    format: uri
+  rel:
+    description: The values are as defined in the “subscriptionType” attribute for each different Mp1 event subscription data type.
+    type: string
+

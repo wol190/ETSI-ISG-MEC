@@ -4,6 +4,6 @@ required:
 - tokenEndpoint
 properties:
   grantTypes:
-    $ref: '#/definitions/GrantTypes'
+    $ref: '#/definitions/SecurityInfo.OAuth2Info.GrantTypes'
   tokenEndpoint:
-    $ref: '#/definitions/TokenEndpoint'
+    $ref: '#/definitions/SecurityInfo.OAuth2Info.TokenEndpoint'

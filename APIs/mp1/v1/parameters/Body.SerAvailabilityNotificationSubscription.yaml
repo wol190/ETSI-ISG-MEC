@@ -1,0 +1,6 @@
+name: SerAvailabilityNotificationSubscription
+description: Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created. 
+in: body
+required: true
+schema:
+  $ref: '#/definitions/SerAvailabilityNotificationSubscription.Request'

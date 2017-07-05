@@ -1,0 +1,10 @@
+description: The action of the ME host data plane when a packet matches the trafficFilter
+type: string
+enum:
+  - DROP
+  - FORWARD_DECAPSULATED
+  - FORWARD_AS_IS
+  - PASSTHROUGH
+  - DUPLICATE_DECAPSULATED
+  - DUPLICATE_AS_IS
+example: DROP

@@ -1,0 +1,4 @@
+description: Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.
+type: string
+format: uint32
+example: 10

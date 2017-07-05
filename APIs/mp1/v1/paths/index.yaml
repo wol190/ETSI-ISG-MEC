@@ -1,2 +1,32 @@
+/applications/{appInstanceId}/dns_rules:
+  $ref: ./ApplicationsDnsRules.yaml
+
+/applications/{appInstanceId}/dns_rules/{dnsRuleId}:
+  $ref: ./ApplicationsDnsRule.yaml
+
+/applications/{appInstanceId}/subscriptions:
+  $ref: ./ApplicationsSubscriptions.yaml
+
+/applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}:
+  $ref: ./ApplicationsSubscription.yaml
+
+/applications/{appInstanceId}/traffic_rules:
+  $ref: ./ApplicationsTrafficRules.yaml
+
+/applications/{appInstanceId}/traffic_rules/{trafficRuleId}:
+  $ref: ./ApplicationsTrafficRule.yaml
+
+/services:
+  $ref: ./Services.yaml
+
 /services/{serviceId}:
   $ref: ./ServicesServiceId.yaml
+
+/timing/current_time:
+  $ref:  ./TimingCurrentTime.yaml
+
+/timing/timing_caps:
+  $ref:  ./TimingCaps.yaml
+
+/transports:
+  $ref:  ./Transports.yaml

@@ -1,0 +1,15 @@
+description: This type represents the destination interface.
+type: object
+required:
+- interfaceType
+properties:
+  interfaceType:
+    $ref: '#/definitions/DestinationInterface.InterfaceType'
+  tunnelInfo:
+    $ref: '#/definitions/TunnelInfo'
+  srcMacAddress:
+    $ref: '#/definitions/DestinationInterface.MacAddress'
+  dstMacAddress:
+    $ref: '#/definitions/DestinationInterface.MacAddress'
+  dstIpAddress:
+    $ref: '#/definitions/DestinationInterface.IpAddress'

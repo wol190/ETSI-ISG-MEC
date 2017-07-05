@@ -1,0 +1,15 @@
+description: This method is used to create a meService resource. This method is typically used in "service availability update and new service registration" procedure
+operationId: Services.POST
+produces:
+- application/json
+parameters:
+- $ref: '#/parameters/Body.ServiceInfo'
+
+responses:
+  201:
+    description: Upon success, the HTTP response shall include a Location HTTP header that contains the resource URI of the created resource.
+    schema:
+      type: object
+      properties:
+        ServiceInfo:
+          $ref: '#/definitions/ServiceInfo'

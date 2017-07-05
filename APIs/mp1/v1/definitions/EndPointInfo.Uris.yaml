@@ -1,0 +1,4 @@
+description: Entry point information of the service as string, formatted according to URI syntax 
+type: array
+items:
+  $ref: '#/definitions/EndPointInfo.Uri'

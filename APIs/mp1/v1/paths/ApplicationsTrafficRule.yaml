@@ -1,0 +1,5 @@
+get:
+  $ref: ./ApplicationsTrafficRule.GET.yaml
+
+put:
+  $ref: ./ApplicationsTrafficRule.PUT.yaml

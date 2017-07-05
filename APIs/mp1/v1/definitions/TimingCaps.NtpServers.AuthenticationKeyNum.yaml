@@ -1,0 +1,4 @@
+description: Authentication key number
+type: integer
+format: uint32
+example: 1

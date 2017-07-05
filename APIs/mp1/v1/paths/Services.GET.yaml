@@ -1,0 +1,19 @@
+description: This method retrieves information about a list of meService resources. This method is typically used in "service availability query" procedure 
+operationId: Services.GET
+produces:
+- application/json
+parameters:
+- $ref: '#/parameters/Query.Ser_instance_id'
+- $ref: '#/parameters/Query.Ser_name'
+- $ref: '#/parameters/Query.Ser_category_id'
+
+responses:
+  200:
+    description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+    schema:
+      type: array
+      items:
+        type: object
+        properties:
+          ServiceInfo:
+            $ref: '#/definitions/ServiceInfo'

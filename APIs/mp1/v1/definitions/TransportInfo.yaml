@@ -25,3 +25,5 @@ properties:
     $ref: '#/definitions/EndPointInfo'
   mp1.security:
     $ref: '#/definitions/SecurityInfo'
+  implSpecificInfo:
+    $ref: '#/definitions/TransportInfo.ImplSpecificInfo'

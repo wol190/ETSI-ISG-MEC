@@ -1,0 +1,6 @@
+name: trafficRuleId
+description: Represents a traffic rule.
+in: path
+required: true
+type: string
+format: uri

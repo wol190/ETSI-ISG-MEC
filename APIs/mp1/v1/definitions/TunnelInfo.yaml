@@ -1,0 +1,11 @@
+description: This type represents the tunnel information.
+type: object
+required:
+- tunnelType
+properties:
+  tunnelType:
+    $ref: '#/definitions/TunnelInfo.TunnelType'
+  tunnelDstAddress:
+    $ref: '#/definitions/TunnelInfo.TunnelDstAddress'
+  tunnelSrcAddress:
+    $ref: '#/definitions/TunnelInfo.TunnelSrcAddress'

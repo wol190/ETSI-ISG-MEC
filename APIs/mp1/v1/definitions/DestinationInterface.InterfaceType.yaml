@@ -1,0 +1,7 @@
+description: Type of the interface
+type: string
+enum:
+  - TUNNEL
+  - MAC
+  - IP
+example: TUNNEL

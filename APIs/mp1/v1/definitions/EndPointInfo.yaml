@@ -2,12 +2,8 @@ description: This type represents information about a transport endpoint
 type: object
 properties:
   uris:
-    description: Entry point information of the service as string, formatted according to URI syntax 
-    type: array
-    items:
-      $ref: '#/definitions/Uris'
+    $ref: '#/definitions/EndPointInfo.Uris'
   addresses:
-    description: Entry point information of the service as one or more pairs of IP address and port
-    type: array
-    items:
-      $ref: '#/definitions/Address'
+    $ref: '#/definitions/EndPointInfo.Addresses'
+  alternative:
+    $ref: '#/definitions/EndPointInfo.Alternative'

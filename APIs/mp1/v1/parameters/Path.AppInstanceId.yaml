@@ -1,0 +1,6 @@
+name: appInstanceId
+description: Represents a mobile edge application instance. Note that the appInstanceId is allocated by the mobile edge platform manager. 
+in: path
+required: true
+type: string
+format: uri

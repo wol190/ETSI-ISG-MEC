@@ -1,3 +1,3 @@
-description: The name of the protocol used. Shall be set to “HTTP” for a REST API.
+description: The name of the protocol used. Shall be set to HTTP for a REST API.
 type: string
 example: HTTP

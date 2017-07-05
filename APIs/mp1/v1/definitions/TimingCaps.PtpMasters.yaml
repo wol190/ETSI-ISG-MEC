@@ -1,0 +1,13 @@
+description: NTP server detail.
+type: object
+required:
+  - ptpMasterIpAddress
+  - ptpMasterLocalPriority
+  - delayReqMaxRate
+properties:
+  ptpMasterIpAddress:
+    $ref: '#/definitions/TimingCaps.NtpServers.PtpMasterIpAddress'
+  ptpMasterLocalPriority:
+    $ref: '#/definitions/TimingCaps.NtpServers.PtpMasterLocalPriority'
+  delayReqMaxRate:
+    $ref: '#/definitions/TimingCaps.NtpServers.DelayReqMaxRate'

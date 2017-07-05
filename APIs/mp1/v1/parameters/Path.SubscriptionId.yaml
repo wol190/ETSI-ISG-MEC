@@ -1,0 +1,6 @@
+name: subscriptionId
+description: Represents a subscription to the notifications from the mobile edge platform.
+in: path
+required: true
+type: string
+format: uri

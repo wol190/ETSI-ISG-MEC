@@ -1,0 +1,7 @@
+name: ser_instance_id
+description: A mobile edge application instance may use multiple ser_instance_ids as an input parameter to query the availability of a list of mobile edge service instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or none of them shall be present.
+in: query
+required: false
+type: array
+items:
+  type: string

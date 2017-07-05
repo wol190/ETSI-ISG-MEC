@@ -1,0 +1,5 @@
+get:
+  $ref: ./ApplicationsDnsRule.GET.yaml
+
+put:
+  $ref: ./ApplicationsDnsRule.PUT.yaml

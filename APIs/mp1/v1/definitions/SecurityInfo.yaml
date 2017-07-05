@@ -4,4 +4,4 @@ required:
 - oAuth2Info
 properties:
   oAuth2Info:
-    $ref: '#/definitions/OAuth2Info'
+    $ref: '#/definitions/SecurityInfo.OAuth2Info'

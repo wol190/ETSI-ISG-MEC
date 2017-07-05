@@ -1,0 +1,17 @@
+description: This method activates, de-activates or updates a traffic rule. 
+operationId: ApplicationsDnsRule.PUT
+produces:
+- application/json
+parameters:
+- $ref: '#/parameters/Body.DnsRule'
+- $ref: '#/parameters/Path.AppInstanceId'
+- $ref: '#/parameters/Path.DnsRuleId'
+
+responses:
+  200:
+    description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+    schema:
+      type: object
+      properties:
+        DnsRule:
+          $ref: '#/definitions/DnsRule'

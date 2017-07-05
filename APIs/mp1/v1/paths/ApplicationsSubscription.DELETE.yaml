@@ -1,0 +1,8 @@
+description: This method deletes a meMp1Subscription. This method is typically used in "Unsubscribing from service availability event notifications" procedure.
+operationId: ApplicationsSubscription.DELETE
+produces:
+- application/json
+
+responses:
+  204:
+    description: No Content

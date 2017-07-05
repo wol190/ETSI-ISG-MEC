@@ -1,0 +1,13 @@
+description: This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.
+type: object
+required:
+  - subscriptionType
+  - callbackReference
+  - appInstanceId
+properties:
+  subscriptionType:
+    $ref: '#/definitions/AppTerminationNotificationSubscription.SubscriptionType'
+  callbackReference:
+    $ref: '#/definitions/AppTerminationNotificationSubscription.CallbackReference'
+  appInstanceId:
+    $ref: '#/definitions/AppTerminationNotificationSubscription.AppInstanceId'

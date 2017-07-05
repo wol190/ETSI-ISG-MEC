@@ -1,0 +1,3 @@
+description: FQDN resolved by the DNS rule
+type: string
+example: www.example.com

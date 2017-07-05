@@ -1,0 +1,2 @@
+description: Entry point information of the service in a format defined by an implementation, or in an external specification.
+type: object

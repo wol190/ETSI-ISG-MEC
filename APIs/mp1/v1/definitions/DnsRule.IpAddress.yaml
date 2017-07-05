@@ -1,0 +1,3 @@
+description: IP address associated with the FQDN resolved by the DNS rule
+type: string
+example: "192.0.2.0"

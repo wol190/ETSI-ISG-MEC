@@ -1,0 +1,5 @@
+get:
+  $ref: ./ApplicationsSubscriptions.GET.yaml
+
+post:
+  $ref: ./ApplicationsSubscriptions.POST.yaml

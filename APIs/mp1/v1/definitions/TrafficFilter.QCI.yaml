@@ -1,0 +1,4 @@
+description: Used to match all packets that have the same Quality Class Indicator (QCI).
+type: integer
+format: uint32
+example: 1

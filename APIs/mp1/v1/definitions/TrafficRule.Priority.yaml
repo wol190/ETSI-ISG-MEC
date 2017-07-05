@@ -1,0 +1,4 @@
+description: Priority of this traffic rule. If traffic rule conflicts, the one with higher priority take precedence
+type: integer
+format: uint32
+example: 1

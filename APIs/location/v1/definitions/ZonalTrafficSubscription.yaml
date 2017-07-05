@@ -16,7 +16,6 @@ properties:
     items:
       $ref: '#/definitions/InterestRealm'
   userEventCriteria:
-#    $ref: '#/definitions/UserEventCriteria'
     description: List of user event values to generate notifications for (these apply to zone identifier or all interest realms within zone identifier specified). If this element is missing, a notification is requested to be generated for any change in user event.
     type: array
     items:

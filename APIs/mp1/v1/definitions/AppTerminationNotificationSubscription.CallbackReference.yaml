@@ -1,0 +1,3 @@
+description: URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge application instance management information. This shall be included in both the request and the response.
+type: string
+format: uri

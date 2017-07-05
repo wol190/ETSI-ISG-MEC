@@ -1,0 +1,15 @@
+description: This type represents the information provided by the mobile edge platform in response to the Timing capabilities Query message.
+type: object
+properties:
+  timeStamp:
+    $ref: '#/definitions/TimingCaps.TimeStamp'
+  ntpServers:
+    description: Available NTP servers
+    type: array
+    items:
+      $ref: '#/definitions/TimingCaps.NtpServers'
+  ptpMasters:
+    description: Available PTP Masters
+    type: array
+    items:
+      $ref: '#/definitions/TimingCaps.PtpMasters'

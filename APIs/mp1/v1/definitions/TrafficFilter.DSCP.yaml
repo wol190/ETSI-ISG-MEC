@@ -1,0 +1,4 @@
+description: Used to match all IPv4 packets that have the same Differentiated Services Code Point (DSCP)
+type: integer
+format: uint32
+example: 0

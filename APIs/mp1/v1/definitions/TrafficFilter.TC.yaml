@@ -1,0 +1,4 @@
+description: Used to match all IPv6 packets that have the same Traffic Class.
+type: integer
+format: uint32
+example: 1

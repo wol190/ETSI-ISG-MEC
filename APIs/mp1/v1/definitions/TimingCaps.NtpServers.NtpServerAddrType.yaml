@@ -1,0 +1,6 @@
+description: Address type of NTP server
+type: string
+enum:
+  - IP_ADDRESS
+  - DNS_NAME
+example: IP_ADDRESS

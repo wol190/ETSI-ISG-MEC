@@ -1,0 +1,15 @@
+description: The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.
+operationId: ApplicationsSubscriptions.GET
+produces:
+- application/json
+parameters:
+- $ref: '#/parameters/Path.AppInstanceId'
+
+responses:
+  200:
+    description: Upon success, a response body containing the list of links to the requested subscriptions is returned.
+    schema:
+      type: object
+      properties:
+        Mp1SubscriptionLinkList:
+          $ref: '#/definitions/Mp1SubscriptionLinkList'

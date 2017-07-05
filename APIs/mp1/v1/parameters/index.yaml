@@ -1,5 +1,41 @@
+Body.AppTerminationNotificationSubscription:
+  $ref: ./Body.AppTerminationNotificationSubscription.yaml
+
+Body.DnsRule:
+  $ref: ./Body.DnsRule.yaml
+
+Body.SerAvailabilityNotificationSubscription:
+  $ref: ./Body.SerAvailabilityNotificationSubscription.yaml
+
 Body.ServiceInfo:
   $ref: ./Body.ServiceInfo.yaml
 
+Body.TrafficRule:
+  $ref: ./Body.TrafficRule.yaml
+
+Path.AppInstanceId:
+  $ref: ./Path.AppInstanceId.yaml
+
+Path.DnsRuleId:
+  $ref: ./Path.DnsRuleId.yaml
+
+Path.SubscriptionId:
+  $ref: ./Path.SubscriptionId.yaml
+
+Path.SubscriptionType:
+  $ref: ./Path.SubscriptionType.yaml
+
 Path.ServiceId:
   $ref: ./Path.ServiceId.yaml
+
+Path.TrafficRuleId:
+  $ref: ./Path.TrafficRuleId.yaml
+
+Query.Ser_category_id:
+  $ref: ./Query.Ser_category_id.yaml
+
+Query.Ser_instance_id:
+  $ref: ./Query.Ser_instance_id.yaml
+
+Query.Ser_name:
+  $ref: ./Query.Ser_name.yaml

@@ -1,0 +1,2 @@
+get:
+  $ref: ./TimingCurrentTime.GET.yaml

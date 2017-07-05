@@ -1,0 +1,6 @@
+name: DnsRule
+description: The updated “state” is included in the entity body of the request.
+in: body
+required: true
+schema:
+  $ref: '#/definitions/DnsRule'

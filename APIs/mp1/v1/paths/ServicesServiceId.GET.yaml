@@ -4,17 +4,14 @@ produces:
 - application/json
 parameters:
 - $ref: '#/parameters/Path.ServiceId'
-#- $ref: '../parameters/Path.ServiceId.yaml'
-#- $ref: '../parameters/index.yaml#/Path.ServiceId'
 responses:
   200:
     description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
     schema:
+      type: object
       properties:
         ServiceInfo:
           $ref: '#/definitions/ServiceInfo'
-#          $ref: '../definitions/ServiceInfo.yaml'  # work with json-refs 3.0
-#          $ref: '../definitions/index.yaml#/ServiceInfo' doesn't resolve
 
     examples:
       application/json:

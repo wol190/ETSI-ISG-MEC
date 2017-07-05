@@ -1,0 +1,4 @@
+description: Time to live value
+type: integer
+format: uint32
+example: "?"

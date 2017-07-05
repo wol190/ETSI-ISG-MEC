@@ -1,0 +1,4 @@
+description: Entry point information of the service as one or more pairs of IP address and port
+type: array
+items:
+  $ref: '#/definitions/EndPointInfo.Address'

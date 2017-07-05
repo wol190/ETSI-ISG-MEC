@@ -1,0 +1,7 @@
+description: This type represents a list of links related to currently existing subscriptions for a mobile edge application instance. This information is returned when sending a request to receive current subscriptions. 
+type: object
+required:
+  - _links
+properties:
+  _links:
+    $ref: '#/definitions/Mp1SubscriptionLinkList.Links'

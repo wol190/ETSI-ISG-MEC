@@ -1,0 +1,13 @@
+description: This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.
+type: object
+required:
+  - notificationType
+  - maxGracefulTimeout
+  - _links
+properties:
+  notificationType:
+    $ref: '#/definitions/AppTerminationNotification.NotificationType'
+  maxGracefulTimeout:
+    $ref: '#/definitions/AppTerminationNotification.MaxGracefulTimeout'
+  _links:
+    $ref: '#/definitions/Subscription'

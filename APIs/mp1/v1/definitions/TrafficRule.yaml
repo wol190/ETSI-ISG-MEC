@@ -1,0 +1,24 @@
+description: This type represents the general information of a traffic rule.
+type: object
+required:
+- trafficRuleId
+- filterType
+- priority
+- trafficFilter
+- action
+- state
+properties:
+  trafficRuleId:
+    $ref: '#/definitions/TrafficRule.Id'
+  filterType:
+    $ref: '#/definitions/TrafficRule.FilterType'
+  priority:
+    $ref: '#/definitions/TrafficRule.Priority'
+  trafficFilter:
+    $ref: '#/definitions/TrafficFilter'
+  action:
+    $ref: '#/definitions/TrafficRule.Action'
+  dstInterface:
+    $ref: '#/definitions/DestinationInterface'
+  state:
+    $ref: '#/definitions/TrafficRule.State'

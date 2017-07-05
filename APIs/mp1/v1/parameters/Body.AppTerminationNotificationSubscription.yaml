@@ -1,0 +1,6 @@
+name: AppTerminationNotificationSubscription
+description: Entity body in the request contains a subscription to the mobile edge application termination notifications that is to be created. 
+in: body
+required: true
+schema:
+  $ref: '#/definitions/AppTerminationNotificationSubscription.Request'

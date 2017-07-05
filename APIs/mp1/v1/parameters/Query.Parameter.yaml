@@ -1,7 +1,0 @@
-name: erabId  # Name of the parameter
-description: E-RAB identifier # Description of the parameter
-in: query  # Parameter types, options: query, header, path, formData or body
-required: false  # Mandatory only if true (cardinality 1 or greater)
-type: integer # MEC Attribute "Data Type"
-# Options: boolean, integer, number & string
-format: uint32 # Optional, as embellishes the "type" information. 

@@ -7,10 +7,10 @@ required:
 - version
 properties:
   href:
-    $ref: '#/definitions/Category.Href'
+    $ref: '#/definitions/CategoryRef.Href'
   id:
-    $ref: '#/definitions/Category.Id'
+    $ref: '#/definitions/CategoryRef.Id'
   name:
-    $ref: '#/definitions/Category.Name'
+    $ref: '#/definitions/CategoryRef.Name'
   version:
-    $ref: '#/definitions/Category.Version'
+    $ref: '#/definitions/CategoryRef.Version'

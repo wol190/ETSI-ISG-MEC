@@ -1,0 +1,12 @@
+description: Self-referring URI.
+type: object
+required:
+- self
+properties:
+  self:
+    $ref: '#/definitions/LinkType'
+  subscription:
+    description: Subscription list
+    type: array
+    items:
+      $ref: '#/definitions/Mp1SubscriptionLinkList.Subscription'

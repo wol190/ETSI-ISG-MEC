@@ -1,58 +1,192 @@
-Address:
-  $ref: ./Address.yaml
+AppTerminationNotification.MaxGracefulTimeout:
+  $ref: ./AppTerminationNotification.MaxGracefulTimeout.yaml
+AppTerminationNotification.NotificationType:
+  $ref: ./AppTerminationNotification.NotificationType.yaml
+AppTerminationNotification:
+  $ref: ./AppTerminationNotification.yaml
+AppTerminationNotificationSubscription.AppInstanceId:
+  $ref: ./AppTerminationNotificationSubscription.AppInstanceId.yaml
+AppTerminationNotificationSubscription.CallbackReference:
+  $ref: ./AppTerminationNotificationSubscription.CallbackReference.yaml
+AppTerminationNotificationSubscription.Request:
+  $ref: ./AppTerminationNotificationSubscription.Request.yaml
+AppTerminationNotificationSubscription.Response:
+  $ref: ./AppTerminationNotificationSubscription.Response.yaml
+AppTerminationNotificationSubscription.SubscriptionType:
+  $ref: ./AppTerminationNotificationSubscription.SubscriptionType.yaml
+CategoryRef.Href:
+  $ref: ./CategoryRef.Href.yaml
+CategoryRef.Id:
+  $ref: ./CategoryRef.Id.yaml
+CategoryRef.Name:
+  $ref: ./CategoryRef.Name.yaml
+CategoryRef.Version:
+  $ref: ./CategoryRef.Version.yaml
 CategoryRef:
   $ref: ./CategoryRef.yaml
+CurrentTime:
+  $ref: ./CurrentTime.yaml
+DestinationInterface.InterfaceType:
+  $ref: ./DestinationInterface.InterfaceType.yaml
+DestinationInterface.IpAddress:
+  $ref: ./DestinationInterface.IpAddress.yaml
+DestinationInterface.MacAddress:
+  $ref: ./DestinationInterface.MacAddress.yaml
+DestinationInterface:
+  $ref: ./DestinationInterface.yaml
+DnsRule.DomainName:
+  $ref: ./DnsRule.DomainName.yaml
+DnsRule.Id:
+  $ref: ./DnsRule.Id.yaml
+DnsRule.IpAddress:
+  $ref: ./DnsRule.IpAddress.yaml
+DnsRule.IpAddressType:
+  $ref: ./DnsRule.IpAddressType.yaml
+DnsRule.State:
+  $ref: ./DnsRule.State.yaml
+DnsRule.Ttl:
+  $ref: ./DnsRule.Ttl.yaml
+DnsRule:
+  $ref: ./DnsRule.yaml
+EndPointInfo.Address.Host:
+  $ref: ./EndPointInfo.Address.Host.yaml
+EndPointInfo.Address.Port:
+  $ref: ./EndPointInfo.Address.Port.yaml
+EndPointInfo.Address:
+  $ref: ./EndPointInfo.Address.yaml
+EndPointInfo.Addresses:
+  $ref: ./EndPointInfo.Addresses.yaml
+EndPointInfo.Alternative:
+  $ref: ./EndPointInfo.Alternative.yaml
+EndPointInfo.Uri:
+  $ref: ./EndPointInfo.Uri.yaml
+EndPointInfo.Uris:
+  $ref: ./EndPointInfo.Uris.yaml
 EndPointInfo:
   $ref: ./EndPointInfo.yaml
-GrantTypes:
-  $ref: ./GrantTypes.yaml
-Host:
-  $ref: ./Host.yaml
-Category.Href:
-  $ref: ./Category.Href.yaml
-Category.Id:
-  $ref: ./Category.Id.yaml
-Category.Name:
-  $ref: ./Category.Name.yaml
-Category.Version:
-  $ref: ./Category.Version.yaml
 LinkType:
   $ref: ./LinkType.yaml
-OAuth2Info:
-  $ref: ./OAuth2Info.yaml
-Port:
-  $ref: ./Port.yaml
+Mp1SubscriptionLinkList.Links:
+  $ref: ./Mp1SubscriptionLinkList.Links.yaml
+Mp1SubscriptionLinkList.Subscription:
+  $ref: ./Mp1SubscriptionLinkList.Subscription.yaml
+Mp1SubscriptionLinkList:
+  $ref: ./Mp1SubscriptionLinkList.yaml
+SecurityInfo.OAuth2Info.GrantTypes:
+  $ref: ./SecurityInfo.OAuth2Info.GrantTypes.yaml
+SecurityInfo.OAuth2Info.TokenEndpoint:
+  $ref: ./SecurityInfo.OAuth2Info.TokenEndpoint.yaml
+SecurityInfo.OAuth2Info:
+  $ref: ./SecurityInfo.OAuth2Info.yaml
 SecurityInfo:
   $ref: ./SecurityInfo.yaml
+Self:
+  $ref: ./Self.yaml
+SerAvailabilityNotificationSubscription.CallbackReference:
+  $ref: ./SerAvailabilityNotificationSubscription.CallbackReference.yaml
+SerAvailabilityNotificationSubscription.Request:
+  $ref: ./SerAvailabilityNotificationSubscription.Request.yaml
+SerAvailabilityNotificationSubscription.Response:
+  $ref: ./SerAvailabilityNotificationSubscription.Response.yaml
+SerAvailabilityNotificationSubscription.SubscriptionType:
+  $ref: ./SerAvailabilityNotificationSubscription.SubscriptionType.yaml
 SerializerTypes:
   $ref: ./SerializerTypes.yaml
-SerInstanceId:
-  $ref: ./SerInstanceId.yaml
-SerName:
-  $ref: ./SerName.yaml
-Service.Version:
-  $ref: ./Service.Version.yaml
+ServiceInfo.SerInstanceId:
+  $ref: ./ServiceInfo.SerInstanceId.yaml
+ServiceInfo.SerName:
+  $ref: ./ServiceInfo.SerName.yaml
+ServiceInfo.State:
+  $ref: ./ServiceInfo.State.yaml
+ServiceInfo.TransportId:
+  $ref: ./ServiceInfo.TransportId.yaml
+ServiceInfo.Version:
+  $ref: ./ServiceInfo.Version.yaml
 ServiceInfo:
   $ref: ./ServiceInfo.yaml
-State:
-  $ref: ./State.yaml
-TokenEndpoint:
-  $ref: ./TokenEndpoint.yaml
-TransportId:
-  $ref: ./TransportId.yaml
-TransportInfo:
-  $ref: ./TransportInfo.yaml
+Subscription:
+  $ref: ./Subscription.yaml
+TimingCaps.NtpServers.AuthenticationKeyNum:
+  $ref: ./TimingCaps.NtpServers.AuthenticationKeyNum.yaml
+TimingCaps.NtpServers.AuthenticationOption:
+  $ref: ./TimingCaps.NtpServers.AuthenticationOption.yaml
+TimingCaps.NtpServers.DelayReqMaxRate:
+  $ref: ./TimingCaps.NtpServers.DelayReqMaxRate.yaml
+TimingCaps.NtpServers.LocalPriority:
+  $ref: ./TimingCaps.NtpServers.LocalPriority.yaml
+TimingCaps.NtpServers.MaxPollingInterval:
+  $ref: ./TimingCaps.NtpServers.MaxPollingInterval.yaml
+TimingCaps.NtpServers.MinPollingInterval:
+  $ref: ./TimingCaps.NtpServers.MinPollingInterval.yaml
+TimingCaps.NtpServers.NtpServerAddr:
+  $ref: ./TimingCaps.NtpServers.NtpServerAddr.yaml
+TimingCaps.NtpServers.NtpServerAddrType:
+  $ref: ./TimingCaps.NtpServers.NtpServerAddrType.yaml
+TimingCaps.NtpServers.PtpMasterIpAddress:
+  $ref: ./TimingCaps.NtpServers.PtpMasterIpAddress.yaml
+TimingCaps.NtpServers.PtpMasterLocalPriority:
+  $ref: ./TimingCaps.NtpServers.PtpMasterLocalPriority.yaml
+TimingCaps.NtpServers:
+  $ref: ./TimingCaps.NtpServers.yaml
+TimingCaps.PtpMasters:
+  $ref: ./TimingCaps.PtpMasters.yaml
+TimingCaps.TimeStamp:
+  $ref: ./TimingCaps.TimeStamp.yaml
+TimingCaps:
+  $ref: ./TimingCaps.yaml
+TrafficFilter.Address:
+  $ref: ./TrafficFilter.Address.yaml
+TrafficFilter.DSCP:
+  $ref: ./TrafficFilter.DSCP.yaml
+TrafficFilter.Port:
+  $ref: ./TrafficFilter.Port.yaml
+TrafficFilter.Protocol:
+  $ref: ./TrafficFilter.Protocol.yaml
+TrafficFilter.QCI:
+  $ref: ./TrafficFilter.QCI.yaml
+TrafficFilter.TC:
+  $ref: ./TrafficFilter.TC.yaml
+TrafficFilter.Token:
+  $ref: ./TrafficFilter.Token.yaml
+TrafficFilter.TunnelAddress:
+  $ref: ./TrafficFilter.TunnelAddress.yaml
+TrafficFilter.TunnelPort:
+  $ref: ./TrafficFilter.TunnelPort.yaml
+TrafficFilter:
+  $ref: ./TrafficFilter.yaml
+TrafficRule.Action:
+  $ref: ./TrafficRule.Action.yaml
+TrafficRule.FilterType:
+  $ref: ./TrafficRule.FilterType.yaml
+TrafficRule.Id:
+  $ref: ./TrafficRule.Id.yaml
+TrafficRule.Priority:
+  $ref: ./TrafficRule.Priority.yaml
+TrafficRule.State:
+  $ref: ./TrafficRule.State.yaml
+TrafficRule:
+  $ref: ./TrafficRule.yaml
 TransportInfo.Description:
   $ref: ./TransportInfo.Description.yaml
 TransportInfo.Id:
   $ref: ./TransportInfo.Id.yaml
+TransportInfo.ImplSpecificInfo:
+  $ref: ./TransportInfo.ImplSpecificInfo.yaml
 TransportInfo.Name:
   $ref: ./TransportInfo.Name.yaml
 TransportInfo.Protocol:
   $ref: ./TransportInfo.Protocol.yaml
 TransportInfo.Version:
   $ref: ./TransportInfo.Version.yaml
+TransportInfo:
+  $ref: ./TransportInfo.yaml
 TransportTypes:
   $ref: ./TransportTypes.yaml
-Uris:
-  $ref: ./Uris.yaml
+TunnelInfo.TunnelDstAddress:
+  $ref: ./TunnelInfo.TunnelDstAddress.yaml
+TunnelInfo.TunnelSrcAddress:
+  $ref: ./TunnelInfo.TunnelSrcAddress.yaml
+TunnelInfo.TunnelType:
+  $ref: ./TunnelInfo.TunnelType.yaml
+TunnelInfo:
+  $ref: ./TunnelInfo.yaml

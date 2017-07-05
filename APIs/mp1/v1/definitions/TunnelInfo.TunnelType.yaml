@@ -1,0 +1,6 @@
+description: This type represents the tunnel information.
+type: string
+enum:
+  - GTP_U
+  - GRE
+example: GTP_U

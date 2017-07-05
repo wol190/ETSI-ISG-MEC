@@ -1,0 +1,25 @@
+description: NTP server detail.
+type: object
+required:
+  - ntpServerAddrType
+  - ntpServerAddr
+  - minPollingInterval
+  - maxPollingInterval
+  - localPriority
+  - authenticationOption
+  - authenticationKeyNum
+properties:
+  ntpServerAddrType:
+    $ref: '#/definitions/TimingCaps.NtpServers.NtpServerAddrType'
+  ntpServerAddr:
+    $ref: '#/definitions/TimingCaps.NtpServers.NtpServerAddr'
+  minPollingInterval:
+    $ref: '#/definitions/TimingCaps.NtpServers.MinPollingInterval'
+  maxPollingInterval:
+    $ref: '#/definitions/TimingCaps.NtpServers.MaxPollingInterval'
+  localPriority:
+    $ref: '#/definitions/TimingCaps.NtpServers.LocalPriority'
+  authenticationOption:
+    $ref: '#/definitions/TimingCaps.NtpServers.AuthenticationOption'
+  authenticationKeyNum:
+    $ref: '#/definitions/TimingCaps.NtpServers.AuthenticationKeyNum'

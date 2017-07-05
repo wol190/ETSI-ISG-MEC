@@ -1,0 +1,59 @@
+description: This type represents the traffic filter.
+type: object
+properties:
+  srcAddress:
+    description: An IP address or a range of IP address. For IPv4, the IP address could be an IP address plus mask, or an individual IP address, or a range of IP addresses. For IPv6, the IP address could be an IP prefix, or a range of IP prefixes.
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.Address'
+  dstAddress:
+    description: An IP address or a range of IP address. For IPv4, the IP address could be an IP address plus mask, or an individual IP address, or a range of IP addresses. For IPv6, the IP address could be an IP prefix, or a range of IP prefixes.
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.Address'
+  srcPort:
+    description: A port or a range of ports
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.Port'
+  dstPort:
+    description: A port or a range of ports
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.Port'
+  protocol:
+    description: Specify the protocol of the traffic filter
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.Protocol'
+  token:
+    description: Used for token based traffic rule
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.Token'
+  srcTunnelAddress:
+    description: Used for GTP tunnel based traffic rule
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.TunnelAddress'
+  tgtTunnelAddress:
+    description: Used for GTP tunnel based traffic rule
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.TunnelAddress'
+  srcTunnelPort:
+    description: Used for GTP tunnel based traffic rule
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.TunnelPort'
+  dstTunnelPort:
+    description: Used for GTP tunnel based traffic rule
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter.TunnelPort'
+  qCI:
+    $ref: '#/definitions/TrafficFilter.QCI'
+  dSCP:
+    $ref: '#/definitions/TrafficFilter.DSCP'
+  tC:
+    $ref: '#/definitions/TrafficFilter.TC'
