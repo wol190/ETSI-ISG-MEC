@@ -1,13 +1,13 @@
 swagger: '2.0'
 info:
-  title: MEC-012 Location API
+  title: Location API
   version: 1.1.1
-  description: 'The MEC-012 Location API described using OpenAPI, which is based on the Open Mobile Alliance''s specification RESTful Network API for Zonal Presence'
+  description: 'The ETSI MEC ISG MEC013 Location API described using OpenAPI. The API is based on the Open Mobile Alliance''s specification RESTful Network API for Zonal Presence'
   license:
     name: ETSI Forge copyright notice
     url: 'https://forge.etsi.org/etsi-forge-copyright-notice.txt'
 externalDocs:
-  description: ETSI MEC013 V1.1.1 Location Service API
+  description: ETSI GS MEC013 Location Service API, V1.1.1
   url: 'http://www.etsi.org/deliver/etsi_gs/MEC/001_099/013/01.01.01_60/gs_mec013v010101p.pdf'
 host: '127.0.0.1:8081'
 basePath: /exampleAPI/location/v1/

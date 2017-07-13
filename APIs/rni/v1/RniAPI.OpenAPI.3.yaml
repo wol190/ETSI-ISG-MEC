@@ -3,9 +3,9 @@ servers:
   - url: 'http://127.0.0.1:8081/rnis/v1'
   - url: 'https://127.0.0.1:8081/rnis/v1'
 info:
-  description: Description of the MEC-012 RNI API using OpenAPI
+  description: The ETSI MEC ISG MEC012 Radio Network Information API described using OpenAPI
   version: 1.0.1
-  title: RNIS API
+  title: RNI API
   termsOfService: TBD
 security:
   - OauthSecurity:
@@ -2187,7 +2187,7 @@ paths:
           description: Too Many Requests
       x-swagger-router-controller: Default
 externalDocs:
-  description: ETSI MEC012 V1.0.1 Radio Network Information API
+  description: ETSI GS MEC012 Radio Network Information API, V1.1.1
   url: 'https://docbox.etsi.org/ISG/MEC/70-Draft/0012RnisApi'
 components:
   schemas:

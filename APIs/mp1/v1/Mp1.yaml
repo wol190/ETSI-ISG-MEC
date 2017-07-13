@@ -1,13 +1,13 @@
 swagger: '2.0'
 info:
-  title: MEC-011 Mp1 API
+  title: Mp1 API
   version: 1.1.1
-  description: The MEC-011 Application Enablement API described using OpenAPI
+  description: The ETSI MEC ISG MEC016 UE Application Interface API described using OpenAPI
   license:
     name: ETSI Forge copyright notice
     url: 'https://forge.etsi.org/etsi-forge-copyright-notice.txt'
 externalDocs:
-  description: ETSI MEC011 V1.1.1 Application Enablement API
+  description: ETSI GS MEC011 Application Enablement API, V1.1.1
   url: 'http://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/01.01.01_60/gs_mec011v010101p.pdf'
 host: '127.0.0.1:8081'
 basePath: /exampleAPI/mp1/v1/

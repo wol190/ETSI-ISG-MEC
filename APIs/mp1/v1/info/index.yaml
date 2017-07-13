@@ -1,6 +1,6 @@
-title: 'MEC-011 Mp1 API'
+title: 'Mp1 API'
 version: '1.1.1'
-description: 'The MEC-011 Application Enablement API described using OpenAPI'
+description: 'The ETSI MEC ISG MEC011 Application Enablement API described using OpenAPI'
 license:
   name: ETSI Forge copyright notice
   url: 'https://forge.etsi.org/etsi-forge-copyright-notice.txt'

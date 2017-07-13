@@ -1,16 +1,16 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Description of the MEC-012 RNI API using OpenAPI",
+    "description": "The ETSI MEC ISG MEC012 Radio Network Information API described using OpenAPI",
     "version": "1.1.1",
-    "title": "RNIS API",
+    "title": "RNI API",
     "license": {
       "name": "ETSI Forge copyright notice",
       "url": "https://forge.etsi.org/etsi-forge-copyright-notice.txt"
     }
   },
   "externalDocs": {
-    "description": "ETSI MEC-012 V1.1.1 Radio Network Information API",
+    "description": "ETSI GS MEC012 Radio Network Information API, V1.1.1",
     "url": "http://www.etsi.org/deliver/etsi_gs/MEC/001_099/012/01.01.01_60/gs_mec012v010101p.pdf"
   },
   "host": "127.0.0.1:8081",
@@ -1228,7 +1228,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -1505,7 +1505,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -1784,7 +1784,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -2061,7 +2061,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -2340,7 +2340,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -2617,7 +2617,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -2896,7 +2896,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -3173,7 +3173,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -3452,7 +3452,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -3729,7 +3729,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -4008,7 +4008,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -4285,7 +4285,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -4564,7 +4564,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -4841,7 +4841,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -5119,7 +5119,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"
@@ -5394,7 +5394,7 @@
               "application/problem+json": {
                 "ProblemDetails": {
                   "type": "https://meAppServer.example.com/rni/v1/probs/too-many-targets",
-                  "title": "Too mnay targets",
+                  "title": "Too many targets",
                   "status": "422",
                   "detail": "The target area for the request is considered too large",
                   "instance": "/meAppClient.example.com/77777/msgs/abc"

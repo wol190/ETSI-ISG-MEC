@@ -1,6 +1,6 @@
-title: 'MEC-012 Location API'
+title: 'Location API'
 version: '1.1.1'
-description: "The MEC-012 Location API described using OpenAPI, which is based on the Open Mobile Alliance's specification RESTful Network API for Zonal Presence"
+description: "The ETSI MEC ISG MEC012 Location API described using OpenAPI. The API is based on the Open Mobile Alliance's specification RESTful Network API for Zonal Presence"
 license:
   name: ETSI Forge copyright notice
   url: 'https://forge.etsi.org/etsi-forge-copyright-notice.txt'

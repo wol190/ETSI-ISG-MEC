@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "An initial attempt to describe the MEC UE Application Interface API using OpenAPI",
+        "description": "The ETSI MEC ISG MEC016 UE Application Interface API described using OpenAPI",
         "version": "0.2.5",
         "title": "UE Application Interface API",
         "termsOfService": "TBD",
@@ -15,7 +15,7 @@
         }
     },
     "externalDocs": {
-        "description": "ETSI MEC016 V0.2.5 UE Application Interface API",
+        "description": "ETSI GS MEC016 UE Application Interface API, V0.2.5",
         "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0016UEAppInterface"
     },
     "host": "127.0.0.1:8081",
