@@ -6420,9 +6420,5 @@
       },
       "description": "QoS Class Identifier as defined in TS 23.401"
     }
-  },
-  "externalDocs": {
-    "description": "ETSI MEC012 V1.0.1 Radio Network Information API",
-    "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0012RnisApi"
   }
 }
