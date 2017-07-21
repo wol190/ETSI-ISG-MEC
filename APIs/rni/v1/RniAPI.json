@@ -463,6 +463,9 @@
             "description": "Successful response to rab_info request",
             "schema": {
               "type": "object",
+              "required": [
+                "RabInfo"
+              ],
               "properties": {
                 "RabInfo": {
                   "$ref": "#/definitions/RabInfo"
@@ -534,6 +537,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -646,6 +652,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -725,6 +734,9 @@
             "description": "Successful response to s1_bearer_info request",
             "schema": {
               "type": "object",
+              "required": [
+                "S1BearerInfo"
+              ],
               "properties": {
                 "S1BearerInfo": {
                   "$ref": "#/definitions/S1BearerInfo"
@@ -836,6 +848,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -883,7 +898,7 @@
     "/subscriptions/": {
       "get": {
         "description": "The GET method can be used to request information about the subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptionsGET",
+        "operationId": "SubscriptionLinkList_subscriptionsGET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -893,9 +908,12 @@
             "description": "Response body contains the list of links to requestors subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
-                "SusbcriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                "SubscriptionLinkList": {
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -945,6 +963,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -992,7 +1013,7 @@
     "/subscriptions/cell_change": {
       "get": {
         "description": "The GET method can be used to request information about the cell_change subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptions_cc_GET",
+        "operationId": "SubscriptionLinkList_subscriptions_cc_GET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -1002,9 +1023,12 @@
             "description": "Response body contains the list of links to requestors cell_change subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
                 "SubscriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -1054,6 +1078,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -1174,6 +1201,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -1269,6 +1299,9 @@
             "description": "Subscription information regarding cell change notifications",
             "schema": {
               "type": "object",
+              "required": [
+                "CellChangeSubscription"
+              ],
               "properties": {
                 "CellChangeSubscription": {
                   "$ref": "#/definitions/CellChangeSubscription"
@@ -1329,6 +1362,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -1387,7 +1423,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful subscription to response to cell change notifications",
             "schema": {
               "type": "object",
@@ -1451,6 +1487,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -1548,7 +1587,7 @@
     "/subscriptions/s1_bearer": {
       "get": {
         "description": "The GET method can be used to request information about the s1_bearer subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptions_s1_GET",
+        "operationId": "SubscriptionLinkList_subscriptions_s1_GET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -1558,9 +1597,12 @@
             "description": "Response body contains the list of links to requestors s1_bearer subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
-                "SusbcriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                "SubscriptionLinkList": {
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -1610,6 +1652,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -1730,6 +1775,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -1885,6 +1933,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -1943,7 +1994,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful subscription update to response to S1 Bearer notifications",
             "schema": {
               "type": "object",
@@ -2007,6 +2058,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -2104,7 +2158,7 @@
     "/subscriptions/ta": {
       "get": {
         "description": "The GET method can be used to request information about the ta subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptions_ta_GET",
+        "operationId": "SubscriptionLinkList_subscriptions_ta_GET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -2114,9 +2168,12 @@
             "description": "Response body contains the list of links to requestors ta subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
-                "SusbcriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                "SubscriptionLinkList": {
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -2166,6 +2223,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -2286,6 +2346,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -2381,6 +2444,9 @@
             "description": "Subscription information regarding UE Timing Advance notifications",
             "schema": {
               "type": "object",
+              "required": [
+                "MeasTaSubscription"
+              ],
               "properties": {
                 "MeasTaSubscription": {
                   "$ref": "#/definitions/MeasTaSubscription"
@@ -2441,6 +2507,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -2563,6 +2632,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -2660,7 +2732,7 @@
     "/subscriptions/meas_rep_ue": {
       "get": {
         "description": "The GET method can be used to request information about the meas_rep_ue subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptions_mr_GET",
+        "operationId": "SubscriptionLinkList_subscriptions_mr_GET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -2670,9 +2742,12 @@
             "description": "Response body contains the list of links to requestors meas_rep_ue subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
-                "SusbcriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                "SubscriptionLinkList": {
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -2722,6 +2797,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -2842,6 +2920,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -2937,6 +3018,9 @@
             "description": "Successful subscription to response to UE measurement report notifications",
             "schema": {
               "type": "object",
+              "required": [
+                "MeasRepUeSubscription"
+              ],
               "properties": {
                 "MeasRepUeSubscription": {
                   "$ref": "#/definitions/MeasRepUeSubscription"
@@ -2997,6 +3081,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -3055,7 +3142,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful update subscription to response to UE measurement report notifications",
             "schema": {
               "type": "object",
@@ -3119,6 +3206,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -3216,7 +3306,7 @@
     "/subscriptions/rab_est": {
       "get": {
         "description": "The GET method can be used to request information about the rab_est subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptions_re_GET",
+        "operationId": "SubscriptionLinkList_subscriptions_re_GET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -3226,9 +3316,12 @@
             "description": "Response body contains the list of links to requestors rab_est subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
-                "SusbcriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                "SubscriptionLinkList": {
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -3278,6 +3371,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -3398,6 +3494,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -3489,10 +3588,13 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Subscription information regarding RAB establishment notifications",
             "schema": {
               "type": "object",
+              "required": [
+                "RabEstSubscription"
+              ],
               "properties": {
                 "RabEstSubscription": {
                   "$ref": "#/definitions/RabEstSubscription"
@@ -3553,6 +3655,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -3611,7 +3716,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful subscription update to RAB establishment notifications",
             "schema": {
               "type": "object",
@@ -3675,6 +3780,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -3772,7 +3880,7 @@
     "/subscriptions/rab_mod": {
       "get": {
         "description": "The GET method can be used to request information about the rab_mod subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptions_rm_GET",
+        "operationId": "SubscriptionLinkList_subscriptions_rm_GET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -3782,9 +3890,12 @@
             "description": "Response body contains the list of links to requestors rab_mod subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
-                "SusbcriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                "SubscriptionLinkList": {
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -3834,6 +3945,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -3954,6 +4068,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -4045,10 +4162,13 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Subscription information regarding RAB Modification notifications",
             "schema": {
               "type": "object",
+              "required": [
+                "RabModSubscription"
+              ],
               "properties": {
                 "RabModSubscription": {
                   "$ref": "#/definitions/RabModSubscription"
@@ -4109,6 +4229,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -4167,7 +4290,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful subscription update to RAB Modification notifications",
             "schema": {
               "type": "object",
@@ -4231,6 +4354,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -4328,7 +4454,7 @@
     "/subscriptions/rab_rel": {
       "get": {
         "description": "The GET method can be used to request information about the rab_rel subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptions_rr_GET",
+        "operationId": "SubscriptionLinkList_subscriptions_rr_GET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -4338,9 +4464,12 @@
             "description": "Response body contains the list of links to requestors rab_rel subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
-                "SusbcriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                "SubscriptionLinkList": {
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -4390,6 +4519,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -4510,6 +4642,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -4601,10 +4736,13 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Subscription information regarding RAB Release notifications",
             "schema": {
               "type": "object",
+              "required": [
+                "RabRelSubscription"
+              ],
               "properties": {
                 "RabRelSubscription": {
                   "$ref": "#/definitions/RabRelSubscription"
@@ -4665,6 +4803,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -4723,7 +4864,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful subscription update to RAB Release notifications",
             "schema": {
               "type": "object",
@@ -4787,6 +4928,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -4884,7 +5028,7 @@
     "/subscriptions/ca_reconf": {
       "get": {
         "description": "The GET method can be used to request information about the ca_reconf subscriptions for this requestor",
-        "operationId": "SusbcriptionLinkList_subscriptions_cr_GET",
+        "operationId": "SubscriptionLinkList_subscriptions_cr_GET",
         "produces": [
           "application/json",
           "application/problem+json"
@@ -4894,9 +5038,12 @@
             "description": "Response body contains the list of links to requestors ca_reconf subscriptions.",
             "schema": {
               "type": "object",
+              "required": [
+                "SubscriptionLinkList"
+              ],
               "properties": {
-                "SusbcriptionLinkList": {
-                  "$ref": "#/definitions/SusbcriptionLinkList"
+                "SubscriptionLinkList": {
+                  "$ref": "#/definitions/SubscriptionLinkList"
                 }
               }
             },
@@ -4946,6 +5093,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -5065,6 +5215,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -5156,10 +5309,13 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Subscription information regarding Carrier Aggregation Reconfiguration notifications",
             "schema": {
               "type": "object",
+              "required": [
+                "CaReConfSubscription"
+              ],
               "properties": {
                 "CaReConfSubscription": {
                   "$ref": "#/definitions/CaReConfSubscription"
@@ -5219,6 +5375,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -5277,7 +5436,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful subscription to Carrier Aggregation Reconfiguration notifications",
             "schema": {
               "type": "object",
@@ -5340,6 +5499,9 @@
             "description": "Forbidden",
             "schema": {
               "type": "object",
+              "required": [
+                "ProblemDetails"
+              ],
               "properties": {
                 "ProblemDetails": {
                   "$ref": "#/definitions/ProblemDetails"
@@ -5856,7 +6018,7 @@
         }
       }
     },
-    "SusbcriptionLinkList": {
+    "SubscriptionLinkList": {
       "type": "object",
       "required": [
         "_links"

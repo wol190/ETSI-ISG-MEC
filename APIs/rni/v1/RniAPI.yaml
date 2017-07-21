@@ -374,6 +374,8 @@ paths:
           description: Successful response to rab_info request
           schema:
             type: object
+            required:
+              - RabInfo
             properties:
               RabInfo:
                 $ref: '#/definitions/RabInfo'
@@ -422,6 +424,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -495,6 +499,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -541,6 +547,8 @@ paths:
           description: Successful response to s1_bearer_info request
           schema:
             type: object
+            required:
+              - S1BearerInfo
             properties:
               S1BearerInfo:
                 $ref: '#/definitions/S1BearerInfo'
@@ -609,6 +617,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -639,7 +649,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptionsGET
+      operationId: SubscriptionLinkList_subscriptionsGET
       produces:
         - application/json
         - application/problem+json
@@ -650,9 +660,11 @@ paths:
             subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
-              SusbcriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+              SubscriptionLinkList:
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -683,6 +695,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -713,7 +727,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         cell_change subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptions_cc_GET
+      operationId: SubscriptionLinkList_subscriptions_cc_GET
       produces:
         - application/json
         - application/problem+json
@@ -724,9 +738,11 @@ paths:
             cell_change subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
               SubscriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -757,6 +773,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -839,6 +857,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -900,6 +920,8 @@ paths:
           description: Subscription information regarding cell change notifications
           schema:
             type: object
+            required:
+              - CellChangeSubscription
             properties:
               CellChangeSubscription:
                 $ref: '#/definitions/CellChangeSubscription'
@@ -942,6 +964,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -978,7 +1002,7 @@ paths:
         - $ref: '#/parameters/Body.CellChangeSubscription'
         - $ref: '#/parameters/Path.subscrId'
       responses:
-        '201':
+        '200':
           description: Successful subscription to response to cell change notifications
           schema:
             type: object
@@ -1024,6 +1048,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1086,7 +1112,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         s1_bearer subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptions_s1_GET
+      operationId: SubscriptionLinkList_subscriptions_s1_GET
       produces:
         - application/json
         - application/problem+json
@@ -1097,9 +1123,11 @@ paths:
             s1_bearer subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
-              SusbcriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+              SubscriptionLinkList:
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -1130,6 +1158,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1212,6 +1242,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1317,6 +1349,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1353,7 +1387,7 @@ paths:
         - $ref: '#/parameters/Path.subscrId'
         - $ref: '#/parameters/Body.S1BearerSubscription'
       responses:
-        '201':
+        '200':
           description: >-
             Successful subscription update to response to S1 Bearer
             notifications
@@ -1401,6 +1435,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1463,7 +1499,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         ta subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptions_ta_GET
+      operationId: SubscriptionLinkList_subscriptions_ta_GET
       produces:
         - application/json
         - application/problem+json
@@ -1474,9 +1510,11 @@ paths:
             ta subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
-              SusbcriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+              SubscriptionLinkList:
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -1507,6 +1545,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1590,6 +1630,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1653,6 +1695,8 @@ paths:
           description: Subscription information regarding UE Timing Advance notifications
           schema:
             type: object
+            required: 
+              - MeasTaSubscription
             properties:
               MeasTaSubscription:
                 $ref: '#/definitions/MeasTaSubscription'
@@ -1694,6 +1738,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1777,6 +1823,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1839,7 +1887,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         meas_rep_ue subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptions_mr_GET
+      operationId: SubscriptionLinkList_subscriptions_mr_GET
       produces:
         - application/json
         - application/problem+json
@@ -1850,9 +1898,11 @@ paths:
             meas_rep_ue subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
-              SusbcriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+              SubscriptionLinkList:
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -1883,6 +1933,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -1967,6 +2019,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2032,6 +2086,8 @@ paths:
             notifications
           schema:
             type: object
+            required:
+              - MeasRepUeSubscription
             properties:
               MeasRepUeSubscription:
                 $ref: '#/definitions/MeasRepUeSubscription'
@@ -2074,6 +2130,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2110,7 +2168,7 @@ paths:
         - $ref: '#/parameters/Path.subscrId'
         - $ref: '#/parameters/Body.MeasRepUeSubscription'
       responses:
-        '201':
+        '200':
           description: >-
             Successful update subscription to response to UE measurement report
             notifications
@@ -2158,6 +2216,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2220,7 +2280,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         rab_est subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptions_re_GET
+      operationId: SubscriptionLinkList_subscriptions_re_GET
       produces:
         - application/json
         - application/problem+json
@@ -2231,9 +2291,11 @@ paths:
             rab_est subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
-              SusbcriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+              SubscriptionLinkList:
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -2264,6 +2326,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2346,6 +2410,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2405,10 +2471,12 @@ paths:
       parameters:
         - $ref: '#/parameters/Path.subscrId'
       responses:
-        '201':
+        '200':
           description: Subscription information regarding RAB establishment notifications
           schema:
             type: object
+            required: 
+              - RabEstSubscription
             properties:
               RabEstSubscription:
                 $ref: '#/definitions/RabEstSubscription'
@@ -2451,6 +2519,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2487,7 +2557,7 @@ paths:
         - $ref: '#/parameters/Path.subscrId'
         - $ref: '#/parameters/Body.RabEstSubscription'
       responses:
-        '201':
+        '200':
           description: Successful subscription update to RAB establishment notifications
           schema:
             type: object
@@ -2533,6 +2603,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2595,7 +2667,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         rab_mod subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptions_rm_GET
+      operationId: SubscriptionLinkList_subscriptions_rm_GET
       produces:
         - application/json
         - application/problem+json
@@ -2606,9 +2678,11 @@ paths:
             rab_mod subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
-              SusbcriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+              SubscriptionLinkList:
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -2639,6 +2713,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2721,6 +2797,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2780,10 +2858,12 @@ paths:
       parameters:
         - $ref: '#/parameters/Path.subscrId'
       responses:
-        '201':
+        '200':
           description: Subscription information regarding RAB Modification notifications
           schema:
             type: object
+            required: 
+              - RabModSubscription
             properties:
               RabModSubscription:
                 $ref: '#/definitions/RabModSubscription'
@@ -2826,6 +2906,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2862,7 +2944,7 @@ paths:
         - $ref: '#/parameters/Path.subscrId'
         - $ref: '#/parameters/Body.RabModSubscription'
       responses:
-        '201':
+        '200':
           description: Successful subscription update to RAB Modification notifications
           schema:
             type: object
@@ -2908,6 +2990,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -2970,7 +3054,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         rab_rel subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptions_rr_GET
+      operationId: SubscriptionLinkList_subscriptions_rr_GET
       produces:
         - application/json
         - application/problem+json
@@ -2981,9 +3065,11 @@ paths:
             rab_rel subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
-              SusbcriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+              SubscriptionLinkList:
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -3014,6 +3100,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -3096,6 +3184,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -3155,10 +3245,12 @@ paths:
       parameters:
         - $ref: '#/parameters/Path.subscrId'
       responses:
-        '201':
+        '200':
           description: Subscription information regarding RAB Release notifications
           schema:
             type: object
+            required:
+              - RabRelSubscription
             properties:
               RabRelSubscription:
                 $ref: '#/definitions/RabRelSubscription'
@@ -3201,6 +3293,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -3237,7 +3331,7 @@ paths:
         - $ref: '#/parameters/Path.subscrId'
         - $ref: '#/parameters/Body.RabRelSubscription'
       responses:
-        '201':
+        '200':
           description: Successful subscription update to RAB Release notifications
           schema:
             type: object
@@ -3283,6 +3377,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -3345,7 +3441,7 @@ paths:
       description: >-
         The GET method can be used to request information about the
         ca_reconf subscriptions for this requestor
-      operationId: SusbcriptionLinkList_subscriptions_cr_GET
+      operationId: SubscriptionLinkList_subscriptions_cr_GET
       produces:
         - application/json
         - application/problem+json
@@ -3356,9 +3452,11 @@ paths:
             ca_reconf subscriptions.
           schema:
             type: object
+            required:
+              - SubscriptionLinkList
             properties:
-              SusbcriptionLinkList:
-                $ref: '#/definitions/SusbcriptionLinkList'
+              SubscriptionLinkList:
+                $ref: '#/definitions/SubscriptionLinkList'
           examples:
             application/json:
               SubscriptionLinkList:
@@ -3389,6 +3487,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -3472,6 +3572,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -3531,12 +3633,14 @@ paths:
       parameters:
         - $ref: '#/parameters/Path.subscrId'
       responses:
-        '201':
+        '200':
           description: >-
             Subscription information regarding Carrier Aggregation
             Reconfiguration notifications
           schema:
             type: object
+            required:
+              - CaReConfSubscription
             properties:
               CaReConfSubscription:
                 $ref: '#/definitions/CaReConfSubscription'
@@ -3578,6 +3682,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -3614,7 +3720,7 @@ paths:
         - $ref: '#/parameters/Path.subscrId'
         - $ref: '#/parameters/Body.CaReConfSubscription'
       responses:
-        '201':
+        '200':
           description: >-
             Successful subscription to Carrier Aggregation Reconfiguration
             notifications
@@ -3661,6 +3767,8 @@ paths:
           description: Forbidden
           schema:
             type: object
+            required:
+              - ProblemDetails
             properties:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
@@ -4050,7 +4158,7 @@ definitions:
           This IE indicates the guaranteed  uplink E-RAB Bit Rate as defined in
           TS 23.401 for this bearer.
         example: 10
-  SusbcriptionLinkList:
+  SubscriptionLinkList:
     type: object
     required:
       - _links
